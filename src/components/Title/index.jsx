@@ -1,9 +1,9 @@
 import React from "react";
 
-function Title() {
+function Title({ title }) {
   return (
     <>
-      <h1>App name goes here</h1>
+      <h1>{title}</h1>
     </>
   );
 }
