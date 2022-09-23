@@ -7,7 +7,7 @@ function Game() {
     <>
       <Title title="Debugging Challenge" />
       <Subtitle subtitle="Question 1" />
-      <Image image="" />
+      <Image image="" altVal="code image goes here"/>
       <Input name="" text="Which line number is wrong?" />
       <Button text="Submit" />
     </>
