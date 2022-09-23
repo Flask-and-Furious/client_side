@@ -26,3 +26,4 @@ dist-ssr
 viv_extra
 # Local Netlify folder
 .netlify
+coverage
