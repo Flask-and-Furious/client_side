@@ -8,14 +8,14 @@ function App() {
   return (
 
     <Routes>
-      <Route path="/" element={<Pages.Home />}></Route>
-      <Route path="/login" element={<Pages.LoginPage />}></Route>
-      <Route path="/register" element={<Pages.RegisterPage />}></Route>
-      <Route path="/language" element={<Pages.LanguagePage />}></Route>
-      <Route path="/difficulty" element={<Pages.DifficultyPage />}></Route>
-      <Route path="/game" element={<Pages.GamePage />}></Route>
-      <Route path="/completed" element={<Pages.CompletedPage />}></Route>
-      <Route path="/dashboard" element={<Pages.DashboardPage />}></Route>
+      <Route path="/" element={<><Pages.Navbar /><Pages.Home /></>}></Route>
+      <Route path="/login" element={<><Pages.Navbar /><Pages.LoginPage /></>}></Route>
+      <Route path="/register" element={<><Pages.Navbar /><Pages.RegisterPage /></>}></Route>
+      <Route path="/language" element={<><Pages.Navbar /><Pages.LanguagePage /></>}></Route>
+      <Route path="/difficulty" element={<><Pages.Navbar /><Pages.DifficultyPage /></>}></Route>
+      <Route path="/game" element={<><Pages.Navbar /><Pages.GamePage /></>}></Route>
+      <Route path="/completed" element={<><Pages.Navbar /><Pages.CompletedPage /></>}></Route>
+      <Route path="/dashboard" element={<><Pages.Navbar /><Pages.DashboardPage /></>}></Route>
       <Route path="*"></Route>
     </Routes>
  )

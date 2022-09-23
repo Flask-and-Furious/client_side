@@ -1,12 +1,13 @@
 import React from 'react'
 import styles from './input.module.css'
  
-function Input({ name, classVariant, text}) {
+function Input({ name, classVariant, type, children}) {
  return (
  
    <>
-      <label htmlFor={name}>{text}</label>
-     <input role="input" className={styles[`${classVariant}`]} id={name}/>
+      <label htmlFor={name}>{children}</label>
+     <input role="input" id={name} name={name} type={type}/>
+
     </>
  
  )

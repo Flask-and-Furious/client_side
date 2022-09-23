@@ -1,9 +1,12 @@
 import React from "react";
 
-function HomePage() {
-    return (
-        <div>Hello World</div>
+function CompletedPage() {
+    return (<>
+        <div>Well Done!</div>
+        
+        <a href="/dashboard">Go to Dashboard</a>
+        </>
     )
 }
 
-export default HomePage
+export default CompletedPage

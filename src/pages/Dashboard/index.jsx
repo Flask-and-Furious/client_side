@@ -1,9 +1,20 @@
 import React from "react";
+import { Button, Title } from "../../components";
 
-function HomePage() {
-    return (
-        <div>Hello World</div>
+function DashboardPage() {
+    return (<>
+        <div>
+            <Title>Debugging Challenge</Title>
+            <p>Current Level: EASY</p>
+        </div>
+
+          
+        <div>
+          <Button/>
+        </div>
+        </>
+
     )
 }
 
-export default HomePage
+export default DashboardPage
