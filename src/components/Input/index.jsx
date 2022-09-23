@@ -7,6 +7,7 @@ function Input({ name, classVariant, type, children}) {
    <>
       <label htmlFor={name}>{children}</label>
      <input role="input" id={name} name={name} type={type}/>
+
     </>
  
  )
