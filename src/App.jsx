@@ -1,11 +1,12 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-
+import { useState } from 'react'
 import * as Pages from "./pages";
 import "./App.css";
 
 function App() {
   return (
+
     <Routes>
       <Route path="/" element={<Pages.Home />}></Route>
       <Route path="/login" element={<Pages.LoginPage />}></Route>
@@ -17,7 +18,7 @@ function App() {
       <Route path="/dashboard" element={<Pages.DashboardPage />}></Route>
       <Route path="*"></Route>
     </Routes>
-  );
+ )
 }
 
 export default App;
