@@ -2,12 +2,12 @@
  * @jest-environment jsdom
  */
 
-import { screen, render } from "@testing-library/react";
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
+import { screen, render } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 
-import Title from "../index";
+import Title from ".";
 
 describe("Running Title component", () => {
   test("Ensures it renders without crashing", () => {
@@ -30,7 +30,9 @@ describe("Title Component Content", () => {
 
   test("Ensures title is present for user to read", () => {
     const title = screen.getByRole("heading");
+
     expect(title).toBeInTheDocument();
+    expect(typeof title.textContent).toBe("string");
     expect(title).toBeTruthy();
   });
 });
