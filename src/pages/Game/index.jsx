@@ -1,9 +1,17 @@
 import React from "react";
 
-function HomePage() {
-    return (
-        <div>Hello World</div>
-    )
+import { Button, Image, Input, Subtitle, Title } from "../../components";
+
+function Game() {
+  return (
+    <>
+      <Title title="Debugging Challenge" />
+      <Subtitle subtitle="Question 1" />
+      <Image image="" />
+      <Input name="" text="Which line number is wrong?" />
+      <Button text="Submit" />
+    </>
+  );
 }
 
-export default HomePage
+export default Game;
