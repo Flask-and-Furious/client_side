@@ -2,12 +2,13 @@
  * @jest-environment jsdom
  */
 
-import { screen, render } from "@testing-library/react";
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
+import { screen, render } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 
-import LanguagePage from "../index";
+import LanguagePage from ".";
 
 describe("Running LanguagePage component", () => {
   test("Ensures it renders without crashing", () => {
@@ -28,9 +29,13 @@ describe("LanguagePage Component Content", () => {
     );
   });
 
-  test("Ensures title is present for user to read", () => {
-    const title = screen.getByRole("heading");
-    expect(title).toBeInTheDocument();
-    expect(title).toBeTruthy();
+  test("Ensures every title is present for user to read", () => {
+    const title = screen.getAllByRole("heading");
+
+    title.map((singleTitle) => {
+      expect(singleTitle).toBeInTheDocument();
+      expect(typeof singleTitle.textContent).toBe("string");
+      expect(singleTitle).toBeTruthy();
+    });
   });
 });
