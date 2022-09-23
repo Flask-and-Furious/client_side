@@ -1,0 +1,6 @@
+export { default as HomePage } from "./home"
+export { default as LoginPage } from "./login"
+export { default as RegisterPage } from "./register"
+export { default as LanguagePage } from "./language"
+export { default as DifficultyPage } from "./difficulty"
+export { default as GamePage } from "./game"
