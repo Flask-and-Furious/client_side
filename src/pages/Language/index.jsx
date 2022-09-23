@@ -10,12 +10,14 @@ function LanguagePage() {
       <Option
         topic="JavaScript"
         text="Which line number is wrong?"
-        attributeName="javascript"
+        forAndIdAttr="javascript"
+        nameAttr="language"
       />
       <Option
         topic="Python"
         text="Which line number is wrong?"
-        attributeName="python"
+        forAndIdAttr="python"
+        nameAttr="language"
       />
       <Button text="Submit" />
     </>
