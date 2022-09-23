@@ -1,0 +1,15 @@
+ 
+.inputBox {
+
+    -ms-box-sizing:content-box;
+    -moz-box-sizing:content-box;
+    -webkit-box-sizing:content-box;
+    box-sizing:content-box;
+  
+    display: block;
+    padding: 20px;
+    margin: auto;
+    margin-bottom: 20px;
+    width: 60%;
+ }
+ 
