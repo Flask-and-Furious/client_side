@@ -7,9 +7,11 @@ function Game() {
     <>
       <Title title="Debugging Challenge" />
       <Subtitle subtitle="Question 1" />
-      <Image image="" altVal="code image goes here"/>
-      <Input name="" text="Which line number is wrong?" />
-      <Button text="Submit" />
+      <Image image="" altVal="code image goes here" />
+      <form action="">
+        <Input name="question1" text="Which line number is wrong?" />
+        <Button text="Submit" />
+      </form>
     </>
   );
 }
