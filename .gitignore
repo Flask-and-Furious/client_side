@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 viv_extra
+# Local Netlify folder
+.netlify
