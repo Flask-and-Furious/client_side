@@ -2,7 +2,7 @@ import React from "react";
 
 import { Button, Image, Subtitle, Title } from "../../components";
 
-function HomePage() {
+function Home() {
   return (
     <>
       <Title title="Flask & Furious" />
@@ -18,4 +18,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default Home;
