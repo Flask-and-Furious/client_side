@@ -3,7 +3,7 @@ import React from "react";
 function Option({ topic, attributeName }) {
   return (
     <>
-      <label for="javascript">{topic}</label>
+      <label for="javascript" role="label">{topic}</label>
       <input type="radio" name={attributeName} id={attributeName} />
     </>
   );
