@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import './App.css'
+
 import { Route, Routes } from "react-router-dom"
 
 function App() {
   return (
+
     <Routes>
       <Route path='/'></Route>
       <Route path='/login'></Route>
@@ -13,6 +15,7 @@ function App() {
       <Route path='/game'></Route>
       <Route path='*'></Route>
     </Routes>
+    
   )
 }
 
