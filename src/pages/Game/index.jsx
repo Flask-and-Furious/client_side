@@ -8,7 +8,7 @@ import { langs } from '@uiw/codemirror-extensions-langs'; // font themes for dif
 
 import { fetchedCodePackages } from "./questions";
 import { correctMessages, incorrectMessages } from "./feedback";
-import { Button, Image, Input, Subtitle, Title } from "../../components";
+import { Button, Image, Input, Subtitle, Title, FlashMessage } from "../../components";
 
 function Game() {
 
@@ -60,9 +60,8 @@ function Game() {
     <>
       <Title title="Debugging Challenge" />
       <Subtitle subtitle={currentCodePackage['snippet']['description']} />
-      <div style={{display: isAnswered ? 'flex' : 'none'}}>{
-      isCorrect ? `✅${correctMessages[randomIndex]}` :
-        `❌${incorrectMessages[randomIndex]}`}</div>
+      <FlashMessage style={{display: isAnswered ? 'flex' : 'none'}} text={isCorrect ? `✅${correctMessages[randomIndex]}` :
+        `❌${incorrectMessages[randomIndex]}`}/> 
       <div style={{textAlign: 'start', margin: '20px', fontSize: '18px'}}>
       <CodeMirror value={currentCodePackage['snippet']['body']} 
               theme={dracula}
