@@ -17,7 +17,7 @@ function App() {
       <Route path="/game" element={<><NavBar /><Pages.GamePage /></>}></Route>
       <Route path="/completed" element={<><NavBar /><Pages.CompletedPage /></>}></Route>
       <Route path="/dashboard" element={<><NavBar /><Pages.DashboardPage /></>}></Route>
-      <Route path="*"></Route>
+      <Route path="*" element={<><NavBar /><Pages.PageNotFound /></>}></Route>
     </Routes>
  )
 }
