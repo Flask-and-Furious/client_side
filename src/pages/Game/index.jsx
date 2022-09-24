@@ -1,47 +1,16 @@
 import React, { useEffect, useState }from "react";
 import { useNavigate } from "react-router-dom";
-import CodeMirror from '@uiw/react-codemirror'
+
 import axios from 'axios'
+import CodeMirror from '@uiw/react-codemirror'
+import { dracula } from '@uiw/codemirror-theme-dracula'; // code window theme
+import { langs } from '@uiw/codemirror-extensions-langs'; // font themes for different languages
+
+import { fetchedCodePackages } from "./questions";
 import { correctMessages, incorrectMessages } from "./feedback";
-
-// import 'codemirror/keymap/sublime';       // Don't worry about these here, it's for CSS
-// import 'codemirror/theme/dracula.css';
-
 import { Button, Image, Input, Subtitle, Title } from "../../components";
 
-
 function Game() {
-  // fetch the data from the database here
-  // convert it to an array which will look like this:
-  const fetchedCodePackages = [
-    {'id': 0,                       // 3 sample buggy functions
-     'snippet': {
-        'description': 'Dynamic description here',
-        'import': 'add',
-        'body' : 'def add(a, b):\n\treturn a + a\n\n# Expectation: add(3,2) => 5',
-        'to-execute': 'add(3,2)',
-        'return' : '5'
-      }
-    },
-    {'id': 1,
-     'snippet': {
-        'description': 'Dynamic description here',
-        'import': 'multiply',
-        'body' : 'def multiply(a, b):\n\treturn a * a\n\n# Expectation: multiply(6,3) => 18',
-        'to-execute': 'multiply(6,3)',
-        'return' : '18'
-      }
-    },
-    {'id': 2,
-     'snippet': {
-        'description': 'Dynamic description here',
-        'import': 'no_space',
-        'body' : 'def no_space(string):\n\tfor i in string:\n\t\tif i == " ":\n\t\t\ti.replace("")\n\n\treturn string\n\n# Expectation:\n# no_string("I >    3 Le    i d   os  !") => I<3Leidos',
-        'to-execute': 'no_space("    he     l l o! ")',
-        'return' : 'hello!'
-      }
-    }
-  ]
 
   const [progress, setProgress] = useState(0)
   
@@ -52,6 +21,7 @@ function Game() {
   const [currentCodePackage, setCurrentCodePackage] = useState(fetchedCodePackages[progress]) 
   const [isCorrect, setIsCorrect] = useState(false)
   const [isAnswered, setIsAnswered] = useState(false)
+  const [buttonState, setButtonState] = useState(false)
   const [randomIndex, setRandomIndex] = useState(null) // This is only for random feedback messages, not important
 
   useEffect(() => { // update and reset information when jumping to the next question
@@ -68,6 +38,7 @@ function Game() {
         if (data.data == currentCodePackage['snippet']['return']) { // we compare the incoming value with the saved return value from the database
           setIsCorrect(true)            // if it matches
           setRandomIndex(() => Math.floor(Math.random() * correctMessages.length))
+          setButtonState(true)
         } else {
           setIsCorrect(false)           // if it doesn't
           setRandomIndex(() => Math.floor(Math.random() * incorrectMessages.length))
@@ -92,13 +63,9 @@ function Game() {
       <div style={{display: isAnswered ? 'flex' : 'none'}}>{
       isCorrect ? `✅${correctMessages[randomIndex]}` :
         `❌${incorrectMessages[randomIndex]}`}</div>
-      <div style={{textAlign: 'start', margin: '20px'}}>
+      <div style={{textAlign: 'start', margin: '20px', fontSize: '18px'}}>
       <CodeMirror value={currentCodePackage['snippet']['body']} 
-              options={{
-                // theme: 'monokai',  // These are for design only
-                // keyMap: 'sublime',
-                mode: 'jsx',
-              }}
+              theme={dracula}
               onChange={(editor, change) => {
                 setCurrentCodePackage(() => {
                   return {'id': currentCodePackage['id'], // this is basically changes the 'body' value only. It's the code from user's input. We need the other original values
@@ -111,12 +78,12 @@ function Game() {
                     }
                   }
                 })
-                console.log('currentCodePAckage: ', currentCodePackage)
-              }} />
+              }}
+              extensions={[langs.python()]} />
       </div>
       {/* <Image image="" /> */}
       {/* <Input name="" text="Which line number is wrong?" /> */}
-      <div onClick={submitCode}><Button text="Submit" /></div>
+      <div onClick={submitCode}><Button text="Submit" isDisabled={buttonState} /></div>
       <div onClick={nextCode} style={{display: isCorrect ? 'block' : 'none'}}><Button text="Next" /></div>
     </>
   );
