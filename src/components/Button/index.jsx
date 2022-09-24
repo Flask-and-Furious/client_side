@@ -1,8 +1,14 @@
 import React from "react"
 
-function Button ({ text }) {
+function Button ({ text, isDisabled }) {
+
+    if (isDisabled) {
+        console.log('disabled is true');
+        document.querySelector('.btn').disabled = true
+    }
+
     return (
-        <button>{text}</button>
+        <button className="btn">{text}</button>
     )
 }
 
