@@ -16,6 +16,7 @@ function Game() {
   const fetchedCodePackages = [
     {'id': 0,                       // 3 sample buggy functions
      'snippet': {
+        'description': 'Dynamic description here',
         'import': 'add',
         'body' : 'def add(a, b):\n\treturn a + a\n\n# Expectation: add(3,2) => 5',
         'to-execute': 'add(3,2)',
@@ -24,6 +25,7 @@ function Game() {
     },
     {'id': 1,
      'snippet': {
+        'description': 'Dynamic description here',
         'import': 'multiply',
         'body' : 'def multiply(a, b):\n\treturn a * a\n\n# Expectation: multiply(6,3) => 18',
         'to-execute': 'multiply(6,3)',
@@ -32,6 +34,7 @@ function Game() {
     },
     {'id': 2,
      'snippet': {
+        'description': 'Dynamic description here',
         'import': 'no_space',
         'body' : 'def no_space(string):\n\tfor i in string:\n\t\tif i == " ":\n\t\t\ti.replace("")\n\n\treturn string\n\n# Expectation:\n# no_string("I >    3 Le    i d   os  !") => I<3Leidos',
         'to-execute': 'no_space("    he     l l o! ")',
@@ -85,7 +88,7 @@ function Game() {
   return (
     <>
       <Title title="Debugging Challenge" />
-      <Subtitle subtitle="Fix the function!" />
+      <Subtitle subtitle={currentCodePackage['snippet']['description']} />
       <div style={{display: isAnswered ? 'flex' : 'none'}}>{
       isCorrect ? `✅${correctMessages[randomIndex]}` :
         `❌${incorrectMessages[randomIndex]}`}</div>
@@ -100,6 +103,7 @@ function Game() {
                 setCurrentCodePackage(() => {
                   return {'id': currentCodePackage['id'], // this is basically changes the 'body' value only. It's the code from user's input. We need the other original values
                     'snippet': {
+                    'description': currentCodePackage['snippet']['description'],
                     'import': currentCodePackage['snippet']['import'],
                     'body' : editor,
                     'to-execute': currentCodePackage['snippet']['to-execute'],
