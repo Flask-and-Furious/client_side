@@ -14,7 +14,7 @@ function Game() {
   // fetch the data from the database here
   // convert it to an array which will look like this:
   const fetchedCodePackages = [
-    {'id': 0,                       // two sample functions to fix
+    {'id': 0,                       // 3 sample buggy functions
      'snippet': {
         'import': 'add',
         'body' : 'def add(a, b):\n\treturn a + a\n\n# Expectation: add(3,2) => 5',
@@ -49,7 +49,7 @@ function Game() {
   const [currentCodePackage, setCurrentCodePackage] = useState(fetchedCodePackages[progress]) 
   const [isCorrect, setIsCorrect] = useState(false)
   const [isAnswered, setIsAnswered] = useState(false)
-  const [randomIndex, setRandomIndex] = useState(null)
+  const [randomIndex, setRandomIndex] = useState(null) // This is only for random feedback messages, not important
 
   useEffect(() => { // update and reset information when jumping to the next question
     setCurrentCodePackage(fetchedCodePackages[progress])
@@ -63,15 +63,15 @@ function Game() {
       .then(data => {   // data.data will contain the debugged function return value
         console.log('data: ', data)
         if (data.data == currentCodePackage['snippet']['return']) { // we compare the incoming value with the saved return value from the database
-          setIsCorrect(true)            
+          setIsCorrect(true)            // if it matches
           setRandomIndex(() => Math.floor(Math.random() * correctMessages.length))
         } else {
-          setIsCorrect(false)
+          setIsCorrect(false)           // if it doesn't
           setRandomIndex(() => Math.floor(Math.random() * incorrectMessages.length))
         }
       })
       .catch(() => setIsCorrect(false))
-      setIsAnswered(true)
+      setIsAnswered(true) // this will make the feedback <div> visible in the DOM
   }
 
   const nextCode = () => {
@@ -92,22 +92,22 @@ function Game() {
       <div style={{textAlign: 'start', margin: '20px'}}>
       <CodeMirror value={currentCodePackage['snippet']['body']} 
               options={{
-                // theme: 'monokai',
+                // theme: 'monokai',  // These are for design only
                 // keyMap: 'sublime',
                 mode: 'jsx',
               }}
               onChange={(editor, change) => {
-                setCurrentCodePackage(prev => {
-                  return {'id': currentCodePackage['id'],
-     'snippet': {
-        'import': currentCodePackage['snippet']['import'],
-        'body' : editor,
-        'to-execute': currentCodePackage['snippet']['to-execute'],
-        'return' : currentCodePackage['snippet']['return']
-      }
-    }
+                setCurrentCodePackage(() => {
+                  return {'id': currentCodePackage['id'], // this is basically changes the 'body' value only. It's the code from user's input. We need the other original values
+                    'snippet': {
+                    'import': currentCodePackage['snippet']['import'],
+                    'body' : editor,
+                    'to-execute': currentCodePackage['snippet']['to-execute'],
+                    'return' : currentCodePackage['snippet']['return']
+                    }
+                  }
                 })
-                console.log('currentCodePAkcage: ', currentCodePackage)
+                console.log('currentCodePAckage: ', currentCodePackage)
               }} />
       </div>
       {/* <Image image="" /> */}
