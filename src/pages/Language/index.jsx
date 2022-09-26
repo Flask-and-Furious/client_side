@@ -8,18 +8,7 @@ function LanguagePage() {
       <Title title="Flask & Furious" />
       <Subtitle subtitle="Choose language" />
       <form action="" role="form">
-        <Option
-          topic="JavaScript"
-          text="Which line number is wrong?"
-          forAndIdAttr="javascript"
-          nameAttr="language"
-        />
-        <Option
-          topic="Python"
-          text="Which line number is wrong?"
-          forAndIdAttr="python"
-          nameAttr="language"
-        />
+        <Option />
         <Button text="Submit" />
       </form>
     </>
