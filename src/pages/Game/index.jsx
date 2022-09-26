@@ -1,6 +1,7 @@
-import React, { useEffect, useState }from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState,useContext }from "react";
 
+import { useNavigate } from "react-router-dom";
+import { Context } from "../../Context";
 import axios from 'axios'
 import CodeMirror from '@uiw/react-codemirror'
 import { dracula } from '@uiw/codemirror-theme-dracula'; // code window theme
@@ -10,12 +11,24 @@ import { pythonFetchedCodePackages } from "./pythonQuestions";
 import { javascriptFetchedCodePackages } from "./javascriptQuestions";
 import { correctMessages, incorrectMessages } from "./feedback";
 import { Button, Image, Input, Subtitle, Title, FlashMessage } from "../../components";
-
-function Game() {
+import LanguagePage from "../Language";
+function Game(props) {
+  const navigates = useNavigate();
+    const { items, setItems } = useContext(Context);
+    const handlertwo = () => {
+        navigates("/language");
+    };
 
   // const language = 'python' // language will be passed by props
   const language = 'javascript' // language will be passed by props
 
+  
+
+
+  ////
+  
+
+  ///
   const [progress, setProgress] = useState(0)
   
   // Here fetch the information about the logged in user's progress. This will be a number. 
@@ -73,6 +86,20 @@ function Game() {
 
   return (
     <>
+            
+            <div>
+            Updated language :<b>{items}</b>
+                <button onClick={handlertwo}>choose language </button>
+            </div>
+        
+
+<div >
+            
+              
+
+  
+        </div>
+
       <Title title="Debugging Challenge" />
       <Subtitle subtitle={currentCodePackage['snippet']['description']} />
       <FlashMessage style={{display: isAnswered ? 'flex' : 'none'}} text={isCorrect ? `✅${correctMessages[randomIndex]}` :
