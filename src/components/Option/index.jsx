@@ -1,10 +1,15 @@
 import React from "react";
 
-function Option({ topic, attributeName }) {
+function Option() {
   return (
     <>
-      <label for="javascript">{topic}</label>
-      <input type="radio" name={attributeName} id={attributeName} />
+      <label htmlFor="language" role="label">
+        Choose your language
+      </label>
+      <select name="language" id="language">
+        <option value="javascript">Javascript</option>
+        <option value="python">Python</option>
+      </select>
     </>
   );
 }

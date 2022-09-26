@@ -7,13 +7,13 @@ function Home() {
     <>
       <Title title="Flask & Furious" />
       <Subtitle subtitle="Catchy slogan goes here" />
-      <Image image="" />
+      <Image image="" altVal="hero image goes here" />
       <Button text="Login" />
       <Button text="Register" />
       <Subtitle subtitle="Article 1 name goes here" />
-      <Image image="" />
+      <Image image="" altVal="article 1 image goes here" />
       <Subtitle subtitle="Article 2 name goes here" />
-      <Image image="" />
+      <Image image="" altVal="article 2 image goes here" />
     </>
   );
 }
