@@ -35,7 +35,7 @@ function Game(props) {
   // For example if he/she solved the first bug earlier, we change the "progress" to 2 with "setProgress(2)"
 
   const navigate = useNavigate()
-  const [currentCodePackage, setCurrentCodePackage] = useState(language == 'python' ? pythonFetchedCodePackages[progress] : javascriptFetchedCodePackages[progress])
+  const [currentCodePackage, setCurrentCodePackage] = useState(language == items ? pythonFetchedCodePackages[progress] : javascriptFetchedCodePackages[progress])
   const [isCorrect, setIsCorrect] = useState(false)
   const [isAnswered, setIsAnswered] = useState(false)
   const [isButtonDisabled, setIsButtonDisabled] = useState(false)
@@ -43,7 +43,7 @@ function Game(props) {
   const [randomIndex, setRandomIndex] = useState(null) // This is only for random feedback messages, not important
 
   useEffect(() => { // update and reset information when jumping to the next question
-    setCurrentCodePackage(language == 'python' ? pythonFetchedCodePackages[progress] : javascriptFetchedCodePackages[progress])
+    setCurrentCodePackage(language == items ? pythonFetchedCodePackages[progress] : javascriptFetchedCodePackages[progress])
     setIsAnswered(false)
     setIsCorrect(false)
     setIsButtonDisabled(false)
@@ -53,7 +53,7 @@ function Game(props) {
 
   const submitCode = async () => {
 
-    await axios.post(language == 'python' ? 'http://127.0.0.1:5000/code' : 'http://localhost:3000/code', {"code-package": currentCodePackage}) // send codes to backend for processing
+    await axios.post(language == items ? 'http://127.0.0.1:5000/code' : 'http://localhost:3000/code', {"code-package": currentCodePackage}) // send codes to backend for processing
       .then(data => {   // data.data will contain the debugged function return values in an array
         console.log('data.data: ', data.data)
         if (data.data[0] === currentCodePackage['snippet']['return-1'] &&
@@ -77,7 +77,7 @@ function Game(props) {
   const nextCode = () => {
 
     setProgress(prev => prev + 1)
-    const currentLanguagePackage = language == 'python' ? pythonFetchedCodePackages : javascriptFetchedCodePackages
+    const currentLanguagePackage = language == items ? pythonFetchedCodePackages : javascriptFetchedCodePackages
     if (progress + 1 === currentLanguagePackage.length) {
       navigate('/completed')
     }
