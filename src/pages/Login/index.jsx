@@ -24,8 +24,8 @@ function Login() {
         <Button text="Login" testRole="login" />
       </form>
 
-      {/* <Title>Insert App Name</Title> */}
-      {/* <form>
+      {/* <Title>Insert App Name</Title>
+      <form>
         <Input type="text" name="username">Username</Input>
         <Input type="password" name="password">Password</Input>
         <Input type="submit" name="login">Login</Input>
