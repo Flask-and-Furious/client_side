@@ -17,6 +17,10 @@
     }
   },
   "dependencies": {
+    "@uiw/codemirror-extensions-langs": "^4.12.3",
+    "@uiw/codemirror-theme-dracula": "^4.12.3",
+    "@uiw/react-codemirror": "^4.12.3",
+    "axios": "^0.27.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.1"
