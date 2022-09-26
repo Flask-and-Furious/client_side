@@ -21,7 +21,7 @@ describe("register Page", () => {
   });
 
   it("Renders a title", () => {
-    const title = screen.queryByRole("title");
+    const title = screen.queryByRole("heading");
     expect(title).toBeInTheDocument();
   });
 
