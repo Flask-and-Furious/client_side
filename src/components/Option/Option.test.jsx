@@ -35,10 +35,10 @@ describe("Option Component Content", () => {
     expect(label).toBeTruthy();
   });
 
-  test("Ensures input is present for user to read", () => {
-    const input = screen.getByRole("input");
+  test("Ensures select is present for user to read", () => {
+    const select = screen.getByRole("select");
 
-    expect(input).toBeInTheDocument();
-    expect(input).toBeTruthy();
+    expect(select).toBeInTheDocument();
+    expect(select).toBeTruthy();
   });
 });
