@@ -7,8 +7,20 @@ function Login() {
     <div>
       <Title title="Flask & Furious" />
       <form>
-        <Input name="username" id="username" type="text" text="Username" testRole="username"/>
-        <Input name="password" id="password" type="password" text="Password" testRole="password"/>
+        <Input
+          name="username"
+          id="username"
+          type="text"
+          text="Username"
+          testRole="username"
+        />
+        <Input
+          name="password"
+          id="password"
+          type="password"
+          text="Password"
+          testRole="password"
+        />
         <Button text="Login" testRole="login" />
       </form>
 
