@@ -13,8 +13,10 @@ import { Button, Image, Input, Subtitle, Title, FlashMessage } from "../../compo
 
 function Game() {
 
-  // const language = 'python' // language will be passed by props
-  const language = 'javascript' // language will be passed by props
+  const language = 'python' // language will be passed by props
+  // const language = 'javascript' // language will be passed by props
+  // const processingServer = 'https://flask-and-furious-node-backend.herokuapp.com/code'
+  const processingServer = 'http://localhost:3000/code'
 
   const [progress, setProgress] = useState(0)
   
@@ -40,7 +42,7 @@ function Game() {
 
   const submitCode = async () => {
 
-    await axios.post(language == 'python' ? 'http://127.0.0.1:5000/code' : 'http://localhost:3000/code', {"code-package": currentCodePackage}) // send codes to backend for processing
+    await axios.post(language == 'python' ? 'http://127.0.0.1:5000/code' : processingServer, {"code-package": currentCodePackage}) // send codes to backend for processing
       .then(data => {   // data.data will contain the debugged function return values in an array
         console.log('data.data: ', data.data)
         if (data.data[0] === currentCodePackage['snippet']['return-1'] &&
@@ -97,7 +99,7 @@ function Game() {
                   }
                 })
               }}
-              extensions={[langs.javascript(), langs.python()]} />
+              extensions={language == 'python' ? [langs.python()] : [langs.javascript()]} />
       </div>
       {/* <Image image="" /> */}
       {/* <Input name="" text="Which line number is wrong?" /> */}
