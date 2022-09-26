@@ -9,12 +9,15 @@ import { screen, render } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 
 import LanguagePage from ".";
+import { ContextProvider } from "../../Context";
 
 describe("Running LanguagePage component", () => {
   test("Ensures it renders without crashing", () => {
     render(
       <BrowserRouter>
-        <LanguagePage />
+        <ContextProvider>
+          <LanguagePage />
+        </ContextProvider>
       </BrowserRouter>
     );
   });
@@ -24,7 +27,9 @@ describe("LanguagePage Component Content", () => {
   beforeEach(() => {
     render(
       <BrowserRouter>
-        <LanguagePage />
+        <ContextProvider>
+          <LanguagePage />
+        </ContextProvider>
       </BrowserRouter>
     );
   });

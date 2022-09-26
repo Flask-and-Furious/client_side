@@ -136,6 +136,7 @@ function Game(props) {
           text={`${solvingTime} s`}
         />
         <CodeMirror
+          role="codeMirror"
           value={currentCodePackage["snippet"]["body"]}
           theme={dracula}
           indentWithTab={true}
