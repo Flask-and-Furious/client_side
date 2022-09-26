@@ -10,33 +10,33 @@ import { BrowserRouter } from "react-router-dom";
 
 import Login from ".";
 
-// describe("Running Login component", () => {
-//   test("Ensures it renders without crashing", () => {
-//     render(
-//       <BrowserRouter>
-//         <Login />
-//       </BrowserRouter>
-//     );
-//   });
-// });
+describe("Running Login component", () => {
+  test("Ensures it renders without crashing", () => {
+    render(
+      <BrowserRouter>
+        <Login />
+      </BrowserRouter>
+    );
+  });
+});
 
-// describe("Login Component Content", () => {
-//   beforeEach(() => {
-//     render(
-//       <BrowserRouter>
-//         <Login />
-//       </BrowserRouter>
-//     );
-//   });
+describe("Login Component Content", () => {
+  beforeEach(() => {
+    render(
+      <BrowserRouter>
+        <Login />
+      </BrowserRouter>
+    );
+  });
 
-//   test("Ensures login title is present for user to read", () => {
-//     const title = screen.getByRole("heading");
+  test("Ensures login title is present for user to read", () => {
+    const title = screen.getByRole("heading");
 
-//     expect(title).toBeInTheDocument();
-//     expect(typeof title.textContent).toBe("string");
-//     expect(title).toBeTruthy();
-//   });
-// });
+    expect(title).toBeInTheDocument();
+    expect(typeof title.textContent).toBe("string");
+    expect(title).toBeTruthy();
+  });
+});
 
 // const testFunc = jest.fn()
 
