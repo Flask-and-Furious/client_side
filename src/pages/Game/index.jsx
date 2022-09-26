@@ -16,7 +16,7 @@ function Game(props) {
   const navigates = useNavigate();
     const { items, setItems } = useContext(Context);
     const handlertwo = () => {
-        navigates("/difficulty");
+        navigates("/language");
     };
 
   // const language = 'python' // language will be passed by props
@@ -86,17 +86,17 @@ function Game(props) {
 
   return (
     <>
-<h2>Welcome to Page Two</h2>
-            Updated new value Count:<b>{items}</b>
+            
             <div>
-                <button onClick={handlertwo}>Move to Page One</button>
+            Updated language :<b>{items}</b>
+                <button onClick={handlertwo}>choose language </button>
             </div>
         
 
 <div >
-            <h2>mylanguage </h2> 
+            
               
-<p>{props.data} </p>
+
   
         </div>
 
