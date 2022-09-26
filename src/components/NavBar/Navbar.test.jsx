@@ -1,8 +1,23 @@
-/** @jest-environment jsdom */
+/**
+ * @jest-environment jsdom
+ */
+
 import React from "react";
-import { render } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import { screen, render } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 
 import NavBar from ".";
+
+describe("Running NavBar component", () => {
+  test("Ensures it renders without crashing", () => {
+    render(
+      <BrowserRouter>
+        <NavBar />
+      </BrowserRouter>
+    );
+  });
+});
 
 describe("navbar component ", () => {
   it("renders navbar ", () => {
