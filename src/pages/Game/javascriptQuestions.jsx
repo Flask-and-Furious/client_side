@@ -1,6 +1,6 @@
 
 export const javascriptFetchedCodePackages = [
-     {'id': 0,                       // 3 sample buggy functions
+     {'id': 0,                       // sample buggy functions
      'snippet': {
         'description': 'Debug the multiplication',
         'import': 'multiply',
@@ -11,7 +11,7 @@ export const javascriptFetchedCodePackages = [
         'return-2' : 24
       }
     },
-    {'id': 0,                       // 3 sample buggy functions
+    {'id': 1,                       
      'snippet': {
         'description': 'Out factorial function is not working',
         'import': 'factorial',
