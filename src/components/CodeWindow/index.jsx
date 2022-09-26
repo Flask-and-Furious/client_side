@@ -1,9 +1,7 @@
-import React from "react"
+import React from "react";
 
 function CodeWindow() {
-    return (
-        <p>Insert code window here?</p>
-    )
+  return <p role="paragraph">Insert code window here?</p>;
 }
 
-export default CodeWindow
+export default CodeWindow;
