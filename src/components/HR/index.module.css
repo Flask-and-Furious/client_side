@@ -1,0 +1,5 @@
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(223, 151, 105, 0), rgba(187, 84, 197, 0.75), rgba(223, 151, 105, 0));
+}

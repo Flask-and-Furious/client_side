@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, Image, Subtitle, Title } from "../../components";
+import { Button, Image, Subtitle, Title, HR } from "../../components";
 import home from "../../assets/home.jpg";
 import article1 from "../../assets/article1.jpg"
 
@@ -28,6 +28,7 @@ function Home() {
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>
       </div>
+      <div><HR /></div>
       <div className="article2-container">
         <div>
           <Subtitle subtitle="Article 2 name goes here" />
@@ -35,6 +36,16 @@ function Home() {
         </div>
         <div>
           <Image image={article1} altVal="article 2 image goes here" cssClass={"rightImg"}/>
+        </div>
+      </div>
+      <div><HR /></div>
+      <div className="article1-container">
+        <div>
+          <Image image={article1} altVal="article 1 image goes here" cssClass={"rightImg"} />
+        </div>
+        <div>
+          <Subtitle subtitle="Article 1 name goes here" />
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>
       </div>
     </>
