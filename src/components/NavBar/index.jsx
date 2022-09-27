@@ -5,11 +5,11 @@ import "./navbar.css";
 import { Context } from "../../Context";
 
 function NavBar() {
-  const { storedUsername, setStoredUsername } = useContext(Context);
+  const { storedSessionUser, setStoredSessionUser } = useContext(Context);
 
   return (
     <>
-      {storedUsername ? (
+      {storedSessionUser ? (
         // there is a user present
         <nav>
           <NavLink
