@@ -1,9 +1,16 @@
-import React from "react"
+import React from "react";
+import styles from "./index.module.css"
 
-function Footer () {
-    return (
-        <footer><p>Copyright Ⓒ Flask and Furious 2022.</p></footer>
-    )
+function Footer() {
+  return (
+    <>
+    <div className="footer-container">
+      <footer>
+        <p className="copyright">Copyright Ⓒ Flask and Furious 2022.</p>
+      </footer>
+    </div>
+    </>
+  );
 }
 
-export default Footer
+export default Footer;

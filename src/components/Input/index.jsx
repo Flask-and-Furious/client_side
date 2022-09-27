@@ -1,3 +1,4 @@
+
 import React from 'react'
 import styles from './input.module.css'
  
@@ -12,8 +13,7 @@ function Input({ name, type, children, onChange=()=>{}}) {
     <>
       <input role="input" id={name} name={name} type={type} onChange={onChange} value={children}/> <br />
     </>
- 
- )
+  );
 }
- 
-export default Input
+
+export default Input;

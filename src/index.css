@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  height: 100%;
   width: 100vw;
   min-width: 100vh;
   display: flex;
@@ -28,7 +29,7 @@ body {
 }
 
 .article1-container {
-  margin: 2%;
+  margin: 1%;
   padding: 2%;
   display: flex;
   display: flex;
@@ -73,4 +74,58 @@ p {
 
 .language-left {
   padding: 15px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.copyright {
+  text-align: center;
+}
+
+@keyframes wiggle {
+  0%,
+  7% {
+    transform: rotateZ(0);
+  }
+  15% {
+    transform: rotateZ(-5deg);
+  }
+  20% {
+    transform: rotateZ(5deg);
+  }
+  25% {
+    transform: rotateZ(-5deg);
+  }
+  30% {
+    transform: rotateZ(4deg);
+  }
+  35% {
+    transform: rotateZ(-3deg);
+  }
+  40%,
+  100% {
+    transform: rotateZ(0);
+  }
+}
+
+.animation {
+  transition: transform 0.2s;
+  animation: wiggle 3s linear infinite;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 4% 4% 4%;
+  padding: 2%;
+}
+
+.left2, .right2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

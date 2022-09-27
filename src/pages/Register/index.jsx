@@ -1,79 +1,58 @@
-import React, { useState } from "react";
-import axios from 'axios'
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 import { Title, Input, Image } from "../../components"
 import login from "../../assets/virus.png"
+import { Context } from "../../Context";
 
 function Register() {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { storedFullUserDetails, setStoredFullUserDetails } = useContext(Context);
+  const goTo = useNavigate();
 
-    const [username, setUsername] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+  // moves to dashboard after logging in
+  const handleNavigate = () => {
+    setStoredFullUserDetails({}) // needs to come from SQL database
+    goTo("/dashboard"); // needs conditionally rendering using SQL database content
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-        try {
-            const options = {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body : JSON.stringify(Object.fromEntries(new FormData(e.target)))
+    handleNavigate();
 
+    try {
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(Object.fromEntries(new FormData(e.target))),
+      };
+      console.log("body:", options.body);
+      const res = await fetch(
+        "https://python-debug.herokuapp.com/register",
+        options
+      );
+      const data = await res.json();
+      console.log("Res:", data);
 
-                
-            }
-            console.log("body:", options.body)
-            const res = await fetch('https://python-debug.herokuapp.com/register', options)
-            const data = await res.json()
-            console.log("Res:", data)
-            
-            return data
-            
-        } catch (err) {
-            console.log("Error :", err)
-        }
+      return data;
+    } catch (err) {
+      console.log("Error :", err);
     }
-        
-            
+  };
 
-        
-
-
-
-    
-
-//     const body = {
-//         username: data.username,
-//         email: data.email,
-//         password: data.password
-//     }
-
-//     const options = {
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(body)
-//     }
-
-//     try {
-//         const res = await axios.post('https://python-debug.herokuapp.com/register', options)
-//         const data = await res.json()
-//         console.log(data)
-
-//     } catch (err) {
-//         console.log(err.response.data)
-//     }
-
-// }
-
-
-    
     return (
         <div className="register-container">
             <div className="login-div">
-                <Image image={login} altVal="article 1 image goes here" cssClass={"logoImg"} />
+                <div className="animation">
+                    <Image image={login} altVal="article 1 image goes here" cssClass={"logoImg"} />
+                </div>
                 <Title title="Sign up to Bug Basher" cssClass="login-title"></Title>
                 <form onSubmit={handleSubmit}>
                     <Input type="text" name="username" onChange={(e)=>{ setUsername(e.target.value)}}>Username</Input>
@@ -82,9 +61,10 @@ function Register() {
                     <Input type="password" name="password" onChange={(e)=>{ setPassword(e.target.value)}}>Password</Input>
                     <Input type="submit" name="register">Register</Input>
                 </form>
+                <p>Have an account? <Link to="/login">Login here</Link></p>
             </div>
         </div>
     )
 }
 
-export default Register
+export default Register;
