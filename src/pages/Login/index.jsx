@@ -10,14 +10,13 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { storedSessionUser, setStoredSessionUser } = useContext(Context);
-  const { isValidUser, setIsValidUser } = useContext(Context);
+  const { isValidLogIn, setIsValidLogIn } = useContext(Context);
 
   const goTo = useNavigate();
 
   // moves to dashboard after logging in
   const handleNavigate = () => {
-    // setStoredSessionUser(username); // needs to come from SQL database
-    goTo("/dashboard"); // needs conditionally rendering using SQL database content
+    goTo("/dashboard");
   };
 
   const handleSubmit = async (e) => {
@@ -39,25 +38,31 @@ function Login() {
       const data = await res.json();
       console.log("Res:", data);
 
-      // getting current user
+      window.localStorage.setItem("token", data[0]["token"]);
+
       if (data[1] === 200) {
-        window.localStorage.setItem("token", data[0]["token"]);
-        const currentSessionUser = localStorage.getItem("token");
-        setStoredSessionUser(currentSessionUser);
-        setIsValidUser(true);
+        console.log("Log In Successful!");
+        setIsValidLogIn(true);
         handleNavigate();
-        console.log("currentSessionUser ==>", currentSessionUser);
       } else {
-        setIsValidUser(false);
+        console.log("Username or Password Invalid");
+        setIsValidLogIn(false);
       }
 
       return data;
     } catch (err) {
-      return err;
+      console.log("Error ==> ", err);
     }
   };
 
-  console.log("storedSessionUser ==> ", storedSessionUser);
+  console.log("storedSessionUser before ==> ", storedSessionUser);
+  console.log(
+    "localStorage.getItem('token') ==> ",
+    localStorage.getItem("token")
+  );
+
+  setStoredSessionUser(localStorage.getItem("token"));
+  console.log("storedSessionUser after ==> ", storedSessionUser);
 
   return (
     <>
@@ -85,7 +90,7 @@ function Login() {
           />
           <Button text="Login" />
         </form>
-        {isValidUser ? null : (
+        {isValidLogIn ? null : (
           <FlashMessage text="Login failed. Please try again. " />
         )}
         <p>
