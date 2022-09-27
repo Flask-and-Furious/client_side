@@ -2,10 +2,10 @@ import React from "react";
 
 import styles from './index.module.css'
 
-function Subtitle({ subtitle }) {
+function Subtitle({ subtitle, cssClass }) {
   return (
     <>
-      <h2>{subtitle}</h2>
+      <h2 className={styles[`${cssClass}`]}>{subtitle}</h2>
     </>
   );
 }
