@@ -57,7 +57,6 @@ function Login() {
       console.log("Error :", err);
     }
   };
-  console.log("isValidUser ==> ", isValidUser);
 
   return (
     <>
