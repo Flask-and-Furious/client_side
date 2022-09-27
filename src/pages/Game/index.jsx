@@ -56,7 +56,6 @@ function Game() {
   const [isAnswered, setIsAnswered] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [solvingTime, setSolvingTime] = useState(new Date().getTime());
-  // const [randomIndex, setRandomIndex] = useState(null); // This is only for random feedback messages, not important
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -87,16 +86,15 @@ function Game() {
         setIsLoading(false)
         // data.data will contain the debugged function return values in an array
         console.log("data.data: ", data.data);
+        console.log(data.data[0], currentCodePackage["snippet"]["return-1"]);
+        console.log(data.data[1], currentCodePackage["snippet"]["return-2"]);
         if (
           // to compare singe values or deep compare objects
-          data.data[0] === currentCodePackage["snippet"]["return-1"] || _.isEqual(data.data[0],currentCodePackage["snippet"]["return-1"])&&
-          data.data[1] === currentCodePackage["snippet"]["return-2"] || _.isEqual(data.data[1],currentCodePackage["snippet"]["return-2"])
+          (data.data[0] === currentCodePackage["snippet"]["return-1"] || _.isEqual(data.data[0],currentCodePackage["snippet"]["return-1"]))&&
+          (data.data[1] === currentCodePackage["snippet"]["return-2"] || _.isEqual(data.data[1],currentCodePackage["snippet"]["return-2"]))
         ) {
           // we compare the incoming values with the saved return values from the database
           setIsCorrect(true); // if both match
-          setRandomIndex(() =>
-            Math.floor(Math.random() * correctMessages.length)
-          );
           setIsButtonDisabled(true);
           const doneTime = new Date().getTime();
           const solvingSeconds =
@@ -149,7 +147,7 @@ function Game() {
           }
         /> 
         }
-        {isAnswered && isCorrect && <FlashMessage text={`${solvingTime} s`} />} 
+        {isAnswered && isCorrect && <FlashMessage text={`Solved in: ${solvingTime} s`} />} 
       </div>
       <div style={{ textAlign: "start", margin: "20px", fontSize: "18px" }}>
         <CodeMirror

@@ -26,7 +26,7 @@ export const javascriptFetchedCodePackages = [
      'snippet': {
         'description': 'This function should create NxN multiplication table, of size provided in parameter.\nFor example, when given size is 4, the returned value should look like this:\n[[ 1, 2, 3, 4 ],\n[ 2, 4, 6, 8 ],\n[ 3, 6, 9, 12 ],\n[ 4, 8, 12, 16 ]]',
         'import': 'multiplicationTable',
-        'body' : 'const multiplicationTable = function (size) {\n  let outerArr = [[...Array(size).keys()].map(x => x + 1)]\n  let multiplier = 2;\n  while (outerArr.length < size) {\n    let innerArr = outerArr[0].map(num => num * multiplier);\n    outerArr.push(innerArr);\n    multiplier++;\n  }\n  for (let arr of outerArr) {\n    console.log(arr)\n  }\n  return outerArr;\n};',
+        'body' : 'const multiplicationTable = function (size) {\n  let outerArr = [[...Array(size).keys()].map(x => x + 1)]\n  let multiplier = 2;\n  while (outerArr.length < size) {\n    let innerArr = outerArr.map(num => num * multiplier);\n    outerArr.push(innerArr);\n    multiplier++;\n  }\n\n  return outerArr;\n};',
         'to-execute-1': 'multiplicationTable(3)',
         'return-1' : [ [ 1, 2, 3 ], [ 2, 4, 6 ], [ 3, 6, 9 ] ],
         'to-execute-2': 'multiplicationTable(6)',
