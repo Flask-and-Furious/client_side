@@ -6,6 +6,7 @@ import axios from "axios";
 import CodeMirror from "@uiw/react-codemirror";
 import { dracula } from "@uiw/codemirror-theme-dracula"; // code window theme
 import { langs } from "@uiw/codemirror-extensions-langs"; // font themes for different languages
+import _, { map } from 'underscore'; // for deep comparing objects, arrays ...
 
 import { pythonFetchedCodePackages } from "./pythonQuestions";
 import { javascriptFetchedCodePackages } from "./javascriptQuestions";
@@ -80,8 +81,9 @@ function Game() {
         // data.data will contain the debugged function return values in an array
         console.log("data.data: ", data.data);
         if (
-          data.data[0] === currentCodePackage["snippet"]["return-1"] &&
-          data.data[1] === currentCodePackage["snippet"]["return-2"]
+          // to compare singe values or deep compare objects
+          data.data[0] === currentCodePackage["snippet"]["return-1"] || _.isEqual(data.data[0],currentCodePackage["snippet"]["return-1"])&&
+          data.data[1] === currentCodePackage["snippet"]["return-2"] || _.isEqual(data.data[1],currentCodePackage["snippet"]["return-2"])
         ) {
           // we compare the incoming values with the saved return values from the database
           setIsCorrect(true); // if both match
@@ -151,14 +153,18 @@ function Game() {
               return {
                 id: currentCodePackage["id"], // this is basically changes the 'body' value only. It's the code from user's input. We need the other original values
                 snippet: {
-                  description: currentCodePackage["snippet"]["description"],
-                  import: currentCodePackage["snippet"]["import"],
+                  ...currentCodePackage["snippet"],
                   body: editor,
-                  "to-execute-1": currentCodePackage["snippet"]["to-execute-1"],
-                  "return-1": currentCodePackage["snippet"]["return-1"],
-                  "to-execute-2": currentCodePackage["snippet"]["to-execute-2"],
-                  "return-2": currentCodePackage["snippet"]["return-2"],
                 },
+                // snippet: {
+                //   description: currentCodePackage["snippet"]["description"],
+                //   import: currentCodePackage["snippet"]["import"],
+                //   body: editor,
+                //   "to-execute-1": currentCodePackage["snippet"]["to-execute-1"],
+                //   "return-1": currentCodePackage["snippet"]["return-1"],
+                //   "to-execute-2": currentCodePackage["snippet"]["to-execute-2"],
+                //   "return-2": currentCodePackage["snippet"]["return-2"],
+                // },
               };
             });
           }}
