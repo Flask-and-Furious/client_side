@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import axios from 'axios'
 
 import { Title, Input } from "../../components"
 
 function Login() {
 
+    
+    const navTo = useNavigate() 
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -23,19 +26,28 @@ function Login() {
 
                 
             }
-            console.log("body:", options.body)
+            
             const res = await fetch('https://python-debug.herokuapp.com/login', options)
             const data = await res.json()
             console.log("Res:", data)
-            
-            return data
+
+            if (data[1] == "200") {
+                localStorage.setItem("token", data[0]["token"])
+                navTo("/dashboard")
+            } else if (data[1] == "401"){
+                
+                console.log("Username or Password is incorrect!")
+            } else {
+                console.log("Server error!")
+            }
+           
             
         } catch (err) {
             console.log("Error :", err)
         }
 
     }
-
+    {navTo("/dashboard") ? null : <p>Username Wrong</p>} 
     return (
         <div>
             <Title>Insert App Name</Title>
