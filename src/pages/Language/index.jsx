@@ -47,7 +47,7 @@ function LanguagePage() {
           <p>Your selection {codeLanguage}</p>
           <br></br>
 
-          <button onClick={HandlerOne}>go to Game page</button>
+          <button onClick={HandlerOne}>Let's Play</button>
         </div>
       </div>
     </>
