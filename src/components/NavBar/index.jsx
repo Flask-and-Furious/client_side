@@ -5,11 +5,11 @@ import "./navbar.css";
 import { Context } from "../../Context";
 
 function NavBar() {
-  const { storedSessionUser, setStoredSessionUser } = useContext(Context);
+  const { isValidLogIn, setIsValidLogIn } = useContext(Context);
 
   return (
     <>
-      {storedSessionUser ? (
+      {isValidLogIn ? (
         // there is a user present
         <nav>
           <NavLink to="/">Home</NavLink>
