@@ -46,7 +46,7 @@ function LanguagePage() {
           {codeLanguage ? (
             <>
               <p>
-                You chose:{" "}
+                Selected:{" "}
                 {codeLanguage.charAt(0).toUpperCase() + codeLanguage.slice(1)}
               </p>
               <button onClick={HandlerOne}>Let's Play</button>
