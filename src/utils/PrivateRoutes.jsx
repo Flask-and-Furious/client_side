@@ -1,11 +1,11 @@
-import { Outlet, Navigate } from "react-router-dom";
 import React, { useContext } from "react";
+import { Outlet, Navigate } from "react-router-dom";
 
 import { Context } from "../Context";
 
 const PrivateRoutes = () => {
-  const { isValidUser, setIsValidUser } = useContext(Context);
-  const auth = { "token": isValidUser };
+  const { isValidLogIn, setIsValidLogIn } = useContext(Context);
+  const auth = { token: isValidLogIn };
 
   return (
     <>
