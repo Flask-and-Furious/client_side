@@ -57,16 +57,6 @@ function NavBar() {
         Language
       </NavLink>
       <NavLink
-        to="/difficulty"
-        style={({ isActive }) =>
-          isActive
-            ? { textDecoration: "underline" }
-            : { textDecoration: "none" }
-        }
-      >
-        Difficulty
-      </NavLink>
-      <NavLink
         to="/game"
         style={({ isActive }) =>
           isActive
@@ -85,6 +75,16 @@ function NavBar() {
         }
       >
         Completed
+      </NavLink>
+      <NavLink
+        to="/difficulty"
+        style={({ isActive }) =>
+          isActive
+            ? { textDecoration: "underline" }
+            : { textDecoration: "none" }
+        }
+      >
+        Difficulty
       </NavLink>
       <Outlet />
     </nav>
