@@ -1,9 +1,8 @@
 import React, { useContext, useState } from "react";
-
-import { Button, Option, Subtitle, Title } from "../../components";
-import Game from "../Game";
 import { useNavigate } from "react-router-dom";
 
+import Game from "../Game";
+import { Button, Option, Subtitle, Title } from "../../components";
 import { Context } from "../../Context";
 
 function LanguagePage() {
