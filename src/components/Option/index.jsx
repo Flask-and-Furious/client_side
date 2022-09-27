@@ -3,12 +3,10 @@ import React from "react";
 function Option() {
   return (
     <>
-      <label htmlFor="language" role="label">
-        Choose your language
-      </label>
+      <label htmlFor="language" role="label"></label>
       <select name="language" id="language">
-        <option value="javascript">Javascript</option>
-        <option value="python">Python</option>
+        <option value="javascript">Free play</option>
+        <option value="python">Timed</option>
       </select>
     </>
   );
