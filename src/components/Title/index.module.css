@@ -3,3 +3,7 @@ h1 {
     line-height: 2.5rem;
     padding: 15px;
 }
+
+.login-title {
+    margin: 20px;
+}

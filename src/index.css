@@ -47,3 +47,21 @@ p {
   padding: 15px;
   width: 500px;
 }
+
+.login-container {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login-div {
+  text-align: center;
+}
