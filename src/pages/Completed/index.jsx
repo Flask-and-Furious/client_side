@@ -4,13 +4,13 @@ import { Button, Subtitle, Title } from "../../components";
 import { Context } from "../../Context";
 
 function CompletedPage() {
-  const { storedUsername, setStoredUsername } = useContext(Context);
+  const { storedSessionUser, setStoredSessionUser } = useContext(Context);
 
   return (
     <>
       <div>
         <Title title="Flask & Furious" />
-        <Subtitle subtitle={`Well Done ${storedUsername}!`} />
+        <Subtitle subtitle={`Well Done ${storedSessionUser}!`} />
         <Button text="Go to Dashboard" nextPage="/dashboard" />
       </div>
 
