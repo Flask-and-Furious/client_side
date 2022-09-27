@@ -20,6 +20,8 @@ import {
   FlashMessage,
   Loader
 } from "../../components";
+import styles from './index.module.css'
+
 
 
 function Game() {
@@ -33,8 +35,8 @@ function Game() {
   // const pythonProcessingServer = 'https://python-debug.herokuapp.com/code'
   const pythonProcessingServer = "http://127.0.0.1:5000/code"
 
-  const nodeProcessingServer = 'https://flask-and-furious-node-backend.herokuapp.com/code'
-  // const nodeProcessingServer = 'http://localhost:3000/code'
+  // const nodeProcessingServer = 'https://flask-and-furious-node-backend.herokuapp.com/code'
+  const nodeProcessingServer = 'http://localhost:3000/code'
 
   ////
 
@@ -54,7 +56,10 @@ function Game() {
   const [isAnswered, setIsAnswered] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [solvingTime, setSolvingTime] = useState(new Date().getTime());
-  const [randomIndex, setRandomIndex] = useState(null); // This is only for random feedback messages, not important
+  // const [randomIndex, setRandomIndex] = useState(null); // This is only for random feedback messages, not important
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+
 
   useEffect(() => {
     // update and reset information when jumping to the next question
@@ -70,6 +75,7 @@ function Game() {
   }, [progress]);
 
   const submitCode = async () => {
+    setIsLoading(true)
     await axios
       .post(
         codeLanguage == 'python'
@@ -78,6 +84,7 @@ function Game() {
         { "code-package": currentCodePackage }
       ) // send codes to backend for processing
       .then((data) => {
+        setIsLoading(false)
         // data.data will contain the debugged function return values in an array
         console.log("data.data: ", data.data);
         if (
@@ -97,6 +104,7 @@ function Game() {
           setSolvingTime(solvingSeconds);
           // Here some code to save this duration to user's profile. Maybe update if this is the quickest?
         } else {
+          setErrorMessage(data.data)
           setIsCorrect(false); // if it doesn't
           setRandomIndex(() =>
             Math.floor(Math.random() * incorrectMessages.length)
@@ -121,7 +129,6 @@ function Game() {
 
   return (
     <>
-      <Loader className='loader' />
       <div>
         Updated language :<b>{codeLanguage}</b>
         <button onClick={handlertwo}>choose language </button>
@@ -131,19 +138,20 @@ function Game() {
 
       <Title title="Debugging Challenge" />
       <Subtitle subtitle={currentCodePackage["snippet"]["description"]} />
-      <FlashMessage
-        style={{ display: isAnswered ? "flex" : "none" }}
-        text={
-          isCorrect
-            ? `✅${correctMessages[randomIndex]}`
-            : `❌${incorrectMessages[randomIndex]}`
-        }
-      />
-      <div style={{ textAlign: "start", margin: "20px", fontSize: "18px" }}>
+      <div id="flash-container" style={{height: '30px'}}>
+        {isLoading ? <Loader /> : isAnswered &&
         <FlashMessage
-          style={{ display: isCorrect ? "flex" : "none" }}
-          text={`${solvingTime} s`}
-        />
+          text={
+            isCorrect
+              ? //`✅${correctMessages[randomIndex]}`
+              '✅ Correct!'
+              : `❌${errorMessage.error ? errorMessage.error : 'Try again'}`
+          }
+        /> 
+        }
+        {isAnswered && isCorrect && <FlashMessage text={`${solvingTime} s`} />} 
+      </div>
+      <div style={{ textAlign: "start", margin: "20px", fontSize: "18px" }}>
         <CodeMirror
           value={currentCodePackage["snippet"]["body"]}
           theme={dracula}
@@ -156,23 +164,12 @@ function Game() {
                   ...currentCodePackage["snippet"],
                   body: editor,
                 },
-                // snippet: {
-                //   description: currentCodePackage["snippet"]["description"],
-                //   import: currentCodePackage["snippet"]["import"],
-                //   body: editor,
-                //   "to-execute-1": currentCodePackage["snippet"]["to-execute-1"],
-                //   "return-1": currentCodePackage["snippet"]["return-1"],
-                //   "to-execute-2": currentCodePackage["snippet"]["to-execute-2"],
-                //   "return-2": currentCodePackage["snippet"]["return-2"],
-                // },
               };
             });
           }}
           extensions={codeLanguage == 'python' ? [langs.python()] : [langs.javascript()]}
         />
       </div>
-      {/* <Image image="" /> */}
-      {/* <Input name="" text="Which line number is wrong?" /> */}
       <div style={{display: codeLanguage == 'python' ? 'block' : 'none'}}>Please use 4 spaces for indentation<br></br>Avoid using TAB</div>
       <div onClick={submitCode}>
         <Button text="Submit" isDisabled={isButtonDisabled} />
