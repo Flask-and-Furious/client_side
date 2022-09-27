@@ -17,7 +17,7 @@ import {
   Subtitle,
   Title,
   FlashMessage,
-  Loader,
+  Loader
 } from "../../components";
 
 

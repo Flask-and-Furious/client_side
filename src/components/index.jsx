@@ -7,3 +7,4 @@ export { default as Title } from "./Title";
 export { default as NavBar } from "./NavBar";
 export { default as FlashMessage } from "./FlashMessage";
 export { default as Footer } from "./Footer";
+export { default as Loader } from "./Loader";
