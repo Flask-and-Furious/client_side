@@ -67,5 +67,10 @@ p {
 }
 
 .language-container {
+  margin-top: 100px;
   display: flex;
+}
+
+.language-left {
+  padding: 15px;
 }
