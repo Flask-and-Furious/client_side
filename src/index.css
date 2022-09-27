@@ -48,7 +48,7 @@ p {
   width: 500px;
 }
 
-.login-container {
+.login-container, .register-container {
   margin-top: 100px;
   display: flex;
   justify-content: center;
