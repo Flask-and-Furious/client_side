@@ -72,7 +72,7 @@ function NavBar() {
           >
             Log Out
           </NavLink>
-          <NavLink
+          {/* <NavLink
             to="/difficulty"
             style={({ isActive }) =>
               isActive
@@ -81,8 +81,7 @@ function NavBar() {
             }
           >
             Difficulty
-          </NavLink>
-
+          </NavLink> */}
           <Outlet />
         </nav>
       ) : (

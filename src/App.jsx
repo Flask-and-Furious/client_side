@@ -14,7 +14,7 @@ function App() {
       <Route path="/language" element={<Pages.LanguagePage />}></Route>
       <Route path="/game" element={<Pages.GamePage />}></Route>
       <Route path="/completed" element={<Pages.CompletedPage />}></Route>
-      <Route path="/difficulty" element={<Pages.DifficultyPage />}></Route>
+      {/* <Route path="/difficulty" element={<Pages.DifficultyPage />}></Route> */}
       <Route path="*" element={<Pages.PageNotFound />}></Route>
     </Routes>
   );
