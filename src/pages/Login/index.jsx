@@ -3,26 +3,26 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-import { Title, Input, Button, Subtitle } from "../../components";
+import { Title, Input, Button, Subtitle, FlashMessage } from "../../components";
 import { Context } from "../../Context";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { storedUsername, setStoredUsername } = useContext(Context);
+  const { storedSessionUser, setStoredSessionUser } = useContext(Context);
+  const { isValidUser, setIsValidUser } = useContext(Context);
+
   const goTo = useNavigate();
 
   // moves to dashboard after logging in
   const handleNavigate = () => {
-    goTo("/dashboard");
+    // setStoredSessionUser(username); // needs to come from SQL database
+    goTo("/dashboard"); // needs conditionally rendering using SQL database content
   };
 
+  let errorMessage;
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    handleNavigate();
-
-    setStoredUsername(username)
 
     try {
       const options = {
@@ -32,7 +32,7 @@ function Login() {
         },
         body: JSON.stringify(Object.fromEntries(new FormData(e.target))),
       };
-      console.log("body:", options.body);
+      console.log("body here ==> ", options.body);
       const res = await fetch(
         "https://python-debug.herokuapp.com/login",
         options
@@ -40,11 +40,24 @@ function Login() {
       const data = await res.json();
       console.log("Res:", data);
 
+      // getting current user
+      if (data[1] === 200) {
+        localStorage.setItem("token", data[0]["token"]);
+        const currentSessionUser = localStorage.getItem("token");
+        setStoredSessionUser(currentSessionUser);
+        setIsValidUser(true);
+        handleNavigate();
+      } else {
+        setIsValidUser(false);
+        console.log("PANIC!!!");
+      }
+
       return data;
     } catch (err) {
       console.log("Error :", err);
     }
   };
+  console.log("isValidUser ==> ", isValidUser);
 
   return (
     <>
@@ -72,6 +85,9 @@ function Login() {
           />
           <Button text="Login" />
         </form>
+        {isValidUser ? null : (
+          <FlashMessage text="Login failed. Please try again. " />
+        )}
         <p>
           Don't have an account? <Link to="/register">Register here</Link>
         </p>
