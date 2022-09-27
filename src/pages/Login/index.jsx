@@ -41,7 +41,7 @@ function Login() {
 
       // getting current user
       if (data[1] === 200) {
-        localStorage.setItem("token", data[0]["token"]);
+        window.localStorage.setItem("token", data[0]["token"]);
         const currentSessionUser = localStorage.getItem("token");
         setStoredSessionUser(currentSessionUser);
         setIsValidUser(true);
@@ -56,6 +56,8 @@ function Login() {
       return err;
     }
   };
+
+  console.log("storedSessionUser ==> ", storedSessionUser);
 
   return (
     <>
