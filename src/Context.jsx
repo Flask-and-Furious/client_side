@@ -3,9 +3,9 @@ import React, { useState } from "react";
 export const Context = React.createContext();
 
 export const ContextProvider = ({ children }) => {
-  const [codeLanguage, setCodeLanguage] = useState("");
+  const [codeLanguage, setCodeLanguage] = useState("python");
   const [storedSessionUser, setStoredSessionUser] = useState("");
-  const [isValidUser, setIsValidUser] = useState(false);
+  const [isValidLogIn, setIsValidLogIn] = useState(true);
 
   return (
     <Context.Provider
@@ -14,8 +14,8 @@ export const ContextProvider = ({ children }) => {
         setCodeLanguage,
         storedSessionUser,
         setStoredSessionUser,
-        isValidUser,
-        setIsValidUser,
+        isValidLogIn,
+        setIsValidLogIn,
       }}
     >
       {children}
