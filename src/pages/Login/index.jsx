@@ -20,7 +20,6 @@ function Login() {
     goTo("/dashboard"); // needs conditionally rendering using SQL database content
   };
 
-  let errorMessage;
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -47,6 +46,7 @@ function Login() {
         setStoredSessionUser(currentSessionUser);
         setIsValidUser(true);
         handleNavigate();
+        console.log("currentSessionUser ==>", currentSessionUser);
       } else {
         setIsValidUser(false);
       }
