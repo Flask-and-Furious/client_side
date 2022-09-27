@@ -5,8 +5,8 @@ function Option() {
     <>
       <label htmlFor="language" role="label"></label>
       <select name="language" id="language">
-        <option value="javascript">Free play</option>
-        <option value="python">Timed</option>
+        <option value="javascript">Javascript</option>
+        <option value="python">Python</option>
       </select>
     </>
   );
