@@ -40,15 +40,17 @@ function LanguagePage() {
       <Subtitle subtitle="Choose language" />
 
       <div>
-        <button onClick={clickHandler}>python</button>⬅ choose one ⮕
-        <button onClick={clickHandlerOne}>javascript</button>
+        <button onClick={clickHandler}>Python</button>
+        <button onClick={clickHandlerOne}>Javascript</button>
         <div>
-          <br></br>
-          <p>Your selection {codeLanguage}</p>
-          <br></br>
-
           {codeLanguage ? (
-            <button onClick={HandlerOne}>Let's Play</button>
+            <>
+              <p>
+                You chose:{" "}
+                {codeLanguage.charAt(0).toUpperCase() + codeLanguage.slice(1)}
+              </p>
+              <button onClick={HandlerOne}>Let's Play</button>
+            </>
           ) : null}
         </div>
       </div>
