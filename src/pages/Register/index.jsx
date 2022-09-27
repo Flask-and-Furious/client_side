@@ -10,12 +10,10 @@ function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { storedFullUserDetails, setStoredFullUserDetails } = useContext(Context);
   const goTo = useNavigate();
 
   // moves to dashboard after logging in
   const handleNavigate = () => {
-    setStoredFullUserDetails({}) // needs to come from SQL database
     goTo("/dashboard"); // needs conditionally rendering using SQL database content
   };
 
