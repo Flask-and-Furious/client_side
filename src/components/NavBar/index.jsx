@@ -37,6 +37,16 @@ function NavBar() {
         Register
       </NavLink>
       <NavLink
+        to="/dashboard"
+        style={({ isActive }) =>
+          isActive
+            ? { textDecoration: "underline" }
+            : { textDecoration: "none" }
+        }
+      >
+        Dashboard
+      </NavLink>
+      <NavLink
         to="/language"
         style={({ isActive }) =>
           isActive
@@ -75,16 +85,6 @@ function NavBar() {
         }
       >
         Completed
-      </NavLink>
-      <NavLink
-        to="/dashboard"
-        style={({ isActive }) =>
-          isActive
-            ? { textDecoration: "underline" }
-            : { textDecoration: "none" }
-        }
-      >
-        Dashboard
       </NavLink>
       <Outlet />
     </nav>
