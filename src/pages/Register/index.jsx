@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
-import { Title, Input, Button } from "../../components";
+import { Title, Input, Button, Subtitle } from "../../components";
 
 function Register() {
   const [username, setUsername] = useState("");
@@ -69,6 +70,7 @@ function Register() {
   return (
     <>
       <Title title="Flask & Furious" />
+      <Subtitle subtitle="Register here" />
       <form onSubmit={handleSubmit}>
         <Input
           onChange={(e) => {
@@ -102,7 +104,7 @@ function Register() {
         />
         <Button text="Register" />
       </form>
-
+      Have an account? <Link to="/login">Login here</Link>
       {/* 
       <div>
         <Title>Insert App Name</Title>
