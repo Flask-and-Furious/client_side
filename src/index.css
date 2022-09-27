@@ -65,3 +65,7 @@ p {
 .login-div {
   text-align: center;
 }
+
+.language-container {
+  display: flex;
+}

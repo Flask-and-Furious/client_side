@@ -36,22 +36,25 @@ function LanguagePage() {
     navigate("/game");
   };
   return (
-    <>
-      <Title title="Flask & Furious" />
-      <Subtitle subtitle="Choose language" />
-
+    <div className="language-container">
       <div>
-        <button onClick={clickHandler}>python</button>⬅ choose one ⮕
-        <button onClick={clickHandlerOne}>javascript</button>
+        <Title title="Flask & Furious" />
+        <Subtitle subtitle="Choose language" />
         <div>
-          <br></br>
-          <p>Your selection {codeLanguage}</p>
-          <br></br>
-
+          <button onClick={clickHandler}>python</button>⬅ choose one ⮕
+          <button onClick={clickHandlerOne}>javascript</button>
+          <div>
+            <br></br>
+            <p>Your selection {codeLanguage}</p>
+            <br></br>
           <button onClick={HandlerOne}>go to Game page</button>
         </div>
+        </div>
       </div>
-    </>
+      <div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+    </div>
   );
 }
 
