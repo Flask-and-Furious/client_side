@@ -1,13 +1,85 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
-import { Title, Input, Button } from "../../components";
+import { Title, Input, Button, Subtitle } from "../../components";
+import { Context } from "../../Context";
 
 function Register() {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { storedFullUserDetails, setStoredFullUserDetails } =
+    useContext(Context);
+  const goTo = useNavigate();
+
+  // moves to dashboard after logging in
+  const handleNavigate = () => {
+    setStoredFullUserDetails({}); // needs to come from SQL database
+    goTo("/dashboard"); // needs conditionally rendering using SQL database content
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    handleNavigate();
+
+    try {
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(Object.fromEntries(new FormData(e.target))),
+      };
+      console.log("body:", options.body);
+      const res = await fetch(
+        "https://python-debug.herokuapp.com/register",
+        options
+      );
+      const data = await res.json();
+      console.log("Res:", data);
+
+      return data;
+    } catch (err) {
+      console.log("Error :", err);
+    }
+  };
+
+  //     const body = {
+  //         username: data.username,
+  //         email: data.email,
+  //         password: data.password
+  //     }
+
+  //     const options = {
+  //         headers: {
+  //             'Content-Type': 'application/json'
+  //         },
+  //         body: JSON.stringify(body)
+  //     }
+
+  //     try {
+  //         const res = await axios.post('https://python-debug.herokuapp.com/register', options)
+  //         const data = await res.json()
+  //         console.log(data)
+
+  //     } catch (err) {
+  //         console.log(err.response.data)
+  //     }
+
+  // }
+
   return (
-    <div>
+    <>
       <Title title="Flask & Furious" />
-      <form>
+      <Subtitle subtitle="Register here" />
+      <form onSubmit={handleSubmit}>
         <Input
+          onChange={(e) => {
+            setUsername(e.target.value);
+          }}
           name="username"
           id="username"
           type="text"
@@ -15,6 +87,9 @@ function Register() {
           testRole="username"
         />
         <Input
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
           name="email"
           id="email"
           type="email"
@@ -22,31 +97,31 @@ function Register() {
           testRole="email"
         />
         <Input
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
           name="password"
           id="password"
           type="password"
           text="Password"
           testRole="password"
         />
-        <Input
-          name="password"
-          id="password"
-          type="password"
-          text="Confirm Password"
-          testRole="confirm-password"
-        />
         <Button text="Register" testRole="register" />
       </form>
-
-      {/* <Title>Insert App Name</Title>
-      <form>
-          <Input type="text" name="username">Username</Input>
-          <Input type="text" name="email">Email</Input>
-          <Input type="password" name="password">Password</Input>
-          <Input type="password" name="confirm-password">Confirm Password</Input>
-          <Input type="submit" name="Register">Register</Input>
-      </form> */}
-    </div>
+      Have an account? <Link to="/login">Login here</Link>
+      {/* 
+      <div>
+        <Title>Insert App Name</Title>
+        <form onSubmit={handleSubmit}>
+            <Input type="text" name="username" onChange={(e)=>{ setUsername(e.target.value)}}>Username</Input>
+            <Input type="text" name="email" onChange={(e)=>{ setEmail(e.target.value)}}>Email</Input>
+            <Input type="password" name="password" onChange={(e)=>{ setPassword(e.target.value)}}>Password</Input>
+            <Input type="password" name="confirm-password">Confirm Password</Input> (// don't use!!!)
+            <Input type="submit" name="Register">Register</Input>
+        </form>
+      </div> 
+     */}
+    </>
   );
 }
 

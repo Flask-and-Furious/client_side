@@ -1,12 +1,28 @@
 import React from "react";
+
 import styles from "./input.module.css";
 
-function Input({ name, classVariant, type, children, text, testRole }) {
+function Input({
+  text,
+  name,
+  classVariant,
+  type,
+  children,
+  onChange = () => {},
+  testRole,
+}) {
   return (
     <>
-      <label htmlFor={name}>{text}</label>
       {/* <label htmlFor={name}>{children}</label> */}
-      <input role={testRole} id={name} name={name} type={type} />
+      <label htmlFor={name}>{text}</label>
+      <input
+        required
+        id={name}
+        name={name}
+        type={type}
+        onChange={onChange}
+        role={testRole}
+      />
     </>
   );
 }
