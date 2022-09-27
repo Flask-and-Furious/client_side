@@ -13,7 +13,7 @@ function Register() {
 
   // moves to dashboard after logging in
   const handleNavigate = () => {
-    goTo("/dashboard", { replace: true });
+    goTo("/dashboard");
   };
 
   const handleSubmit = async (e) => {
