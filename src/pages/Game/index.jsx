@@ -17,9 +17,11 @@ import {
   Subtitle,
   Title,
   FlashMessage,
+  Loader,
 } from "../../components";
 
-function Game(props) {
+
+function Game() {
 
   const navigates = useNavigate();
   const { codeLanguage, setCodeLanguage } = useContext(Context);
@@ -27,8 +29,6 @@ function Game(props) {
     navigates("/language");
   };
 
-  // const language = 'python' // language will be passed by props
-  // const language = 'javascript' // language will be passed by props
   // const pythonProcessingServer = 'https://python-debug.herokuapp.com/code'
   const pythonProcessingServer = "http://127.0.0.1:5000/code"
 
@@ -119,6 +119,7 @@ function Game(props) {
 
   return (
     <>
+      <Loader className='loader' />
       <div>
         Updated language :<b>{codeLanguage}</b>
         <button onClick={handlertwo}>choose language </button>
