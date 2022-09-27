@@ -1,13 +1,16 @@
 import React from 'react'
 import styles from './input.module.css'
  
-function Input({ name, classVariant, type, children, onChange=()=>{}}) {
+function Input({ name, type, children, onChange=()=>{}}) {
  return (
- 
+   type=='text' || type=='password' ?
    <>
-      <label htmlFor={name}>{children}</label>
-     <input role="input" id={name} name={name} type={type} onChange={onChange}/>
+      
+     <input role="input" id={name} name={name} type={type} onChange={onChange} placeholder={children}/> <br />
 
+    </> :
+    <>
+      <input role="input" id={name} name={name} type={type} onChange={onChange} value={children}/> <br />
     </>
  
  )

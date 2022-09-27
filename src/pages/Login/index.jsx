@@ -1,8 +1,11 @@
+
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import axios from 'axios'
 
-import { Title, Input } from "../../components"
+
+import { Title, Input, Image } from "../../components"
+import login from "../../assets/virus.png"
 
 function Login() {
 
@@ -49,13 +52,16 @@ function Login() {
     }
     {navTo("/dashboard") ? null : <p>Username Wrong</p>} 
     return (
-        <div>
-            <Title>Insert App Name</Title>
-            <form onSubmit={handleSubmit}>
-                <Input type="text" name="username" onChange={(e)=>{ setUsername(e.target.value)}}>Username</Input>
-                <Input type="password" name="password" onChange={(e)=>{ setPassword(e.target.value)}}>Password</Input>
-                <Input type="submit" name="login">Login</Input>
-            </form>
+        <div className="login-container">
+            <div className="login-div">
+                <Image image={login} altVal="article 1 image goes here" cssClass={"logoImg"} />
+                <Title title="Welcome to Bug Basher" cssClass="login-title"></Title>
+                <form onSubmit={handleSubmit}>
+                    <Input type="text" name="username" onChange={(e)=>{ setUsername(e.target.value)}}>Username</Input>
+                    <Input type="password" name="password" onChange={(e)=>{ setPassword(e.target.value)}}>Password</Input>
+                    <Input type="submit" name="login">Login</Input>
+                </form>
+            </div>
         </div>
     )
 }

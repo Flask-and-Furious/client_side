@@ -6,3 +6,4 @@ export { default as Subtitle } from "./Subtitle";
 export { default as Title } from "./Title";
 export { default as NavBar } from "./NavBar";
 export { default as FlashMessage } from "./FlashMessage";
+export { default as HR} from "./HR";

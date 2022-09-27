@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from 'axios'
 
-import { Title, Input } from "../../components"
+import { Title, Input, Image } from "../../components"
+import login from "../../assets/virus.png"
 
 function Register() {
 
@@ -70,15 +71,18 @@ function Register() {
 
     
     return (
-        <div>
-            <Title>Insert App Name</Title>
-            <form onSubmit={handleSubmit}>
-                <Input type="text" name="username" onChange={(e)=>{ setUsername(e.target.value)}}>Username</Input>
-                <Input type="text" name="email" onChange={(e)=>{ setEmail(e.target.value)}}>Email</Input>
-                <Input type="password" name="password" onChange={(e)=>{ setPassword(e.target.value)}}>Password</Input>
-                {/* <Input type="password" name="confirm-password">Confirm Password</Input> */}
-                <Input type="submit" name="Register">Register</Input>
-            </form>
+        <div className="register-container">
+            <div className="login-div">
+                <Image image={login} altVal="article 1 image goes here" cssClass={"logoImg"} />
+                <Title title="Sign up to Bug Basher" cssClass="login-title"></Title>
+                <form onSubmit={handleSubmit}>
+                    <Input type="text" name="username" onChange={(e)=>{ setUsername(e.target.value)}}>Username</Input>
+                    <Input type="text" name="email" onChange={(e)=>{ setEmail(e.target.value)}}>Email</Input>
+                    {/* <Input type="password" name="confirm-password">Confirm Password</Input> */}
+                    <Input type="password" name="password" onChange={(e)=>{ setPassword(e.target.value)}}>Password</Input>
+                    <Input type="submit" name="register">Register</Input>
+                </form>
+            </div>
         </div>
     )
 }
