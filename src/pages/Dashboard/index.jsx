@@ -4,13 +4,13 @@ import { Button, Subtitle, Title } from "../../components";
 import { Context } from "../../Context";
 
 function DashboardPage() {
-  const { storedUsername, setStoredUsername } = useContext(Context);
+  const { storedSessionUser, setStoredSessionUser } = useContext(Context);
 
   return (
     <>
       <div>
         <Title title="Flask & Furious" />
-        <Subtitle subtitle={`${storedUsername}'s Dashboard`} />
+        <Subtitle subtitle={`${storedSessionUser}'s Dashboard`} />
         <p>Current Level: EASY</p>
       </div>
 
