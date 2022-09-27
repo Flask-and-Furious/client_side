@@ -14,9 +14,9 @@ function NavBar() {
         <nav>
           <NavLink to="/">Home</NavLink>
           <NavLink to="/dashboard">Dashboard</NavLink>
-          <NavLink to="/language">Language</NavLink>
-          <NavLink to="/game">Game</NavLink>
-          <NavLink to="/completed">Completed</NavLink>
+          {/* <NavLink to="/language">Language</NavLink> */}
+          {/* <NavLink to="/game">Game</NavLink> */}
+          {/* <NavLink to="/completed">Completed</NavLink> */}
           <NavLink to="/logout">Log Out</NavLink>
           {/* <NavLink to="/difficulty">Difficulty</NavLink> */}
           <Outlet />
