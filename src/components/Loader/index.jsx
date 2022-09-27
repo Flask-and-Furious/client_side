@@ -2,9 +2,9 @@ import React from 'react'
 import styles from './index.module.css'
 
 
-function Loader({ cssClass}) {
+function Loader() {
   return (
-    <div className={styles[`${cssClass}`]}>Loader</div>
+    <div className={styles.loader}></div>
   )
 }
 
