@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
-import { Title, Input, Button } from "../../components";
+import { Title, Input, Button, Subtitle } from "../../components";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -45,6 +46,7 @@ function Login() {
     <>
       <div>
         <Title title="Flask & Furious" />
+        <Subtitle subtitle="Login here" />
         <form onSubmit={handleSubmit}>
           <Input
             onChange={(e) => {
@@ -66,6 +68,9 @@ function Login() {
           />
           <Button text="Login" />
         </form>
+        <p>
+          Don't have an account? <Link to="/register">Register here</Link>
+        </p>
       </div>
 
       {/* <div>
