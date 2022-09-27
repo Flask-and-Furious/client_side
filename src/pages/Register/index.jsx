@@ -1,19 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
 import { Title, Input, Button, Subtitle } from "../../components";
+import { Context } from "../../Context";
 
 function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { storedFullUserDetails, setStoredFullUserDetails } = useContext(Context);
   const goTo = useNavigate();
 
   // moves to dashboard after logging in
   const handleNavigate = () => {
-    goTo("/dashboard");
+    setStoredFullUserDetails({}) // needs to come from SQL database
+    goTo("/dashboard"); // needs conditionally rendering using SQL database content
   };
 
   const handleSubmit = async (e) => {
