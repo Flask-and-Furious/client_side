@@ -11,8 +11,18 @@ function DashboardPage() {
       </div>
 
       <div>
-        <Button text="Let's Play" nextPage="/language" />
+        <Button text="Let's Get Started" nextPage="/language" />
       </div>
+
+      {/* 
+      <div>
+        <Title>Debugging Challenge</Title>
+        <p>Current Level: EASY</p>
+      </div>
+
+      <div>
+        <Button />
+      </div> */}
     </>
   );
 }
