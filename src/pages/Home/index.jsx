@@ -4,14 +4,14 @@ import { Button, Image, Subtitle, Title } from "../../components";
 import { Context } from "../../Context";
 
 function Home() {
-  const { storedSessionUser, setStoredSessionUser } = useContext(Context);
+  const { isValidLogIn, setIsValidLogIn } = useContext(Context);
 
   return (
     <>
       <Title title="Flask & Furious" />
       <Subtitle subtitle="Catchy slogan goes here" />
       <Image image="" altVal="hero image goes here" />
-      {storedSessionUser ? null : (
+      {isValidLogIn ? null : (
         <>
           <Button text="Login" nextPage="/login" />
           <Button text="Register" nextPage="/register" />
