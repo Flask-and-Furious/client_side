@@ -47,7 +47,9 @@ function LanguagePage() {
           <p>Your selection {codeLanguage}</p>
           <br></br>
 
-          <button onClick={HandlerOne}>Let's Play</button>
+          {codeLanguage ? (
+            <button onClick={HandlerOne}>Let's Play</button>
+          ) : null}
         </div>
       </div>
     </>
