@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+
 import { Button, Subtitle, Title } from "../../components";
+import { Context } from "../../Context";
 
 function DashboardPage() {
+  const { storedUsername, setStoredUsername } = useContext(Context);
+
   return (
     <>
       <div>
         <Title title="Flask & Furious" />
-        <Subtitle subtitle="Your Dashboard" />
+        <Subtitle subtitle={`${storedUsername}'s Dashboard`} />
         <p>Current Level: EASY</p>
       </div>
 
