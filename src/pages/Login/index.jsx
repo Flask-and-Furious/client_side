@@ -49,12 +49,11 @@ function Login() {
         handleNavigate();
       } else {
         setIsValidUser(false);
-        console.log("PANIC!!!");
       }
 
       return data;
     } catch (err) {
-      console.log("Error :", err);
+      return err;
     }
   };
 
