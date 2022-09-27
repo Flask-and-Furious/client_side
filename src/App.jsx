@@ -18,6 +18,7 @@ function App() {
         <Route path="/language" element={<Pages.LanguagePage />} />
         <Route path="/game" element={<Pages.GamePage />} />
         <Route path="/completed" element={<Pages.CompletedPage />} />
+        <Route path="/logout" element={<Pages.Logout />} />
       </Route>
 
       <Route path="*" element={<Pages.PageNotFound />}></Route>
