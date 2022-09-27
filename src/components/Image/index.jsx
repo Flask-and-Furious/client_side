@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from './image.module.css'
  
-function Image({image, altVal}) {
+function Image({image, altVal, cssClass}) {
  return (<>
-   <img className={styles.myImg} src={image} alt={altVal} width="130" height="350" />
+   <img className={styles[`${cssClass}`]} src={image} alt={altVal} />
    </>
  )
 }

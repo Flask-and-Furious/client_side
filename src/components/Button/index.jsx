@@ -1,9 +1,11 @@
 import React from "react"
 
-function Button ({ text, isDisabled }) {
+import styles from "./index.module.css"
+
+function Button ({ text, isDisabled, cssClass }) {
 
     return (
-        <button className="btn" disabled={isDisabled}>{text}</button>
+        <button className={styles[`${cssClass}`]} disabled={isDisabled}>{text}</button>
     )
 }
 
