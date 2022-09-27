@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from 'axios'
 
 import { Title, Input, Image } from "../../components"
-import login from "../../assets/shortcut-script-app.png"
+import login from "../../assets/virus.png"
 
 function Register() {
 
