@@ -20,20 +20,19 @@ import {
 } from "../../components";
 
 function Game(props) {
-
   const navigates = useNavigate();
   const { codeLanguage, setCodeLanguage } = useContext(Context);
-  const handlertwo = () => {
+  const handlerTwo = () => {
     navigates("/language");
   };
 
   // const language = 'python' // language will be passed by props
   // const language = 'javascript' // language will be passed by props
   // const pythonProcessingServer = 'https://python-debug.herokuapp.com/code'
-  const pythonProcessingServer = "http://127.0.0.1:5000/code"
+  const pythonProcessingServer = "http://127.0.0.1:5000/code";
 
   // const nodeProcessingServer = 'https://flask-and-furious-node-backend.herokuapp.com/code'
-  const nodeProcessingServer = 'http://localhost:3000/code'
+  const nodeProcessingServer = "http://localhost:3000/code";
 
   ////
 
@@ -45,7 +44,7 @@ function Game(props) {
 
   const navigate = useNavigate();
   const [currentCodePackage, setCurrentCodePackage] = useState(
-    codeLanguage == 'python'
+    codeLanguage == "python"
       ? pythonFetchedCodePackages[progress]
       : javascriptFetchedCodePackages[progress]
   );
@@ -58,7 +57,7 @@ function Game(props) {
   useEffect(() => {
     // update and reset information when jumping to the next question
     setCurrentCodePackage(
-      codeLanguage == 'python'
+      codeLanguage == "python"
         ? pythonFetchedCodePackages[progress]
         : javascriptFetchedCodePackages[progress]
     );
@@ -71,7 +70,7 @@ function Game(props) {
   const submitCode = async () => {
     await axios
       .post(
-        codeLanguage == 'python'
+        codeLanguage == "python"
           ? pythonProcessingServer
           : nodeProcessingServer,
         { "code-package": currentCodePackage }
@@ -108,7 +107,7 @@ function Game(props) {
   const nextCode = () => {
     setProgress((prev) => prev + 1);
     const currentLanguagePackage =
-      codeLanguage == 'python'
+      codeLanguage == "python"
         ? pythonFetchedCodePackages
         : javascriptFetchedCodePackages;
     if (progress + 1 === currentLanguagePackage.length) {
@@ -120,8 +119,9 @@ function Game(props) {
   return (
     <>
       <div>
-        Updated language :<b>{codeLanguage}</b>
-        <button onClick={handlertwo}>choose language </button>
+        Current language:{" "}
+        <b>{codeLanguage.charAt(0).toUpperCase() + codeLanguage.slice(1)}</b>
+        <button onClick={handlerTwo}>Change language</button>
       </div>
 
       <div></div>
@@ -161,12 +161,16 @@ function Game(props) {
               };
             });
           }}
-          extensions={codeLanguage == 'python' ? [langs.python()] : [langs.javascript()]}
+          extensions={
+            codeLanguage == "python" ? [langs.python()] : [langs.javascript()]
+          }
         />
       </div>
       {/* <Image image="" /> */}
       {/* <Input name="" text="Which line number is wrong?" /> */}
-      <div style={{display: codeLanguage == 'python' ? 'block' : 'none'}}>Please use 4 spaces for indentation<br></br>Avoid using TAB</div>
+      <div style={{ display: codeLanguage == "python" ? "block" : "none" }}>
+        Please use 4 spaces for indentation<br></br>Avoid using TAB
+      </div>
       <div onClick={submitCode}>
         <Button text="Submit" isDisabled={isButtonDisabled} />
       </div>
