@@ -1,93 +1,129 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 
 import "./navbar.css";
+import { Context } from "../../Context";
 
 function NavBar() {
+  const { storedUsername, setStoredUsername } = useContext(Context);
+
   return (
-    <nav>
-      <NavLink
-        to="/"
-        style={({ isActive }) =>
-          isActive
-            ? { textDecoration: "underline" }
-            : { textDecoration: "none" }
-        }
-      >
-        Home
-      </NavLink>
-      <NavLink
-        to="/login"
-        style={({ isActive }) =>
-          isActive
-            ? { textDecoration: "underline" }
-            : { textDecoration: "none" }
-        }
-      >
-        Login
-      </NavLink>
-      <NavLink
-        to="/register"
-        style={({ isActive }) =>
-          isActive
-            ? { textDecoration: "underline" }
-            : { textDecoration: "none" }
-        }
-      >
-        Register
-      </NavLink>
-      <NavLink
-        to="/dashboard"
-        style={({ isActive }) =>
-          isActive
-            ? { textDecoration: "underline" }
-            : { textDecoration: "none" }
-        }
-      >
-        Dashboard
-      </NavLink>
-      <NavLink
-        to="/language"
-        style={({ isActive }) =>
-          isActive
-            ? { textDecoration: "underline" }
-            : { textDecoration: "none" }
-        }
-      >
-        Language
-      </NavLink>
-      <NavLink
-        to="/game"
-        style={({ isActive }) =>
-          isActive
-            ? { textDecoration: "underline" }
-            : { textDecoration: "none" }
-        }
-      >
-        Game
-      </NavLink>
-      <NavLink
-        to="/completed"
-        style={({ isActive }) =>
-          isActive
-            ? { textDecoration: "underline" }
-            : { textDecoration: "none" }
-        }
-      >
-        Completed
-      </NavLink>
-      <NavLink
-        to="/difficulty"
-        style={({ isActive }) =>
-          isActive
-            ? { textDecoration: "underline" }
-            : { textDecoration: "none" }
-        }
-      >
-        Difficulty
-      </NavLink>
-      <Outlet />
-    </nav>
+    <>
+      {storedUsername ? (
+        // there is a user present
+        <nav>
+          <NavLink
+            to="/"
+            style={({ isActive }) =>
+              isActive
+                ? { textDecoration: "underline" }
+                : { textDecoration: "none" }
+            }
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/dashboard"
+            style={({ isActive }) =>
+              isActive
+                ? { textDecoration: "underline" }
+                : { textDecoration: "none" }
+            }
+          >
+            Dashboard
+          </NavLink>
+          <NavLink
+            to="/language"
+            style={({ isActive }) =>
+              isActive
+                ? { textDecoration: "underline" }
+                : { textDecoration: "none" }
+            }
+          >
+            Language
+          </NavLink>
+          <NavLink
+            to="/game"
+            style={({ isActive }) =>
+              isActive
+                ? { textDecoration: "underline" }
+                : { textDecoration: "none" }
+            }
+          >
+            Game
+          </NavLink>
+          <NavLink
+            to="/completed"
+            style={({ isActive }) =>
+              isActive
+                ? { textDecoration: "underline" }
+                : { textDecoration: "none" }
+            }
+          >
+            Completed
+          </NavLink>
+          <NavLink
+            to="/logout"
+            style={({ isActive }) =>
+              isActive
+                ? { textDecoration: "underline" }
+                : { textDecoration: "none" }
+            }
+          >
+            Log Out
+          </NavLink>
+          <NavLink
+            to="/difficulty"
+            style={({ isActive }) =>
+              isActive
+                ? { textDecoration: "underline" }
+                : { textDecoration: "none" }
+            }
+          >
+            Difficulty
+          </NavLink>
+
+          <Outlet />
+        </nav>
+      ) : (
+        // there is no user present
+        <nav>
+          <NavLink
+            to="/"
+            style={({ isActive }) =>
+              isActive
+                ? { textDecoration: "underline" }
+                : { textDecoration: "none" }
+            }
+          >
+            Home
+          </NavLink>
+
+          <NavLink
+            to="/login"
+            style={({ isActive }) =>
+              isActive
+                ? { textDecoration: "underline" }
+                : { textDecoration: "none" }
+            }
+          >
+            Login
+          </NavLink>
+          <NavLink
+            to="/register"
+            style={({ isActive }) =>
+              isActive
+                ? { textDecoration: "underline" }
+                : { textDecoration: "none" }
+            }
+          >
+            Register
+          </NavLink>
+
+          <Outlet />
+        </nav>
+      )}
+    </>
   );
 }
 export default NavBar;
