@@ -9,8 +9,11 @@ import { Context } from "../../Context";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isValid, setIsValid] = useState(false);
   const { storedSessionUser, setStoredSessionUser } = useContext(Context);
+  const { submitForm, setSubmitForm } = useContext(Context);
   const { isValidLogIn, setIsValidLogIn } = useContext(Context);
+  // const { isLoggedOut, setIsLoggedOut } = useContext(Context);
 
   const goTo = useNavigate();
 
@@ -21,6 +24,16 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setIsValidLogIn(true)
+
+    // setSubmitForm(true);
+
+    // if (storedSessionUser) {
+    //   setIsValid(true);
+    // } else {
+    //   setIsValid(false);
+    // }
 
     try {
       const options = {
@@ -38,15 +51,16 @@ function Login() {
       const data = await res.json();
       console.log("Res:", data);
 
-      window.localStorage.setItem("token", data[0]["token"]);
-
-      if (data[1] === 200) {
+      if (data[1] == "200") {
+        window.localStorage.setItem("token", data[0]["token"]);
+        console.log("localStorage.getItem('token') (before) ==> ", localStorage.getItem("token"));
+        goTo("/dashboard");
+        setStoredSessionUser(localStorage.getItem("token"))
+        // setIsValid(true);
         console.log("Log In Successful!");
-        setIsValidLogIn(true);
-        handleNavigate();
       } else {
+        // setIsValid(false);
         console.log("Username or Password Invalid");
-        setIsValidLogIn(false);
       }
 
       return data;
@@ -55,14 +69,8 @@ function Login() {
     }
   };
 
-  console.log("storedSessionUser before ==> ", storedSessionUser);
-  console.log(
-    "localStorage.getItem('token') ==> ",
-    localStorage.getItem("token")
-  );
+  console.log("storedSessionUser (after) ==> ", storedSessionUser);
 
-  setStoredSessionUser(localStorage.getItem("token"));
-  console.log("storedSessionUser after ==> ", storedSessionUser);
 
   return (
     <>
@@ -90,9 +98,9 @@ function Login() {
           />
           <Button text="Login" />
         </form>
-        {isValidLogIn ? null : (
+        {/* {submitForm && storedSessionUser ? null : (
           <FlashMessage text="Login failed. Please try again. " />
-        )}
+        )} */}
         <p>
           Don't have an account? <Link to="/register">Register here</Link>
         </p>

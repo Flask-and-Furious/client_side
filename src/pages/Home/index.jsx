@@ -5,13 +5,14 @@ import { Context } from "../../Context";
 
 function Home() {
   const { isValidLogIn, setIsValidLogIn } = useContext(Context);
+  const { submitForm, setSubmitForm } = useContext(Context);
 
   return (
     <>
       <Title title="Flask & Furious" />
       <Subtitle subtitle="Catchy slogan goes here" />
       <Image image="" altVal="hero image goes here" />
-      {isValidLogIn ? null : (
+      {isValidLogIn && submitForm ? null : (
         <>
           <Button text="Login" nextPage="/login" />
           <Button text="Register" nextPage="/register" />

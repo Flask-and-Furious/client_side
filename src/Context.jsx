@@ -6,6 +6,8 @@ export const ContextProvider = ({ children }) => {
   const [codeLanguage, setCodeLanguage] = useState("python");
   const [storedSessionUser, setStoredSessionUser] = useState("");
   const [isValidLogIn, setIsValidLogIn] = useState(true);
+  const [isLoggedOut, setIsLoggedOut] = useState(true);
+  const [submitForm, setSubmitForm] = useState(false);
 
   return (
     <Context.Provider
@@ -16,6 +18,10 @@ export const ContextProvider = ({ children }) => {
         setStoredSessionUser,
         isValidLogIn,
         setIsValidLogIn,
+        isLoggedOut,
+        setIsLoggedOut,
+        submitForm,
+        setSubmitForm,
       }}
     >
       {children}

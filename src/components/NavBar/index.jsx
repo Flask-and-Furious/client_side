@@ -6,19 +6,18 @@ import { Context } from "../../Context";
 
 function NavBar() {
   const { isValidLogIn, setIsValidLogIn } = useContext(Context);
+  const { storedSessionUser, setStoredSessionUser  } = useContext(Context);
+  // const { submitForm, setSubmitForm } = useContext(Context);
 
+  console.log("storedSessionUser ===> ", storedSessionUser);
   return (
     <>
-      {isValidLogIn ? (
+      {storedSessionUser != null ? (
         // there is a user present
         <nav>
           <NavLink to="/">Home</NavLink>
           <NavLink to="/dashboard">Dashboard</NavLink>
-          {/* <NavLink to="/language">Language</NavLink> */}
-          {/* <NavLink to="/game">Game</NavLink> */}
-          {/* <NavLink to="/completed">Completed</NavLink> */}
           <NavLink to="/logout">Log Out</NavLink>
-          {/* <NavLink to="/difficulty">Difficulty</NavLink> */}
           <Outlet />
         </nav>
       ) : (
