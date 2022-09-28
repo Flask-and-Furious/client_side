@@ -258,8 +258,18 @@ nav {
 
 .code-mirror {
   width: 750px;
+  padding: 15px;
 }
 
 .options {
   padding: 15px;
+}
+
+#flash-container {
+  padding: 15px;
+}
+
+.score-div {
+  padding: 15px;
+  text-align: center;
 }
