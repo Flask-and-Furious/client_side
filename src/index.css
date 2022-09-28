@@ -246,6 +246,7 @@ nav {
   
   p {
     font-size: 12px;
+    width: 350px;
   }
   
   .container {
@@ -253,3 +254,6 @@ nav {
   }
   
 }
+
+
+

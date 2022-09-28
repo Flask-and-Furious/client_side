@@ -23,3 +23,13 @@ h2 {
         font-size: 1.5rem;
     }
   }
+
+  @media screen and (max-width: 850px) {
+    h2 {
+        font-size: 2rem;
+    }
+
+    .team-member {
+        font-size: 1.5rem;
+    }
+  }
