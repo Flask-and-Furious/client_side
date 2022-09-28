@@ -57,7 +57,7 @@ function Register() {
                     <Input type="password" min={8} max={20} name="password" onChange={(e)=>{ setPassword(e.target.value)}}>Password</Input>
                     <Input type="submit" name="register">Register</Input>
                 </form>
-                <p>Have an account? <Link to="/login">Login here</Link></p>
+                <p className="p-login">Have an account? <Link to="/login">Login here</Link></p>
             </div>
         </div>
     )

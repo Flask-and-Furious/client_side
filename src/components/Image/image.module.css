@@ -58,17 +58,30 @@
 }
 }
 
+.mobileImg {
+  display: none;
+}
+
 @media screen and (max-width: 600px) {
   .rightImg {
     display: none;
  }
 
  .snippets {
-  width: 400px;
+  width: 350px;
   padding: 20px;
 }
 
 .teamImg {
   width: 150px;
 }
+
+.mobileImg {
+  display: block;
+  width: 80px;
+  margin-bottom: 20px;
+}
+
+
+
 }

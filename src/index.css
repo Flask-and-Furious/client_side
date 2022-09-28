@@ -263,7 +263,7 @@ nav {
   }
   
   .container {
-    min-width: 0px;
+    min-width: -1px;
   }
 
   .home-title-container {
@@ -299,6 +299,22 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  .mobile-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .p-login {
+    margin-left: 10px;
   }
 }
 

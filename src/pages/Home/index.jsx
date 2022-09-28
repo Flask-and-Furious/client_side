@@ -9,6 +9,7 @@ import home from "../../assets/home.jpg";
 import article1 from "../../assets/article1.jpg"
 import snippet1 from "../../assets/snippet1.png"
 import coding_girl from "../../assets/coding_girl.jpg"
+import virus from "../../assets/virus.png"
 
 
 function Home() {
@@ -34,6 +35,9 @@ function Home() {
       <div className="home-title-container">
         <div className="left-title">
           <div data-aos="zoom-in">
+            <div className="mobile-div">
+              <Image image={virus} altVal="bug" cssClass={"mobileImg"}/>
+            </div>
             <Title cssClass={"title-h1"} title="Bug Basher" />
 
             {/* This below is just an extra space */}
@@ -41,7 +45,10 @@ function Home() {
             
             <Subtitle subtitle="Develop your coding skills" />
             <Subtitle subtitle="via debugging!" />
+            <div className="btn-div">
+
             <Button text="Start learning" cssClass={"play"} handleClickEvent={(user)=> {handleNavigation(user)}}/>
+            </div>
           </div>
         </div>
         <div className="right-title" data-aos="zoom-in-left">
