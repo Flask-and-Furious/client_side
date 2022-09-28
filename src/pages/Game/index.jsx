@@ -35,8 +35,8 @@ function Game() {
   // const pythonProcessingServer = 'https://python-debug.herokuapp.com/code'
   const pythonProcessingServer = "http://127.0.0.1:5000/code"
 
-  // const nodeProcessingServer = 'https://flask-and-furious-node-backend.herokuapp.com/code'
-  const nodeProcessingServer = 'http://localhost:3000/code'
+  const nodeProcessingServer = 'https://flask-and-furious-node-backend.herokuapp.com/code'
+  // const nodeProcessingServer = 'http://localhost:3000/code'
 
   ////
 
