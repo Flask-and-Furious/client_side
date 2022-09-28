@@ -51,7 +51,7 @@ function Login() {
         handleNavigate();
       } else {
         setIsValidUser(false);
-        console.log("PANIC!!!");
+        console.log("Something went wrong!");
       }
       return data;
     } catch (err) {
