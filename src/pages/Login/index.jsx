@@ -1,62 +1,103 @@
-import { useState } from 'react'
 
-import { useNavigate } from "react-router-dom"
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useUserContext } from '../../Context';
+import { Title, Input, Button, Subtitle, FlashMessage } from "../../components";
+import { Context } from "../../Context";
 
 function Login(props) {
-  const [username, setUserName] = useState("");
+   const { login } = useUserContext();
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate=useNavigate()
+  const { storedSessionUser, setStoredSessionUser } = useContext(Context);
+  const { isValidUser, setIsValidUser } = useContext(Context);
 
+  const goTo = useNavigate();
 
-  const { login } = useUserContext();
-  const sub =()=>{
-    navigate("/register");
-}
- 
+  // moves to dashboard after logging in
+  const handleNavigate = () => {
+    // setStoredSessionUser(username); // needs to come from SQL database
+    goTo("/dashboard"); // needs conditionally rendering using SQL database content
+  };
+
+  let errorMessage;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(Object.fromEntries(new FormData(e.target))),
+      };
+      console.log("body here ==> ", options.body);
+      const res = await fetch(
+        "https://python-debug.herokuapp.com/login",
+        options
+      );
+      const data = await res.json();
+      console.log("Res:", data);
+
+      // getting current user
+      if (data[1] === 200) {
+        localStorage.setItem("token", data[0]["token"]);
+        const currentSessionUser = localStorage.getItem("token");
+        setStoredSessionUser(currentSessionUser);
+        setIsValidUser(true);
+        handleNavigate();
+      } else {
+        setIsValidUser(false);
+        console.log("PANIC!!!");
+      }
+
+      return data;
+    } catch (err) {
+      console.log("Error :", err);
+    }
+  };
+  console.log("isValidUser ==> ", isValidUser);
 
   return (
-    <div>
-
-
-    
-
-
-
-
-      <div >
-        <h1 title='Login'> Login</h1>
-        <form 
-          onSubmit={(e) => {
-            e.preventDefault()
-            login(username, password)
-          }}
-        >
-          <input
-            type="username"
-            placeholder="Username"
-          
-            value={username}
-            onChange={(e) => setUserName(e.target.value)}
+    <>
+      <div>
+        <Title title="Flask & Furious" />
+        <Subtitle subtitle="Login here" />
+        <form onSubmit={handleSubmit}>
+          <Input
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+            name="username"
+            id="username"
+            type="text"
+            text="Username"
           />
-          <input
+          <Input
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            name="password"
+            id="password"
             type="password"
-            placeholder="Password"
-           
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            text="Password"
           />
-          <div>
-         
-              <button onClick={sub}>go to Register</button>
-          
-            <button>Login</button>
-          </div>
+          <Button text="Login" />
         </form>
+        {isValidUser ? null : (
+          <FlashMessage text="Login failed. Please try again. " />
+        )}
+        <p>
+          Don't have an account? <Link to="/register">Register here</Link>
+        </p>
       </div>
-    </div>
-  )
+
+     
+    </>
+  );
 }
 
 export default Login;

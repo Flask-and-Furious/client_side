@@ -1,13 +1,14 @@
-import React, { useEffect } from "react";
-import { useUserContext } from '../../Context';
 
+import React, { useEffect, useContext } from "react";
+import { useUserContext } from '../../Context';
+import { Context } from "../../Context";
 import { useNavigate } from 'react-router-dom';
 
-import { Button, Title } from "../../components";
+import { Button, Subtitle, Title } from "../../components";
 
 function DashboardPage() {
 
-
+   const { storedSessionUser, setStoredSessionUser } = useContext(Context);
     const { user } = useUserContext();
     const navigate = useNavigate();
 
@@ -17,18 +18,19 @@ function DashboardPage() {
     }
 }, [user]);
     return (<>
+         <div>
+        <Title title="Flask & Furious" />
+        <Subtitle subtitle={`${storedSessionUser}'s Dashboard`} />
+        <p>Current Level: EASY</p>
+      </div>
         <div>
-            <Title>Debugging Challenge</Title>
-            <p>Current Level: EASY</p>
-        </div>
+        <Button text="Let's Get Started" nextPage="/language" />
+      </div>
 
-          
-        <div>
-          <Button/>
-        </div>
-        </>
 
-    )
+     
+    </>
+  );
 }
 
-export default DashboardPage
+export default DashboardPage;

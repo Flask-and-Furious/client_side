@@ -1,10 +1,12 @@
 import React, { useContext, useState } from "react";
-
-import { Button, Option, Subtitle, Title } from "../../components";
-import Game from "../Game";
 import { useNavigate } from "react-router-dom";
-;
+
 import { useUserContext } from '../../Context';
+
+
+import Game from "../Game";
+import { Button, Option, Subtitle, Title } from "../../components";
+import { Context } from "../../Context";
 
 
 function LanguagePage() {
@@ -50,7 +52,9 @@ function LanguagePage() {
           <p>Your selection {codeLanguage}</p>
           <br></br>
 
-          <button onClick={HandlerOne}>go to Game page</button>
+          {codeLanguage ? (
+            <button onClick={HandlerOne}>Let's Play</button>
+          ) : null}
         </div>
       </div>
     </>
