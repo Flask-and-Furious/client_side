@@ -1,86 +1,62 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 import axios from 'axios'
-
-import { Title, Input } from "../../components"
+import { useNavigate } from "react-router-dom"
+import { useUserContext } from '../../Context';
 
 function Register() {
+  const [username, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    const [username, setUsername] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-
-        try {
-            const options = {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body : JSON.stringify(Object.fromEntries(new FormData(e.target)))
+  
+  const { register } = useUserContext();
 
 
-                
-            }
-            console.log("body:", options.body)
-            const res = await fetch('https://python-debug.herokuapp.com/register', options)
-            const data = await res.json()
-            console.log("Res:", data)
-            
-            return data
-            
-        } catch (err) {
-            console.log("Error :", err)
-        }
-    }
-        
-            
-
-        
-
-
-
+  return (
+    <>
+    <div>
     
-
-//     const body = {
-//         username: data.username,
-//         email: data.email,
-//         password: data.password
-//     }
-
-//     const options = {
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(body)
-//     }
-
-//     try {
-//         const res = await axios.post('https://python-debug.herokuapp.com/register', options)
-//         const data = await res.json()
-//         console.log(data)
-
-//     } catch (err) {
-//         console.log(err.response.data)
-//     }
-
-// }
-
-
-    
-    return (
         <div>
-            <Title>Insert App Name</Title>
-            <form onSubmit={handleSubmit}>
-                <Input type="text" name="username" onChange={(e)=>{ setUsername(e.target.value)}}>Username</Input>
-                <Input type="text" name="email" onChange={(e)=>{ setEmail(e.target.value)}}>Email</Input>
-                <Input type="password" name="password" onChange={(e)=>{ setPassword(e.target.value)}}>Password</Input>
-                {/* <Input type="password" name="confirm-password">Confirm Password</Input> */}
-                <Input type="submit" name="Register">Register</Input>
-            </form>
+          <h1 >Register</h1>
+          <form 
+            onSubmit={(e) => {
+              e.preventDefault()
+              register(username, email, password);
+            }}
+          >
+            <input
+              type="text"
+              placeholder="Username"
+             
+              value={username}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <input
+              type="email"
+              placeholder="Email"
+            
+            
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+
+            
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+           
+            <button>
+              Create Account
+            </button>
+          </form>
         </div>
-    )
+      
+      </div>
+    </>
+  )
 }
 
-export default Register
+export default Register;

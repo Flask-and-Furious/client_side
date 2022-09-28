@@ -1,51 +1,62 @@
-import React, { useState } from "react";
-import axios from 'axios'
+import { useState } from 'react'
 
-import { Title, Input } from "../../components"
+import { useNavigate } from "react-router-dom"
+import axios from "axios";
+import { useUserContext } from '../../Context';
 
-function Login() {
-
-
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-
-        try {
-            const options = {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body : JSON.stringify(Object.fromEntries(new FormData(e.target)))
+function Login(props) {
+  const [username, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate=useNavigate()
 
 
-                
-            }
-            console.log("body:", options.body)
-            const res = await fetch('https://python-debug.herokuapp.com/login', options)
-            const data = await res.json()
-            console.log("Res:", data)
-            
-            return data
-            
-        } catch (err) {
-            console.log("Error :", err)
-        }
+  const { login } = useUserContext();
+  const sub =()=>{
+    navigate("/register");
+}
+ 
 
-    }
+  return (
+    <div>
 
-    return (
-        <div>
-            <Title>Insert App Name</Title>
-            <form onSubmit={handleSubmit}>
-                <Input type="text" name="username" onChange={(e)=>{ setUsername(e.target.value)}}>Username</Input>
-                <Input type="password" name="password" onChange={(e)=>{ setPassword(e.target.value)}}>Password</Input>
-                <Input type="submit" name="login">Login</Input>
-            </form>
-        </div>
-    )
+
+    
+
+
+
+
+      <div >
+        <h1 title='Login'> Login</h1>
+        <form 
+          onSubmit={(e) => {
+            e.preventDefault()
+            login(username, password)
+          }}
+        >
+          <input
+            type="username"
+            placeholder="Username"
+          
+            value={username}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+           
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <div>
+         
+              <button onClick={sub}>go to Register</button>
+          
+            <button>Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  )
 }
 
-export default Login
+export default Login;

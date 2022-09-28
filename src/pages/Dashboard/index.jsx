@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useUserContext } from '../../Context';
+
+import { useNavigate } from 'react-router-dom';
+
 import { Button, Title } from "../../components";
 
 function DashboardPage() {
+
+
+    const { user } = useUserContext();
+    const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+        navigate('/login', {replace: true});
+    }
+}, [user]);
     return (<>
         <div>
             <Title>Debugging Challenge</Title>
