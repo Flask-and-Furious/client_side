@@ -18,7 +18,8 @@ import {
   Subtitle,
   Title,
   FlashMessage,
-  Loader,
+  HR,
+  Loader
 } from "../../components";
 import styles from "./index.module.css";
 
@@ -32,13 +33,11 @@ function Game() {
     navigate("/language");
   };
 
-  const pythonProcessingServer = "https://python-debug.herokuapp.com/code";
-  //const pythonProcessingServer = "http://127.0.0.1:5000/code"
+  //  const pythonProcessingServer = 'https://python-debug.herokuapp.com/code'
+  const pythonProcessingServer = "http://127.0.0.1:5000/code"
 
-
-  const nodeProcessingServer =
-    "https://flask-and-furious-node-backend.herokuapp.com/code";
-  //const nodeProcessingServer = 'http://localhost:3000/code'
+   const nodeProcessingServer = 'https://flask-and-furious-node-backend.herokuapp.com/code'
+  // const nodeProcessingServer = 'http://localhost:3000/code'
 
   const [progress, setProgress] = useState(0);
 
@@ -115,9 +114,6 @@ function Game() {
         } else {
           setErrorMessage(data.data);
           setIsCorrect(false); // if it doesn't
-          setRandomIndex(() =>
-            Math.floor(Math.random() * incorrectMessages.length)
-          );
         }
       })
       .catch(() => setIsCorrect(false));
@@ -136,8 +132,17 @@ function Game() {
     // Here some code to save user's new progress in the database
   };
 
+  
   return (
     <>
+      <div className="question-desc">
+        <div>
+          {codeLanguage == "javascript" ? <i class="fab fa-js-square fa-5x js-icon"></i> : codeLanguage == "python" ? <i class="fab fa-python fa-5x python-icon"></i> : null }
+          <p>{currentCodePackage["snippet"]["description"]}</p>
+        </div>
+      </div>
+      {/* <button onClick={handlertwo}>choose language </button> */}
+
       <div>Score: ⭐ {score} ⭐</div>
 
       <div>
@@ -148,10 +153,8 @@ function Game() {
         <button onClick={handlertwo}>Change language</button>
       </div>
 
-      <div></div>
-
-      <Title title="Debugging Challenge" />
-      <Subtitle subtitle={currentCodePackage["snippet"]["description"]} />
+      <HR />
+      <Subtitle subtitle={"Challenge one"}/>
       <div id="flash-container" style={{ height: "30px" }}>
         {isLoading ? (
           <Loader />
@@ -170,8 +173,9 @@ function Game() {
           <FlashMessage text={`Solved in:${solvingTime} s`} />
         )}
       </div>
-      <div style={{ textAlign: "start", margin: "20px", fontSize: "18px" }}>
-        <CodeMirror
+      <div className="code-mirror-div">
+        <div className="code-mirror">
+      <CodeMirror
           value={currentCodePackage["snippet"]["body"]}
           theme={dracula}
           indentWithTab={true}
@@ -180,25 +184,40 @@ function Game() {
               return {
                 id: currentCodePackage["id"], // this is basically changes the 'body' value only. It's the code from user's input. We need the other original values
                 snippet: {
-                  ...currentCodePackage["snippet"],
+                  description: currentCodePackage["snippet"]["description"],
+                  import: currentCodePackage["snippet"]["import"],
                   body: editor,
+                  "to-execute-1": currentCodePackage["snippet"]["to-execute-1"],
+                  "return-1": currentCodePackage["snippet"]["return-1"],
+                  "to-execute-2": currentCodePackage["snippet"]["to-execute-2"],
+                  "return-2": currentCodePackage["snippet"]["return-2"],
                 },
               };
             });
           }}
-          extensions={
-            codeLanguage == "python" ? [langs.python()] : [langs.javascript()]
-          }
+          extensions={codeLanguage == 'python' ? [langs.python()] : [langs.javascript()]}
+        /></div>
+        <div className="options">
+        <div style={{display: codeLanguage == 'python' ? 'block' : 'none'}}>Please use 4 spaces for indentation<br></br>Avoid using TAB</div>
+        <div>
+          {/* <Button text="Change language" cssClass={"play"}/> */}
+        </div>
+        <div onClick={submitCode}>
+          <Button text="Submit" isDisabled={isButtonDisabled} cssClass={"play"}/>
+        </div>
+        <div onClick={nextCode} style={{ display: isCorrect ? "block" : "none" }}>
+          <Button text="Next" cssClass={"play"}/>
+          </div>
+          </div>
+      </div>            
+      <div style={{ textAlign: "start", margin: "20px", fontSize: "18px", width: "750px" }}>
+        <FlashMessage
+          style={{ display: isCorrect ? "flex" : "none" }}
+          text={`${solvingTime} s`}
         />
       </div>
-      <div style={{ display: codeLanguage == "python" ? "block" : "none" }}>
-        Please use 4 spaces for indentation<br></br>Avoid using TAB
-      </div>
-      <div onClick={submitCode}>
-        <Button text="Submit" isDisabled={isButtonDisabled} />
-      </div>
-      <div onClick={nextCode} style={{ display: isCorrect ? "block" : "none" }}>
-        <Button text="Next" />
+      <div>
+      <Button text="Hint" cssClass={"play"}/>
       </div>
     </>
   );
