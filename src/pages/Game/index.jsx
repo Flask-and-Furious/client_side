@@ -40,13 +40,6 @@ function Game() {
     "https://flask-and-furious-node-backend.herokuapp.com/code";
   //const nodeProcessingServer = 'http://localhost:3000/code'
 
-  // const nodeProcessingServer = 'https://flask-and-furious-node-backend.herokuapp.com/code'
-  // const nodeProcessingServer = 'http://localhost:3000/code'
-
-
-  ////
-
-  ///
   const [progress, setProgress] = useState(0);
 
   // Here fetch the information about the logged in user's progress. This will be a number.
