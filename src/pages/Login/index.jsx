@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 import { Title, Input, Button, Subtitle, FlashMessage } from "../../components";
 import { Context } from "../../Context";
@@ -11,16 +10,16 @@ function Login() {
   const [password, setPassword] = useState("");
   const { storedSessionUser, setStoredSessionUser } = useContext(Context);
   const { isValidUser, setIsValidUser } = useContext(Context);
+  const { user, setUser } = useContext(Context);
 
   const goTo = useNavigate();
 
   // moves to dashboard after logging in
   const handleNavigate = () => {
-    // setStoredSessionUser(username); // needs to come from SQL database
-    goTo("/dashboard"); // needs conditionally rendering using SQL database content
+    setUser(username);
+    goTo("/dashboard");
   };
 
-  let errorMessage;
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -41,11 +40,13 @@ function Login() {
       console.log("Res:", data);
 
       // getting current user
-      if (data[1] === 200) {
+      if (data[1] == "200") {
         localStorage.setItem("token", data[0]["token"]);
-        const currentSessionUser = localStorage.getItem("token");
-        setStoredSessionUser(currentSessionUser);
+
+        setStoredSessionUser(localStorage.getItem("token"));
+
         setIsValidUser(true);
+
         handleNavigate();
       } else {
         setIsValidUser(false);
@@ -57,7 +58,6 @@ function Login() {
       console.log("Error :", err);
     }
   };
-  console.log("isValidUser ==> ", isValidUser);
 
   return (
     <>
@@ -92,15 +92,6 @@ function Login() {
           Don't have an account? <Link to="/register">Register here</Link>
         </p>
       </div>
-
-      {/* <div>
-        <Title>Insert App Name</Title>
-        <form onSubmit={handleSubmit}>
-            <Input type="text" name="username" onChange={(e)=>{ setUsername(e.target.value)}}>Username</Input>
-            <Input type="password" name="password" onChange={(e)=>{ setPassword(e.target.value)}}>Password</Input>
-            <Input type="submit" name="login">Login</Input>
-        </form>        
-      </div> */}
     </>
   );
 }

@@ -1,24 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Game from "../Game";
 import { Button, Option, Subtitle, Title } from "../../components";
 import { Context } from "../../Context";
 
 function LanguagePage() {
-  const [state, setstate] = useState({ data: "" });
-  const [mylanguage, setLanguage] = useState("");
-
-  const handleChange = (event) => {
-    console.log("Label 👉️", event.target.selectedOptions[0].label);
-    console.log(event.target.value);
-    setLanguage(event.target.value);
-  };
-
-  console.log("- lans");
-  const changeState = (e) => {
-    setstate({ data: e.target.value });
-  };
+  const { user } = useContext(Context);
 
   const navigate = useNavigate();
   const { codeLanguage, setCodeLanguage } = useContext(Context);
@@ -34,23 +21,32 @@ function LanguagePage() {
   const HandlerOne = () => {
     navigate("/game");
   };
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/", { replace: true });
+    }
+  }, [user]);
+
   return (
     <>
       <Title title="Flask & Furious" />
-      <Subtitle subtitle="Choose language" />
+      <Subtitle subtitle="Choose a language" />
 
       <div>
-        <button onClick={clickHandler}>python</button>⬅ choose one ⮕
-        <button onClick={clickHandlerOne}>javascript</button>
-        <div>
-          <br></br>
-          <p>Your selection {codeLanguage}</p>
-          <br></br>
+        <button onClick={clickHandler}>Python</button>
+        <button onClick={clickHandlerOne}>Javascript</button>
+      </div>
 
-          {codeLanguage ? (
-            <button onClick={HandlerOne}>Let's Play</button>
-          ) : null}
-        </div>
+      <div>
+        <p>
+          Selected:{" "}
+          {codeLanguage.charAt(0).toUpperCase() + codeLanguage.slice(1)}
+        </p>
+      </div>
+
+      <div>
+        <button onClick={HandlerOne}>Let's Play</button>
       </div>
     </>
   );

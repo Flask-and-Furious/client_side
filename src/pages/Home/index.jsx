@@ -1,17 +1,17 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import { Button, Image, Subtitle, Title } from "../../components";
 import { Context } from "../../Context";
 
 function Home() {
-  const { storedSessionUser, setStoredSessionUser } = useContext(Context);
+  const { user, } = useContext(Context);
 
   return (
     <>
       <Title title="Flask & Furious" />
       <Subtitle subtitle="Catchy slogan goes here" />
       <Image image="" altVal="hero image goes here" />
-      {storedSessionUser ? null : (
+      {user ? null : (
         <>
           <Button text="Login" nextPage="/login" />
           <Button text="Register" nextPage="/register" />
