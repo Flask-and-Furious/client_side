@@ -9,6 +9,8 @@ import home from "../../assets/home.jpg";
 import article1 from "../../assets/article1.jpg"
 import snippet1 from "../../assets/snippet1.png"
 import snippet2 from "../../assets/snippet2.png"
+import coding_girl from "../../assets/coding_girl.jpg"
+
 
 function Home() {
   AOS.init({
@@ -33,8 +35,13 @@ function Home() {
         <div className="left-title">
           <div data-aos="zoom-in">
             <Title cssClass={"title-h1"} title="Bug Basher" />
-            <Subtitle subtitle="Can you catch all the bugs?" />
-            <Button text="Play" cssClass={"play"} handleClick={handleNavigation(user)}/>
+
+            {/* This below is just an extra space */}
+            <div style={{height: '30px', opacity: '0'}}>P</div>
+            
+            <Subtitle subtitle="Develop your coding skills" />
+            <Subtitle subtitle="via debugging!" />
+            <Button text="Start learning" cssClass={"play"} handleClick={handleNavigation(user)}/>
           </div>
         </div>
         <div className="right-title" data-aos="zoom-in-left">
@@ -47,8 +54,8 @@ function Home() {
         </div>
         <div className="mobile">
         <div data-aos="zoom-in">
-          <Subtitle subtitle="Article 1 name goes here" />
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <Subtitle subtitle="Innovative way of learning" />
+          <p><br/>There are several options to learn how to code. <br/><br/>Bug Basher<sup>&copy;</sup> offers a unique learning method for evolving your skills.</p>
         </div>
         </div>
       </div>
@@ -56,8 +63,9 @@ function Home() {
       <div className="article2-container">
       <div className="mobile">
         <div data-aos="fade-up" >
-          <Subtitle subtitle="Article 2 name goes here" />
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+          <Subtitle subtitle="Write vs. read" />
+          <p>Do you know the basics of Python or Javascript?<br/>Are you comfortable solving basic or complicated problems by writing your codes from scratch? Take a look at this code snippet.<br/> How quickly could you find and fix the bugs in this code?</p>
         </div>
         <div data-aos="zoom-in-left">
           <Image image={snippet1} altVal="article 2 image goes here" cssClass={"snippets"}/>
@@ -68,11 +76,11 @@ function Home() {
       <div className="article1-container">
         <div className="mobile">
         <div data-aos="zoom-in-right">
-          <Image image={snippet2} altVal="article 1 image goes here" cssClass={"snippets"} />
+          <Image image={coding_girl} altVal="article 1 image goes here" cssClass={"snippets"} />
         </div>
         <div data-aos="fade-up" >
-          <Subtitle subtitle="Article 1 name goes here" />
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <Subtitle subtitle="Different mindset" />
+          <p>Writing code from scratch and debugging existing code requires different approach and mindset.<br/>Many developers are altering and debugging existing codes on daily basis. Bug Basher<sup>&copy;</sup> will help you to master this skill.</p>
         </div>
         </div>
       </div>
