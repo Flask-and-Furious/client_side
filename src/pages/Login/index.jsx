@@ -33,7 +33,6 @@ function Login() {
         },
         body: JSON.stringify(Object.fromEntries(new FormData(e.target))),
       };
-      console.log("body here ==> ", options.body);
       const res = await fetch(
         "https://python-debug.herokuapp.com/login",
         options

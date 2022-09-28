@@ -17,7 +17,7 @@ function Home() {
   })
   const { storedSessionUser, setStoredSessionUser } = useContext(Context);
   const navigateTo = useNavigate()
-  const { user, } = useContext(Context);
+  const { user } = useContext(Context);
 
   function handleNavigation (username) {
     if (username) {
