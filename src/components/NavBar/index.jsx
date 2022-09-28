@@ -25,12 +25,33 @@ function NavBar() {
     <>
       {user ? (
         // there is a user present
+        // <nav>
+        //   <NavLink to="/">Home</NavLink>
+        //   <NavLink to="/dashboard">Dashboard</NavLink>
+        //   <NavLink onClick={handleLogout}>Log Out</NavLink>
+        //   <Outlet />
+        // </nav>
+        <div className="nav-container2">
         <nav>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/dashboard">Dashboard</NavLink>
-          <NavLink onClick={handleLogout}>Log Out</NavLink>
-          <Outlet />
+          <div className="left2">
+            <NavLink to="/">
+              <div className="animation">
+                <Image image={virus} altVal="article 1 image goes here" cssClass={"navImg"} />
+              </div>
+              <div className="nav-title-div">
+                <Title title="Bug Basher" cssClass={"nav-title"} />
+              </div>
+            </NavLink>
+          </div>
+          <div className="right2">
+            <div className="right-inner-2">
+                <NavLink to="/dashboard">Dashboard</NavLink>
+                <NavLink onClick={handleLogout}>Log out</NavLink>
+              <Outlet />
+            </div>
+          </div>
         </nav>
+      </div>
       ) : (
         // there is no user present
         <div className="nav-container2">

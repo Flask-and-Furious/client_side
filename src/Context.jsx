@@ -8,7 +8,8 @@ export const ContextProvider = ({ children }) => {
   const [storedSessionUser, setStoredSessionUser] = useState("");
   const [isValidUser, setIsValidUser] = useState(true);
   const [user, setUser] = useState(null);
-  const [score, setScore] = useState(0);
+  const [jsScore, setJsScore] = useState(0);
+  const [pythonScore, setPythonScore] = useState(0);
   const [minTime, setMintime] = useState(0);
   const [maxTime, setMaxtime] = useState(0);
   return (
@@ -20,7 +21,7 @@ export const ContextProvider = ({ children }) => {
         setStoredSessionUser,
         isValidUser,
         setIsValidUser,
-        user,setUser,score,setScore,
+        user,setUser,jsScore,setJsScore,pythonScore,setPythonScore,
         minTime, setMintime,
         maxTime, setMaxtime
       }}

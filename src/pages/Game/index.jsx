@@ -27,7 +27,8 @@ function Game() {
   const navigates = useNavigate();
   const { codeLanguage, setCodeLanguage } = useContext(Context);
   const { user, setUser } = useContext(Context);
-  const { score, setScore } = useContext(Context);
+  const { jsScore, setJsScore } = useContext(Context);
+  const { pythonScore, setPythonScore } = useContext(Context);
 
   const handlertwo = () => {
     navigate("/language");
@@ -103,8 +104,14 @@ function Game() {
         ) {
           // we compare the incoming values with the saved return values from the database
           setIsCorrect(true); // if both match
-          let myscore = score + 2;
-          setScore(myscore);
+          // check what language was played, add + 1 to the context score for that specific language
+          if (codeLanguage == "javascript") {
+            let javaScriptScore = jsScore + 1;
+            setJsScore(javaScriptScore);
+          } else if (codeLanguage == "python") {
+            let pyScore = pythonScore + 1;
+            setPythonScore(pyScore);
+          }
           setIsButtonDisabled(true);
           const doneTime = new Date().getTime();
           const solvingSeconds =
@@ -138,85 +145,73 @@ function Game() {
       <div className="question-desc">
         <div>
           {codeLanguage == "javascript" ? <i class="fab fa-js-square fa-5x js-icon"></i> : codeLanguage == "python" ? <i class="fab fa-python fa-5x python-icon"></i> : null }
+          <Subtitle subtitle={"Challenge"}/>
           <p>{currentCodePackage["snippet"]["description"]}</p>
         </div>
       </div>
-      {/* <button onClick={handlertwo}>choose language </button> */}
-
-      <div>Score: ⭐ {score} ⭐</div>
-
-      <div>
-        <p>
-          Current language:{" "}
-          {codeLanguage.charAt(0).toUpperCase() + codeLanguage.slice(1)}
-        </p>
-        <button onClick={handlertwo}>Change language</button>
-      </div>
-
       <HR />
-      <Subtitle subtitle={"Challenge one"}/>
-      <div id="flash-container" style={{ height: "30px" }}>
-        {isLoading ? (
-          <Loader />
-        ) : (
-          isAnswered && (
-            <FlashMessage
-              text={
-                isCorrect
-                  ? "✅ Correct!"
-                  : `❌${errorMessage.error ? errorMessage.error : "Try again"}`
-              }
-            />
-          )
-        )}
-        {isAnswered && isCorrect && (
-          <FlashMessage text={`Solved in:${solvingTime} s`} />
-        )}
-      </div>
       <div className="code-mirror-div">
         <div className="code-mirror">
-      <CodeMirror
-          value={currentCodePackage["snippet"]["body"]}
-          theme={dracula}
-          indentWithTab={true}
-          onChange={(editor, change) => {
-            setCurrentCodePackage(() => {
-              return {
-                id: currentCodePackage["id"], // this is basically changes the 'body' value only. It's the code from user's input. We need the other original values
-                snippet: {
-                  description: currentCodePackage["snippet"]["description"],
-                  import: currentCodePackage["snippet"]["import"],
-                  body: editor,
-                  "to-execute-1": currentCodePackage["snippet"]["to-execute-1"],
-                  "return-1": currentCodePackage["snippet"]["return-1"],
-                  "to-execute-2": currentCodePackage["snippet"]["to-execute-2"],
-                  "return-2": currentCodePackage["snippet"]["return-2"],
-                },
-              };
-            });
-          }}
+          <CodeMirror
+            value={currentCodePackage["snippet"]["body"]}
+            theme={dracula}
+            indentWithTab={true}
+            onChange={(editor, change) => {
+              setCurrentCodePackage(() => {
+                return {
+                  id: currentCodePackage["id"], // this is basically changes the 'body' value only. It's the code from user's input. We need the other original values
+                  snippet: {
+                    description: currentCodePackage["snippet"]["description"],
+                    import: currentCodePackage["snippet"]["import"],
+                    body: editor,
+                    "to-execute-1": currentCodePackage["snippet"]["to-execute-1"],
+                    "return-1": currentCodePackage["snippet"]["return-1"],
+                    "to-execute-2": currentCodePackage["snippet"]["to-execute-2"],
+                    "return-2": currentCodePackage["snippet"]["return-2"],
+                  },
+                };
+              });
+            }}
           extensions={codeLanguage == 'python' ? [langs.python()] : [langs.javascript()]}
-        /></div>
-        <div className="options">
+          />
+          <div id="flash-container" style={{ height: "30px" }}>
+            {isLoading ? (
+              <Loader />
+                ) : (
+                isAnswered && (
+              <FlashMessage
+                text={
+                  isCorrect
+                    ? "✅ Correct!"
+                    : `❌${errorMessage.error ? errorMessage.error : "Try again"}`
+                  }
+              />
+            )
+          )}
+          {isAnswered && isCorrect && (
+            <FlashMessage text={`Solved in:${solvingTime} s`} />
+          )}
+        </div>
+      </div>
+      <div className="options">
         <div style={{display: codeLanguage == 'python' ? 'block' : 'none'}}>Please use 4 spaces for indentation<br></br>Avoid using TAB</div>
         <div>
-          {/* <Button text="Change language" cssClass={"play"}/> */}
+          <Button text="Change language" cssClass={"play"}/>
         </div>
         <div onClick={submitCode}>
           <Button text="Submit" isDisabled={isButtonDisabled} cssClass={"play"}/>
         </div>
         <div onClick={nextCode} style={{ display: isCorrect ? "block" : "none" }}>
           <Button text="Next" cssClass={"play"}/>
-          </div>
-          </div>
-      </div>            
-      <div style={{ textAlign: "start", margin: "20px", fontSize: "18px", width: "750px" }}>
-        <FlashMessage
-          style={{ display: isCorrect ? "flex" : "none" }}
-          text={`${solvingTime} s`}
-        />
+        </div>
+        <div className="score-div">
+        <div>Score : ⭐ {pythonScore} ⭐</div>
+        <div>Score : ⭐ {jsScore} ⭐</div>
       </div>
+      </div>
+      </div>            
       <div>
+      <HR />
       <Button text="Hint" cssClass={"play"}/>
       </div>
     </>
