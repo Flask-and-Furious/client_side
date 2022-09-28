@@ -9,12 +9,15 @@ import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 
 import Login from ".";
+import { ContextProvider } from "../../Context";
 
 describe("Running Login component", () => {
   test("Ensures it renders without crashing", () => {
     render(
       <BrowserRouter>
-        <Login />
+        <ContextProvider>
+          <Login />
+        </ContextProvider>
       </BrowserRouter>
     );
   });
@@ -24,7 +27,9 @@ describe("Login Component Content", () => {
   beforeEach(() => {
     render(
       <BrowserRouter>
-        <Login />
+        <ContextProvider>
+          <Login />
+        </ContextProvider>
       </BrowserRouter>
     );
   });
@@ -38,32 +43,24 @@ describe("Login Component Content", () => {
   });
 });
 
-// const testFunc = jest.fn()
-
 describe("Login Page", () => {
   beforeEach(() => {
     render(
       <BrowserRouter>
-        <Login />
+        <ContextProvider>
+          <Login />
+        </ContextProvider>
       </BrowserRouter>
     );
   });
 
-  it("Renders an input for username", () => {
-    const input = screen.queryByRole("username");
-    expect(input).toBeInTheDocument();
-  });
+  it("Renders all inputs for logging in", () => {
+    const input = screen.getAllByRole("input");
 
-  it("Renders an input for password", () => {
-    const input = screen.queryByRole("password");
-    expect(input).toBeInTheDocument();
-  });
-
-  it("Renders a button to login", () => {
-    const input = screen.queryByRole("login");
-
-    //await userEvent.click(input)
-    //expect(testFunc).toHaveBeenCalled()
-    expect(input).toBeInTheDocument();
+    input.map((single) => {
+      expect(single).toBeInTheDocument();
+      expect(typeof single.textContent).toBe("string");
+      expect(single).toBeTruthy();
+    });
   });
 });

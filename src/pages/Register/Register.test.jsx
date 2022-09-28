@@ -7,15 +7,29 @@ import "@testing-library/jest-dom";
 import React from "react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
-import Register from ".";
 
-//const testFunc = jest.fn()
+import Register from ".";
+import { ContextProvider } from "../../Context";
+
+describe("Running Register component", () => {
+  test("Ensures it renders without crashing", () => {
+    render(
+      <BrowserRouter>
+        <ContextProvider>
+          <Register />
+        </ContextProvider>
+      </BrowserRouter>
+    );
+  });
+});
 
 describe("register Page", () => {
   beforeEach(() => {
     render(
       <BrowserRouter>
-        <Register />
+        <ContextProvider>
+          <Register />
+        </ContextProvider>
       </BrowserRouter>
     );
   });
@@ -25,28 +39,13 @@ describe("register Page", () => {
     expect(title).toBeInTheDocument();
   });
 
-  it("Renders an input for username", () => {
-    const input = screen.queryByRole("username");
-    expect(input).toBeInTheDocument();
-  });
+  it("Renders all inputs for registering", () => {
+    const input = screen.getAllByRole("input");
 
-  it("Renders an input for email", () => {
-    const input = screen.queryByRole("email");
-    expect(input).toBeInTheDocument();
-  });
-
-  it("Renders an input for password", () => {
-    const input = screen.queryByRole("password");
-    expect(input).toBeInTheDocument();
-  });
-
-  it("Renders an input for confirm password", () => {
-    const input = screen.queryByRole("confirm-password");
-    expect(input).toBeInTheDocument();
-  });
-
-  it("Renders a button to register", () => {
-    const input = screen.queryByRole("register");
-    expect(input).toBeInTheDocument();
+    input.map((single) => {
+      expect(single).toBeInTheDocument();
+      expect(typeof single.textContent).toBe("string");
+      expect(single).toBeTruthy();
+    });
   });
 });
