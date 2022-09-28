@@ -156,6 +156,9 @@ function Game(props) {
         /></div>
         <div className="options">
         <div style={{display: codeLanguage == 'python' ? 'block' : 'none'}}>Please use 4 spaces for indentation<br></br>Avoid using TAB</div>
+        <div>
+          {/* <Button text="Change language" cssClass={"play"}/> */}
+        </div>
         <div onClick={submitCode}>
           <Button text="Submit" isDisabled={isButtonDisabled} cssClass={"play"}/>
         </div>

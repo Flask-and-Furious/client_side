@@ -12,7 +12,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <Router>
       <ContextProvider>
         <App />
-        <Footer />
       </ContextProvider>
     </Router>
   </React.StrictMode>
