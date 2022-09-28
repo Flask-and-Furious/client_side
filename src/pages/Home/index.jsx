@@ -34,7 +34,7 @@ function Home() {
       <div className="home-title-container">
         <div className="left-title">
           <div data-aos="zoom-in">
-            <Title title="Bug Basher" />
+            <Title cssClass={"title-h1"} title="Bug Basher" />
 
             {/* This below is just an extra space */}
             <div style={{height: '30px', opacity: '0'}}>P</div>
@@ -59,7 +59,7 @@ function Home() {
       </div>
       <div><HR /></div>
       <div className="article2-container">
-        <div data-aos="fade-up">
+        <div data-aos="fade-up" >
           <Subtitle subtitle="Write vs. read" />
           <p>Do you know the basics of Python or Javascript?<br/>Are you comfortable solving basic or complicated problems by writing your codes from scratch? Take a look at this code snippet.<br/> How quickly could you find and fix the bugs in this code?</p>
         </div>
@@ -72,7 +72,7 @@ function Home() {
         <div data-aos="zoom-in-right">
           <Image image={coding_girl} altVal="article 1 image goes here" cssClass={"snippets"} />
         </div>
-        <div data-aos="fade-up">
+        <div data-aos="fade-up" >
           <Subtitle subtitle="Different mindset" />
           <p>Writing code from scratch and debugging existing code requires different approach and mindset.<br/>Many developers are altering and debugging existing codes on daily basis. Bug Basher<sup>&copy;</sup> will help you to master this skill.</p>
         </div>
