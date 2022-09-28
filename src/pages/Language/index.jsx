@@ -35,14 +35,14 @@ function LanguagePage() {
       <div className="language-choice">
         <Subtitle subtitle="Choose a language to practice your debugging skills." cssClass={"language-subtitle"}/>
         <div className="language-buttons-div">
-          <div>
+          <div className="language-btn">
             <Button text="Python" cssClass={"play"} handleClickEvent={clickHandler}/>
             <Button text="Javascript" cssClass={"play"} handleClickEvent={clickHandlerOne}/>
           </div>
         </div>
         {codeLanguage ? (
         <div className="language-play-button-div">
-          <Button text="Let's play" cssClass={"play"} handleClickEvent={HandlerOne}/>
+          <Button text="Let's play" cssClass={"play-2"} handleClickEvent={HandlerOne}/>
         </div>
         ) : null}
       </div>

@@ -245,7 +245,6 @@ nav {
   p {
     font-size: 12px;
     width: 600px;
-    color: chartreuse;
   }
   
   .container {
@@ -260,18 +259,25 @@ nav {
   
   p {
     font-size: 15px;
-    width: 800px;
+    width: 700px;
   }
   
   .container {
     min-width: 0px;
   }
 
+  .language-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   
 }
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   
   p {
     font-size: 12px;
@@ -332,6 +338,20 @@ nav {
 
   .p-login {
     margin-left: 10px;
+  }
+
+  .language-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .language-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 
