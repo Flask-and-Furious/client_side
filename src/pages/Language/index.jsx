@@ -1,16 +1,11 @@
-import React, { useContext, useState,useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Game from "../Game";
 import { Button, Option, Subtitle, Title } from "../../components";
 import { Context } from "../../Context";
 
 function LanguagePage() {
-  const [state, setstate] = useState({ data: "" });
-  const [mylanguage, setLanguage] = useState("");
-  const { user, setUser } = useContext(Context);
-
-  
+  const { user } = useContext(Context);
 
   const navigate = useNavigate();
   const { codeLanguage, setCodeLanguage } = useContext(Context);
@@ -29,7 +24,7 @@ function LanguagePage() {
 
   useEffect(() => {
     if (!user) {
-        navigate('/login', {replace: true});
+      navigate("/", { replace: true });
     }
   }, [user]);
 

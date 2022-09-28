@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 import { Title, Input, Button, Subtitle, FlashMessage } from "../../components";
 import { Context } from "../../Context";
@@ -9,7 +8,6 @@ import { Context } from "../../Context";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  //const { login } = useUserContext();
   const { storedSessionUser, setStoredSessionUser } = useContext(Context);
   const { isValidUser, setIsValidUser } = useContext(Context);
   const { user, setUser } = useContext(Context);
@@ -19,17 +17,9 @@ function Login() {
   // moves to dashboard after logging in
   const handleNavigate = () => {
     setUser(username);
-    // setStoredSessionUser(username); // needs to come from SQL database
-    goTo("/dashboard"); // needs conditionally rendering using SQL database content
+    goTo("/dashboard");
   };
 
-  // const logout = () => {
-  //   localStorage.removeItem("token");
-  //   setUser(null);
-  //   goTo("/login");
-  // };
-
-  let errorMessage;
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -69,9 +59,6 @@ function Login() {
     }
   };
 
-  // setStoredSessionUser(localStorage.getItem("token"));
-  console.log("storedSessionUser: ", storedSessionUser);
-
   return (
     <>
       <div>
@@ -105,15 +92,6 @@ function Login() {
           Don't have an account? <Link to="/register">Register here</Link>
         </p>
       </div>
-
-      {/* <div>
-        <Title>Insert App Name</Title>
-        <form onSubmit={handleSubmit}>
-            <Input type="text" name="username" onChange={(e)=>{ setUsername(e.target.value)}}>Username</Input>
-            <Input type="password" name="password" onChange={(e)=>{ setPassword(e.target.value)}}>Password</Input>
-            <Input type="submit" name="login">Login</Input>
-        </form>        
-      </div> */}
     </>
   );
 }

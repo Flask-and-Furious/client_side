@@ -5,14 +5,14 @@ import { Button, Subtitle, Title } from "../../components";
 import { Context } from "../../Context";
 
 function DashboardPage() {
-  const { storedSessionUser, setStoredSessionUser } = useContext(Context);
   const { user, setUser } = useContext(Context);
+  const { score, setScore } = useContext(Context); // testing
 
   const navigateTo = useNavigate();
 
   useEffect(() => {
     if (!user) {
-      navigateTo("/login", { replace: true });
+      navigateTo("/", { replace: true });
     }
   }, [user]);
 
@@ -21,6 +21,7 @@ function DashboardPage() {
       <div>
         <Title title="Flask & Furious" />
         <Subtitle subtitle={`${user}'s Dashboard`} />
+        <h5> Your Current Score : ⭐ {score} ⭐</h5>
       </div>
 
       <div>
