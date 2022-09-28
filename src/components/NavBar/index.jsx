@@ -25,7 +25,7 @@ function NavBar() {
     <>
       {user ? (
         // there is a user present
-        <nav>
+        <nav role={"nav"}>
           <NavLink to="/">Home</NavLink>
           <NavLink to="/dashboard">Dashboard</NavLink>
           <NavLink onClick={handleLogout}>Log Out</NavLink>
@@ -34,7 +34,7 @@ function NavBar() {
       ) : (
         // there is no user present
         <div className="nav-container2">
-          <nav>
+          <nav role={"nav"}>
             <div className="left2">
               <NavLink to="/">
                 <div className="animation">

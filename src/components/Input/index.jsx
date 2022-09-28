@@ -2,7 +2,7 @@
 import React from 'react'
 import styles from './input.module.css'
  
-function Input({ name, type, children, onChange=()=>{}}) {
+function Input({ name, type, children, onChange=()=>{}}, testRole) {
  return (
    type=='text' || type=='password' ?
    <>
