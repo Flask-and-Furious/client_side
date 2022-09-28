@@ -13,7 +13,7 @@ body {
 
 .container {
   min-width: 1150px;
-  height: 90vh;
+  min-height: 90vh;
 }
 
 .home-title-container {

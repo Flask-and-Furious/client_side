@@ -21,8 +21,8 @@ function App() {
         <Route path="/dashboard" element={<><NavBar /><Pages.DashboardPage /></>}></Route>
         <Route path="*" element={<><NavBar /><Pages.PageNotFound /></>}></Route>
       </Routes>
-      <Footer />
       </div>
+      <Footer />
     </>
  )
 }
