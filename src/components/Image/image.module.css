@@ -57,3 +57,18 @@
   width: 150px;
 }
 }
+
+@media screen and (max-width: 600px) {
+  .rightImg {
+    display: none;
+ }
+
+ .snippets {
+  width: 400px;
+  padding: 20px;
+}
+
+.teamImg {
+  width: 150px;
+}
+}

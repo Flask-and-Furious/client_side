@@ -33,14 +33,12 @@ body {
   margin: 1%;
   padding: 2%;
   display: flex;
-  display: flex;
   justify-content: space-evenly;
 }
 
 .article2-container {
   margin: 2%;
   padding: 2%;
-  display: flex;
   display: flex;
   justify-content: space-evenly;
 }
@@ -253,6 +251,52 @@ nav {
     min-width: 0px;
   }
   
+}
+
+
+@media screen and (max-width: 600px) {
+  
+  p {
+    font-size: 12px;
+    width: 350px;
+    text-align: center;
+  }
+  
+  .container {
+    min-width: 0px;
+  }
+
+  .home-title-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .article1-container {
+    
+    display: flex;
+    flex-direction: column;
+   
+  }
+  
+  .article2-container {
+
+    display: flex;
+    flex-direction: column;
+ 
+  }
+  
+
+  nav {
+    
+    display: inline;
+  }
+  
+  .mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 
