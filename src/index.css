@@ -130,6 +130,22 @@ nav {
   align-items: center;
 }
 
+.left2 > a {
+  width: 180px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left2 > a:hover {
+  border-radius: 5px;
+}
+
+.right-inner-2 > a {
+  font-size: 1em;
+  margin: 10px;
+}
+
 /* Slideshow */
 
 .slideshow {
@@ -145,7 +161,6 @@ nav {
 
 .slide {
   display: inline-block;
-  height: 400px;
   width: 100%;
   border-radius: 40px;
 }
@@ -179,7 +194,7 @@ nav {
 
 .slide-image-div {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
 }

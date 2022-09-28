@@ -4,6 +4,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import "./navbar.css";
 import { Context } from "../../Context";
 import Image from "../Image"
+import Title from "../Title"
 
 import virus from "../../assets/virus.png"
 
@@ -93,16 +94,21 @@ function NavBar() {
         <div className="nav-container2">
           <nav>
             <div className="left2">
-              <NavLink to="/" style={({ isActive }) => isActive ? { textDecoration: "underline" } : { textDecoration: "none" }}>
+              <NavLink to="/">
                 <div className="animation">
                   <Image image={virus} altVal="article 1 image goes here" cssClass={"navImg"} />
+                </div>
+                <div className="nav-title-div">
+                  <Title title="Bug Basher" cssClass={"nav-title"} />
                 </div>
               </NavLink>
             </div>
             <div className="right2">
-              <NavLink to="/login"style={({ isActive }) =>isActive ? { textDecoration: "underline" } : { textDecoration: "none" }}>Login</NavLink>
-              <NavLink to="/register"style={({ isActive }) => isActive ? { textDecoration: "underline" } : { textDecoration: "none" }}>Register</NavLink>
-              <Outlet />
+              <div className="right-inner-2">
+                  <NavLink to="/login">Login</NavLink>
+                  <NavLink to="/register">Register</NavLink>
+                <Outlet />
+              </div>
             </div>
           </nav>
         </div>
