@@ -1,10 +1,15 @@
 import React from "react";
+import styles from "./index.module.css"
 
 function Footer() {
   return (
-    <footer role="footer">
-      <p>Copyright Ⓒ Flask and Furious 2022.</p>
-    </footer>
+    <>
+    <div className="footer-container">
+      <footer>
+        <p className="copyright">Copyright Ⓒ Flask and Furious 2022</p>
+      </footer>
+    </div>
+    </>
   );
 }
 

@@ -1,11 +1,28 @@
- 
-.myImg {
-    width: 80%;
-    margin: auto;
-    padding: 20px 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    }
+ .rightImg {
+    width: 500px;
+    border-radius: 50%;
+ }
+
+ .loginImg {
+   width: 500px;
+ }
+
+ .logoImg {
+   width: 100px;
+   margin: 20px;
+ }
+
+ .navImg {
+  width: 50px;
+ }
+
+.snippets {
+  width: 500px;
+  border-radius: 10px;
+}
+
+.teamImg {
+  width: 250px;
+  border-radius: 50%;
+}
    

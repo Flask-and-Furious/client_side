@@ -24,7 +24,6 @@ dist-ssr
 *.sln
 *.sw?
 
-viv_extra
 # Local Netlify folder
 .netlify
 coverage

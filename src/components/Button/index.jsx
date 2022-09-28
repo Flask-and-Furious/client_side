@@ -1,18 +1,17 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function Button({ text, isDisabled, nextPage }) {
-  const goTo = useNavigate();
 
-  function handleNavigation() {
-    goTo(nextPage);
-  }
+import styles from "./index.module.css"
+
+function Button({ text, isDisabled, nextPage, cssClass, handleClickEvent }) {
 
   return (
-    <button className="btn" disabled={isDisabled} onClick={handleNavigation}>
+    <button disabled={isDisabled} onClick={handleClickEvent} className={styles[`${cssClass}`]}>
       {text}
     </button>
   );
+
 }
 
 export default Button;
