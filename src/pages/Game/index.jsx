@@ -28,15 +28,19 @@ function Game() {
 
   const navigates = useNavigate();
   const { codeLanguage, setCodeLanguage } = useContext(Context);
+  const { user, setUser } = useContext(Context);
+  const {score, setScore } = useContext(Context);
+
+
   const handlertwo = () => {
-    navigates("/language");
+    navigate("/language");
   };
 
-  // const pythonProcessingServer = 'https://python-debug.herokuapp.com/code'
-  const pythonProcessingServer = "http://127.0.0.1:5000/code"
+  const pythonProcessingServer = 'https://python-debug.herokuapp.com/code'
+  //const pythonProcessingServer = "http://127.0.0.1:5000/code"
 
-  // const nodeProcessingServer = 'https://flask-and-furious-node-backend.herokuapp.com/code'
-  const nodeProcessingServer = 'http://localhost:3000/code'
+   const nodeProcessingServer = 'https://flask-and-furious-node-backend.herokuapp.com/code'
+  //const nodeProcessingServer = 'http://localhost:3000/code'
 
   ////
 
@@ -58,6 +62,14 @@ function Game() {
   const [solvingTime, setSolvingTime] = useState(new Date().getTime());
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+
+
+ 
+  useEffect(() => {
+    if (!user) {
+        navigate('/login', {replace: true});
+    }
+  }, [user]);
 
 
   useEffect(() => {
@@ -95,6 +107,8 @@ function Game() {
         ) {
           // we compare the incoming values with the saved return values from the database
           setIsCorrect(true); // if both match
+          let myscore=score+2;
+          setScore(myscore)
           setIsButtonDisabled(true);
           const doneTime = new Date().getTime();
           const solvingSeconds =
@@ -127,6 +141,8 @@ function Game() {
 
   return (
     <>
+        <div>Score: ⭐ {score} ⭐</div>
+
       <div>
         <p>
           Current language:{" "}
@@ -149,7 +165,7 @@ function Game() {
           }
         /> 
         }
-        {isAnswered && isCorrect && <FlashMessage text={`Solved in: ${solvingTime} s`} />} 
+        {isAnswered && isCorrect && <FlashMessage text={`Solved in:${solvingTime} s`} />} 
       </div>
       <div style={{ textAlign: "start", margin: "20px", fontSize: "18px" }}>
         <CodeMirror

@@ -1,10 +1,20 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useEffect } from "react";
 
 import { Button, Image, Subtitle, Title } from "../../components";
 import { Context } from "../../Context";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const { user, setUser } = useContext(Context);
+
   const { storedSessionUser, setStoredSessionUser } = useContext(Context);
+  const navigateTo = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+        navigateTo('/login', {replace: true});
+    }
+  }, [user]);
 
   return (
     <>

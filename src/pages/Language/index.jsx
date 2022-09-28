@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Game from "../Game";
@@ -8,17 +8,9 @@ import { Context } from "../../Context";
 function LanguagePage() {
   const [state, setstate] = useState({ data: "" });
   const [mylanguage, setLanguage] = useState("");
+  const { user, setUser } = useContext(Context);
 
-  const handleChange = (event) => {
-    console.log("Label 👉️", event.target.selectedOptions[0].label);
-    console.log(event.target.value);
-    setLanguage(event.target.value);
-  };
-
-  console.log("- lans");
-  const changeState = (e) => {
-    setstate({ data: e.target.value });
-  };
+  
 
   const navigate = useNavigate();
   const { codeLanguage, setCodeLanguage } = useContext(Context);
@@ -34,6 +26,13 @@ function LanguagePage() {
   const HandlerOne = () => {
     navigate("/game");
   };
+
+  useEffect(() => {
+    if (!user) {
+        navigate('/login', {replace: true});
+    }
+  }, [user]);
+
   return (
     <>
       <Title title="Flask & Furious" />

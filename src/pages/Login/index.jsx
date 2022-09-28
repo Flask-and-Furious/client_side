@@ -9,17 +9,27 @@ import { Context } from "../../Context";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  //const { login } = useUserContext();
   const { storedSessionUser, setStoredSessionUser } = useContext(Context);
   const { isValidUser, setIsValidUser } = useContext(Context);
+  const { user, setUser } = useContext(Context);
 
   const goTo = useNavigate();
 
   // moves to dashboard after logging in
   const handleNavigate = () => {
+    setUser(username);
     // setStoredSessionUser(username); // needs to come from SQL database
     goTo("/dashboard"); // needs conditionally rendering using SQL database content
   };
 
+  // const logout = () => {
+  //   localStorage.removeItem("token");
+  //   setUser(null);
+  //   goTo("/login");
+  // };
+
+  let errorMessage;
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -44,8 +54,9 @@ function Login() {
         localStorage.setItem("token", data[0]["token"]);
 
         setStoredSessionUser(localStorage.getItem("token"));
-        
+
         setIsValidUser(true);
+
         handleNavigate();
       } else {
         setIsValidUser(false);
