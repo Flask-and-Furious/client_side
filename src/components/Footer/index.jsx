@@ -6,7 +6,7 @@ function Footer() {
     <>
     <div className="footer-container">
       <footer>
-        <p className="copyright">Copyright Ⓒ Flask and Furious 2022.</p>
+        <p className="copyright">Copyright Ⓒ Flask and Furious 2022</p>
       </footer>
     </div>
     </>
