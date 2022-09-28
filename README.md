@@ -1,6 +1,6 @@
 # Debugging App 
 
-Debugging Ap made with React, Flask and Sqlite.
+Debugging App made with React, Flask and Sqlite.
 
 ## Available Scripts
 
