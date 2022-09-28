@@ -1,12 +1,14 @@
+
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
+import { useUserContext } from '../../Context';
 import { Title, Input, Button, Subtitle, FlashMessage } from "../../components";
 import { Context } from "../../Context";
 
-function Login() {
+function Login(props) {
+   const { login } = useUserContext();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { storedSessionUser, setStoredSessionUser } = useContext(Context);
@@ -93,14 +95,7 @@ function Login() {
         </p>
       </div>
 
-      {/* <div>
-        <Title>Insert App Name</Title>
-        <form onSubmit={handleSubmit}>
-            <Input type="text" name="username" onChange={(e)=>{ setUsername(e.target.value)}}>Username</Input>
-            <Input type="password" name="password" onChange={(e)=>{ setPassword(e.target.value)}}>Password</Input>
-            <Input type="submit" name="login">Login</Input>
-        </form>        
-      </div> */}
+     
     </>
   );
 }

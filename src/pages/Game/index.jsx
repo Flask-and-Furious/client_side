@@ -1,4 +1,7 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState,useContext }from "react";
+
+
+
 
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../Context";
@@ -8,9 +11,12 @@ import { dracula } from "@uiw/codemirror-theme-dracula"; // code window theme
 import { langs } from "@uiw/codemirror-extensions-langs"; // font themes for different languages
 import _, { map } from 'underscore'; // for deep comparing objects, arrays ...
 
+
 import { pythonFetchedCodePackages } from "./pythonQuestions";
 import { javascriptFetchedCodePackages } from "./javascriptQuestions";
 import { correctMessages, incorrectMessages } from "./feedback";
+import { useUserContext } from '../../Context';
+
 import {
   Button,
   Image,
@@ -24,27 +30,39 @@ import styles from './index.module.css'
 
 
 
-function Game() {
-
+function Game(props) {
   const navigates = useNavigate();
-  const { codeLanguage, setCodeLanguage } = useContext(Context);
-  const handlertwo = () => {
-    navigates("/language");
-  };
+  const { user } = useUserContext();
 
   // const pythonProcessingServer = 'https://python-debug.herokuapp.com/code'
   const pythonProcessingServer = "http://127.0.0.1:5000/code"
 
-  // const nodeProcessingServer = 'https://flask-and-furious-node-backend.herokuapp.com/code'
-  const nodeProcessingServer = 'http://localhost:3000/code'
+
+useEffect(() => {
+  if (!user) {
+      navigate('/login', {replace: true});
+  }
+}, [user]);
+
+ 
+  const { codeLanguage, setCodeLanguage } = useUserContext();
+    
+    const handlertwo = () => {
+        navigates("/language");
+    };
+
+  // const language = 'python' // language will be passed by props
+  const language = 'javascript' // language will be passed by props
 
   ////
+  
 
   ///
-  const [progress, setProgress] = useState(0);
-
-  // Here fetch the information about the logged in user's progress. This will be a number.
+  const [progress, setProgress] = useState(0)
+  
+  // Here fetch the information about the logged in user's progress. This will be a number. 
   // For example if he/she solved the first bug earlier, we change the "progress" to 2 with "setProgress(2)"
+
 
   const navigate = useNavigate();
   const [currentCodePackage, setCurrentCodePackage] = useState(
@@ -107,34 +125,41 @@ function Game() {
           setRandomIndex(() =>
             Math.floor(Math.random() * incorrectMessages.length)
           );
+
         }
       })
-      .catch(() => setIsCorrect(false));
-    setIsAnswered(true); // this will make the feedback <div> visible in the DOM
-  };
+      .catch(() => setIsCorrect(false))
+      setIsAnswered(true) // this will make the feedback <div> visible in the DOM
+  }
 
   const nextCode = () => {
-    setProgress((prev) => prev + 1);
-    const currentLanguagePackage =
-      codeLanguage == 'python'
-        ? pythonFetchedCodePackages
-        : javascriptFetchedCodePackages;
+
+    setProgress(prev => prev + 1)
+    const currentLanguagePackage = codeLanguage == 'python' ? pythonFetchedCodePackages : javascriptFetchedCodePackages
     if (progress + 1 === currentLanguagePackage.length) {
-      navigate("/completed");
+      navigate('/completed')
     }
     // Here some code to save user's new progress in the database
-  };
+  }
 
   return (
     <>
-      <div>
-        Updated language :<b>{codeLanguage}</b>
-        <button onClick={handlertwo}>choose language </button>
-      </div>
+            
+            <div>
+            Updated language :<b>{codeLanguage}</b>
+                <button onClick={handlertwo}>choose language </button>
+            </div>
+        
 
-      <div></div>
+<div >
+            
+              
+
+  
+        </div>
 
       <Title title="Debugging Challenge" />
+
       <Subtitle subtitle={currentCodePackage["snippet"]["description"]} />
       <div id="flash-container" style={{height: '30px'}}>
         {isLoading ? <Loader /> : isAnswered &&
@@ -174,6 +199,7 @@ function Game() {
       <div onClick={nextCode} style={{ display: isCorrect ? "block" : "none" }}>
         <Button text="Next" />
       </div>
+
     </>
   );
 }

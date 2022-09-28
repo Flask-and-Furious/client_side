@@ -1,13 +1,18 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { useUserContext } from '../../Context';
+
+
 import Game from "../Game";
 import { Button, Option, Subtitle, Title } from "../../components";
 import { Context } from "../../Context";
 
+
 function LanguagePage() {
   const [state, setstate] = useState({ data: "" });
   const [mylanguage, setLanguage] = useState("");
+  
 
   const handleChange = (event) => {
     console.log("Label 👉️", event.target.selectedOptions[0].label);
@@ -21,7 +26,7 @@ function LanguagePage() {
   };
 
   const navigate = useNavigate();
-  const { codeLanguage, setCodeLanguage } = useContext(Context);
+  const { codeLanguage, setCodeLanguage } = useUserContext();
 
   const clickHandler = () => {
     setCodeLanguage((prevcount) => "python");

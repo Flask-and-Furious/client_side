@@ -1,10 +1,20 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-
+import { useUserContext } from './Context';
+import { useEffect, useState } from "react";
+import axios from 'axios';
 import * as Pages from "./pages";
+import { NavBar } from "./components";
+
 import "./App.css";
 
 function App() {
+  const [name, setName] = useState();
+
+  const { getCurrentUser, userLoading } = useUserContext();
+  useEffect(() => {
+    getCurrentUser();
+  }, []);
   return (
     <Routes>
       <Route path="/" element={<Pages.Home />}></Route>

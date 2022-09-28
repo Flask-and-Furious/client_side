@@ -1,7 +1,9 @@
+
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useUserContext } from '../../Context';
 
 import { Title, Input, Button, Subtitle } from "../../components";
 import { Context } from "../../Context";
@@ -12,6 +14,7 @@ function Register() {
   const [password, setPassword] = useState("");
   const { storedFullUserDetails, setStoredFullUserDetails } = useContext(Context);
   const goTo = useNavigate();
+  const { register } = useUserContext();
 
   // moves to dashboard after logging in
   const handleNavigate = () => {
@@ -108,18 +111,7 @@ function Register() {
         <Button text="Register" />
       </form>
       Have an account? <Link to="/login">Login here</Link>
-      {/* 
-      <div>
-        <Title>Insert App Name</Title>
-        <form onSubmit={handleSubmit}>
-            <Input type="text" name="username" onChange={(e)=>{ setUsername(e.target.value)}}>Username</Input>
-            <Input type="text" name="email" onChange={(e)=>{ setEmail(e.target.value)}}>Email</Input>
-            <Input type="password" name="password" onChange={(e)=>{ setPassword(e.target.value)}}>Password</Input>
-            <Input type="password" name="confirm-password">Confirm Password</Input> (// don't use!!!)
-            <Input type="submit" name="Register">Register</Input>
-        </form>
-      </div> 
-     */}
+     
     </>
   );
 }
