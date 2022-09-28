@@ -41,18 +41,6 @@ describe("Login Component Content", () => {
     expect(typeof title.textContent).toBe("string");
     expect(title).toBeTruthy();
   });
-});
-
-describe("Login Page", () => {
-  beforeEach(() => {
-    render(
-      <BrowserRouter>
-        <ContextProvider>
-          <Login />
-        </ContextProvider>
-      </BrowserRouter>
-    );
-  });
 
   it("Renders all inputs for logging in", () => {
     const input = screen.getAllByRole("input");
