@@ -75,7 +75,7 @@ function Login() {
                 {isValidUser ? null : (
                     <FlashMessage text="Login failed. Please try again. " />
                 )}
-                <p>Don't have an account? <Link to="/register">Register here</Link></p>
+                <p>Don't have an account? <Link className="link-here" to="/register">Register here</Link></p>
             </div>
         </div>
     </>

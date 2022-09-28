@@ -330,6 +330,10 @@ svg {
   stroke-width: 5px;
 } */
 
+.link-here {
+  text-decoration: underline;
+}
+
 @media screen and (max-width: 1100px) {
   
   p {
@@ -339,6 +343,21 @@ svg {
   
   .container {
     min-width: 0px;
+  }
+
+  
+  
+}
+
+@media screen and (max-width: 850px) {
+  
+  p {
+    font-size: 12px;
+    width: 200px
+  }
+  
+  .container {
+    min-width: 300px;
   }
 
   
@@ -362,7 +381,12 @@ svg {
     justify-content: center;
     align-items: center;
   }
-
+  .svg-pi {
+    width: 100px;
+    height: 100px;
+    transform: rotate(-90deg); /* Fix the orientation */
+    margin-left: 43%;
+  }
   
 }
 
@@ -400,6 +424,13 @@ svg {
     justify-content: center;
     align-items: center;
  
+  }
+
+  .svg-pi {
+    width: 100px;
+    height: 100px;
+    transform: rotate(-90deg); /* Fix the orientation */
+    margin-left: 36%;
   }
   
 
@@ -442,6 +473,20 @@ svg {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  .code-mirror-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hint-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
   }
 }
 

@@ -30,7 +30,7 @@ function Game() {
   const { jsScore, setJsScore } = useContext(Context);
   const { pythonScore, setPythonScore } = useContext(Context);
 
-  const handlertwo = () => {
+  const changeLng= () => {
     navigate("/language");
   };
 
@@ -196,7 +196,7 @@ function Game() {
       <div className="options">
         <div style={{display: codeLanguage == 'python' ? 'block' : 'none'}}>Please use 4 spaces for indentation<br></br>Avoid using TAB</div>
         <div>
-          <Button text="Change language" cssClass={"play"}/>
+          <Button text="Change language" cssClass={"play"} handleClickEvent={changeLng}/>
         </div>
         <div onClick={submitCode}>
           <Button text="Submit" isDisabled={isButtonDisabled} cssClass={"play"}/>
@@ -212,7 +212,9 @@ function Game() {
       </div>            
       <div>
       <HR />
+      <div className="hint-div">
       <Button text="Hint" cssClass={"play"}/>
+      </div>
       </div>
     </>
   );

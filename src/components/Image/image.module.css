@@ -42,12 +42,28 @@
 }
 }
 
+@media screen and (max-width: 850px) {
+  .rightImg {
+    width: 300px;
+    padding: 20px;
+ }
+
+ .snippets {
+  width: 300px;
+  padding: 20px;
+}
+
+.teamImg {
+  width: 150px;
+}
+}
+
 
 .mobileImg {
   display: none;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .rightImg {
     display: none;
  }
