@@ -140,10 +140,9 @@ function Game() {
         {isLoading ? <Loader /> : isAnswered &&
         <FlashMessage
           text={
-            isCorrect
-              ? //`✅${correctMessages[randomIndex]}`
-              '✅ Correct!'
-              : `❌${errorMessage.error ? errorMessage.error : 'Try again'}`
+            isCorrect ?
+              '✅ Correct!' :
+              `❌${errorMessage.error ? errorMessage.error : 'Try again'}`
           }
         /> 
         }
