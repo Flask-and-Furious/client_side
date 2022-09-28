@@ -1,24 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Game from "../Game";
-import { Button, Subtitle, HR } from "../../components";
+import { Button, Option, Subtitle, Title } from "../../components";
+
 import { Context } from "../../Context";
 
 function LanguagePage() {
-  const [state, setstate] = useState({ data: "" });
-  const [mylanguage, setLanguage] = useState("");
-
-  const handleChange = (event) => {
-    console.log("Label 👉️", event.target.selectedOptions[0].label);
-    console.log(event.target.value);
-    setLanguage(event.target.value);
-  };
-
-  console.log("- lans");
-  const changeState = (e) => {
-    setstate({ data: e.target.value });
-  };
+  const { user } = useContext(Context);
 
   const navigate = useNavigate();
   const { codeLanguage, setCodeLanguage } = useContext(Context);
@@ -34,6 +22,13 @@ function LanguagePage() {
   const HandlerOne = () => {
     navigate("/game");
   };
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/", { replace: true });
+    }
+  }, [user]);
+
   return (
     <>
     <div className="language-container">
