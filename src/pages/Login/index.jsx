@@ -20,7 +20,6 @@ function Login() {
     goTo("/dashboard"); // needs conditionally rendering using SQL database content
   };
 
-  let errorMessage;
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -41,10 +40,11 @@ function Login() {
       console.log("Res:", data);
 
       // getting current user
-      if (data[1] === 200) {
+      if (data[1] == "200") {
         localStorage.setItem("token", data[0]["token"]);
-        const currentSessionUser = localStorage.getItem("token");
-        setStoredSessionUser(currentSessionUser);
+
+        setStoredSessionUser(localStorage.getItem("token"));
+        
         setIsValidUser(true);
         handleNavigate();
       } else {
@@ -57,7 +57,9 @@ function Login() {
       console.log("Error :", err);
     }
   };
-  console.log("isValidUser ==> ", isValidUser);
+
+  // setStoredSessionUser(localStorage.getItem("token"));
+  console.log("storedSessionUser: ", storedSessionUser);
 
   return (
     <>

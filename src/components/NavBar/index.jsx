@@ -12,114 +12,17 @@ function NavBar() {
       {storedSessionUser ? (
         // there is a user present
         <nav>
-          <NavLink
-            to="/"
-            style={({ isActive }) =>
-              isActive
-                ? { textDecoration: "underline" }
-                : { textDecoration: "none" }
-            }
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/dashboard"
-            style={({ isActive }) =>
-              isActive
-                ? { textDecoration: "underline" }
-                : { textDecoration: "none" }
-            }
-          >
-            Dashboard
-          </NavLink>
-          <NavLink
-            to="/language"
-            style={({ isActive }) =>
-              isActive
-                ? { textDecoration: "underline" }
-                : { textDecoration: "none" }
-            }
-          >
-            Language
-          </NavLink>
-          <NavLink
-            to="/game"
-            style={({ isActive }) =>
-              isActive
-                ? { textDecoration: "underline" }
-                : { textDecoration: "none" }
-            }
-          >
-            Game
-          </NavLink>
-          <NavLink
-            to="/completed"
-            style={({ isActive }) =>
-              isActive
-                ? { textDecoration: "underline" }
-                : { textDecoration: "none" }
-            }
-          >
-            Completed
-          </NavLink>
-          <NavLink
-            to="/logout"
-            style={({ isActive }) =>
-              isActive
-                ? { textDecoration: "underline" }
-                : { textDecoration: "none" }
-            }
-          >
-            Log Out
-          </NavLink>
-          <NavLink
-            to="/difficulty"
-            style={({ isActive }) =>
-              isActive
-                ? { textDecoration: "underline" }
-                : { textDecoration: "none" }
-            }
-          >
-            Difficulty
-          </NavLink>
-
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/dashboard">Dashboard</NavLink>
+          <NavLink to="/logout">Log Out</NavLink>
           <Outlet />
         </nav>
       ) : (
         // there is no user present
         <nav>
-          <NavLink
-            to="/"
-            style={({ isActive }) =>
-              isActive
-                ? { textDecoration: "underline" }
-                : { textDecoration: "none" }
-            }
-          >
-            Home
-          </NavLink>
-
-          <NavLink
-            to="/login"
-            style={({ isActive }) =>
-              isActive
-                ? { textDecoration: "underline" }
-                : { textDecoration: "none" }
-            }
-          >
-            Login
-          </NavLink>
-          <NavLink
-            to="/register"
-            style={({ isActive }) =>
-              isActive
-                ? { textDecoration: "underline" }
-                : { textDecoration: "none" }
-            }
-          >
-            Register
-          </NavLink>
-
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/login">Login</NavLink>
+          <NavLink to="/register">Register</NavLink>
           <Outlet />
         </nav>
       )}

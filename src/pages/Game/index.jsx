@@ -128,8 +128,11 @@ function Game() {
   return (
     <>
       <div>
-        Updated language :<b>{codeLanguage}</b>
-        <button onClick={handlertwo}>choose language </button>
+        <p>
+          Current language:{" "}
+          {codeLanguage.charAt(0).toUpperCase() + codeLanguage.slice(1)}
+        </p>
+        <button onClick={handlertwo}>Change language</button>
       </div>
 
       <div></div>

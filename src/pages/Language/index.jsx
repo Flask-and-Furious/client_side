@@ -37,20 +37,22 @@ function LanguagePage() {
   return (
     <>
       <Title title="Flask & Furious" />
-      <Subtitle subtitle="Choose language" />
+      <Subtitle subtitle="Choose a language" />
 
       <div>
-        <button onClick={clickHandler}>python</button>⬅ choose one ⮕
-        <button onClick={clickHandlerOne}>javascript</button>
-        <div>
-          <br></br>
-          <p>Your selection {codeLanguage}</p>
-          <br></br>
+        <button onClick={clickHandler}>Python</button>
+        <button onClick={clickHandlerOne}>Javascript</button>
+      </div>
 
-          {codeLanguage ? (
-            <button onClick={HandlerOne}>Let's Play</button>
-          ) : null}
-        </div>
+      <div>
+        <p>
+          Selected:{" "}
+          {codeLanguage.charAt(0).toUpperCase() + codeLanguage.slice(1)}
+        </p>
+      </div>
+
+      <div>
+        <button onClick={HandlerOne}>Let's Play</button>
       </div>
     </>
   );
