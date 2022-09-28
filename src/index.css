@@ -72,8 +72,33 @@ p {
   display: flex;
 }
 
-.language-left {
+.language-choice {
+  padding: 15px 4% 15px 4%;
+}
+
+.language-buttons-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.language-buttons-div > div {
   padding: 15px;
+}
+
+.language-play-button-div {
+  text-align: center;
+}
+
+.language-example {
+  padding: 15px 4% 15px 4%;
+}
+
+.how-it-works {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .footer-container {
@@ -144,6 +169,11 @@ nav {
 .right-inner-2 > a {
   font-size: 1em;
   margin: 10px;
+}
+
+.right-inner-2 > a:hover {
+  color: #df9769;
+  transition: 0.5s;
 }
 
 /* Slideshow */

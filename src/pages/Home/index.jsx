@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Context } from "../../Context";
 import AOS from 'aos'
 
@@ -13,7 +14,12 @@ function Home() {
     duration: 2000
   })
   const { storedSessionUser, setStoredSessionUser } = useContext(Context);
+  const navigateTo = useNavigate()
 
+  function handleNavigation () {
+    navigateTo('/login')
+  }
+ 
   return (
     <>
       <div className="home-title-container">
@@ -21,7 +27,7 @@ function Home() {
           <div data-aos="zoom-in">
             <Title title="Bug Basher" />
             <Subtitle subtitle="Can you catch all the bugs?" />
-            <Button text="Play" cssClass={"play"}/>
+            <Button text="Play" cssClass={"play"} handleClick={handleNavigation}/>
           </div>
         </div>
         <div className="right-title" data-aos="zoom-in-left">
