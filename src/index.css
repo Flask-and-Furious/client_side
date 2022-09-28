@@ -33,7 +33,6 @@ body {
   margin: 1%;
   padding: 2%;
   display: flex;
-  display: flex;
   justify-content: space-evenly;
 }
 
@@ -41,13 +40,12 @@ body {
   margin: 2%;
   padding: 2%;
   display: flex;
-  display: flex;
   justify-content: space-evenly;
 }
 
 p {
   padding: 15px;
-  width: 500px;
+  /* width: 500px; */
 }
 
 .login-container, .register-container {
@@ -195,29 +193,7 @@ nav {
   width: 100%;
   border-radius: 40px;
 }
-
-/* Buttons */
-
-/* .slideshowDots {
-  text-align: center;
-}
-
-.slideshowDot {
-  display: inline-block;
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-
-  cursor: pointer;
-  margin: 15px 7px 0px;
-
-  background-color: #c4c4c4;
-}
-
-.slideshowDot.active {
-  background-color: #6a0dad;
-} */
-
+ 
 .team {
   padding-top: 2%;
   padding-bottom: 2%;
@@ -273,3 +249,67 @@ nav {
   padding: 15px;
   text-align: center;
 }
+@media screen and (max-width: 1100px) {
+  
+  p {
+    font-size: 12px;
+    width: 350px;
+  }
+  
+  .container {
+    min-width: 0px;
+  }
+  
+}
+
+
+@media screen and (max-width: 600px) {
+  
+  p {
+    font-size: 12px;
+    width: 350px;
+    text-align: center;
+  }
+  
+  .container {
+    min-width: 0px;
+  }
+
+  .home-title-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .article1-container {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+  }
+  
+  .article2-container {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+ 
+  }
+  
+
+  nav {
+    display: none;
+  }
+  
+  .mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+
+

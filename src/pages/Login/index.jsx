@@ -33,7 +33,6 @@ function Login() {
         },
         body: JSON.stringify(Object.fromEntries(new FormData(e.target))),
       };
-      console.log("body here ==> ", options.body);
       const res = await fetch(
         "https://python-debug.herokuapp.com/login",
         options
@@ -52,7 +51,7 @@ function Login() {
         handleNavigate();
       } else {
         setIsValidUser(false);
-        console.log("PANIC!!!");
+        console.log("Something went wrong!");
       }
       return data;
     } catch (err) {
@@ -67,11 +66,11 @@ function Login() {
                 <div className="animation">
                     <Image image={login} altVal="article 1 image goes here" cssClass={"logoImg"} />
                 </div>
-                <Title title="Flask & Furious" />
+                <Title title="Login" />
                 <form onSubmit={handleSubmit}>
                     <Input onChange={(e) => {setUsername(e.target.value);}} name="username" type="text">Username</Input>
-                    <Input onChange={(e) => {setPassword(e.target.value);}} name="password" type="password">Password</Input>
-                    <Input type="submit" name="login">Login</Input>
+                    <Input onChange={(e) => {setPassword(e.target.value);}} name="password" type="password" min={8} max={20}>Password</Input>
+                    <Input type="submit" name="login">Submit</Input>
                 </form>
                 {isValidUser ? null : (
                     <FlashMessage text="Login failed. Please try again. " />

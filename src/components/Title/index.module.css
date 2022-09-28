@@ -24,3 +24,39 @@ h1 {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     transition: 0.3s;
 }
+
+@media screen and (max-width: 1100px) {
+    .title-h1 {
+      font-size: 4rem;
+      line-height: 0.5rem;
+    }
+
+    .team-title {
+        font-size: 3rem;
+        margin-top: 20px;
+        text-align: center;
+    }
+  }
+
+  @media screen and (max-width: 850px) {
+    .title-h1 {
+      font-size: 3rem;
+      line-height: 0.5rem;
+    }
+
+    .team-title {
+        font-size: 2rem;
+        margin-top: 20px;
+        text-align: center;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .title-h1 {
+      font-size: 3rem;
+      line-height: 0.5rem;
+      text-align: center;
+    }
+
+    
+  }
