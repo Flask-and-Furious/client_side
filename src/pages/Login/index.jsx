@@ -2,8 +2,10 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import { Title, Input, Button, Subtitle, FlashMessage } from "../../components";
+import { Title, Input, Button, Subtitle, FlashMessage, Image } from "../../components";
 import { Context } from "../../Context";
+import login from "../../assets/virus.png"
+
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -52,7 +54,6 @@ function Login() {
         setIsValidUser(false);
         console.log("PANIC!!!");
       }
-
       return data;
     } catch (err) {
       console.log("Error :", err);
@@ -61,37 +62,23 @@ function Login() {
 
   return (
     <>
-      <div>
-        <Title title="Flask & Furious" />
-        <Subtitle subtitle="Login here" />
-        <form onSubmit={handleSubmit}>
-          <Input
-            onChange={(e) => {
-              setUsername(e.target.value);
-            }}
-            name="username"
-            id="username"
-            type="text"
-            text="Username"
-          />
-          <Input
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            name="password"
-            id="password"
-            type="password"
-            text="Password"
-          />
-          <Button text="Login" />
-        </form>
-        {isValidUser ? null : (
-          <FlashMessage text="Login failed. Please try again. " />
-        )}
-        <p>
-          Don't have an account? <Link to="/register">Register here</Link>
-        </p>
-      </div>
+        <div className="login-container">
+            <div className="login-div">
+                <div className="animation">
+                    <Image image={login} altVal="article 1 image goes here" cssClass={"logoImg"} />
+                </div>
+                <Title title="Flask & Furious" />
+                <form onSubmit={handleSubmit}>
+                    <Input onChange={(e) => {setUsername(e.target.value);}} name="username" type="text">Username</Input>
+                    <Input onChange={(e) => {setPassword(e.target.value);}} name="password" type="password">Password</Input>
+                    <Input type="submit" name="login">Login</Input>
+                </form>
+                {isValidUser ? null : (
+                    <FlashMessage text="Login failed. Please try again. " />
+                )}
+                <p>Don't have an account? <Link to="/register">Register here</Link></p>
+            </div>
+        </div>
     </>
   );
 }

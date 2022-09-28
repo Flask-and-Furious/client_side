@@ -1,0 +1,26 @@
+h1 {
+    font-size: 5rem;
+    line-height: 2.5rem;
+    padding: 15px;
+}
+
+.login-title {
+    margin: 20px;
+}
+
+.team-title {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.nav-title {
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.nav-title:hover {
+    border-radius: 5px;
+    background-color: #df9769;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    transition: 0.3s;
+}

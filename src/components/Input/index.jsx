@@ -1,13 +1,17 @@
-import React from "react";
 
-import styles from "./input.module.css";
+import React from 'react'
+import styles from './input.module.css'
+ 
+function Input({ name, type, children, onChange=()=>{}}) {
+ return (
+   type=='text' || type=='password' ?
+   <>
+      
+     <input role="input" id={name} name={name} type={type} onChange={onChange} placeholder={children}/> <br />
 
-function Input({ text, name, classVariant, type, children, onChange = () => {} }) {
-  return (
+    </> :
     <>
-      {/* <label htmlFor={name}>{children}</label> */}
-      <label htmlFor={name}>{text}</label>
-      <input required id={name} name={name} type={type} onChange={onChange} />
+      <input role="input" id={name} name={name} type={type} onChange={onChange} value={children}/> <br />
     </>
   );
 }

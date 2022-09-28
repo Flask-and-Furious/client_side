@@ -4,6 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 import "./navbar.css";
 import { Context } from "../../Context";
+import Image from "../Image"
+import Title from "../Title"
+
+import virus from "../../assets/virus.png"
 
 function NavBar() {
   const { user, setUser } = useContext(Context);
@@ -29,12 +33,27 @@ function NavBar() {
         </nav>
       ) : (
         // there is no user present
-        <nav>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/login">Login</NavLink>
-          <NavLink to="/register">Register</NavLink>
-          <Outlet />
-        </nav>
+        <div className="nav-container2">
+          <nav>
+            <div className="left2">
+              <NavLink to="/">
+                <div className="animation">
+                  <Image image={virus} altVal="article 1 image goes here" cssClass={"navImg"} />
+                </div>
+                <div className="nav-title-div">
+                  <Title title="Bug Basher" cssClass={"nav-title"} />
+                </div>
+              </NavLink>
+            </div>
+            <div className="right2">
+              <div className="right-inner-2">
+                  <NavLink to="/login">Login</NavLink>
+                  <NavLink to="/register">Register</NavLink>
+                <Outlet />
+              </div>
+            </div>
+          </nav>
+        </div>
       )}
     </>
   );
