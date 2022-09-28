@@ -23,6 +23,36 @@ describe("Running NavBar component", () => {
   });
 });
 
+describe("NavBar component links", () => {
+  beforeEach(() => {
+    render(
+      <BrowserRouter>
+        <ContextProvider>
+          <NavBar />
+        </ContextProvider>
+      </BrowserRouter>
+    );
+  });
+
+  it("Displays appropriate home link title", () => {
+    const homeLink = screen.queryByRole("home");
+    expect(homeLink).toBeInTheDocument();
+    expect(homeLink.textContent).toBe("Bug Basher");
+  });
+
+  it("Displays appropriate login link title", () => {
+    const loginLink = screen.queryByRole("login");
+    expect(loginLink).toBeInTheDocument();
+    expect(loginLink.textContent).toBe("Login");
+  });
+
+  it("Displays appropriate register link title", () => {
+    const registerLink = screen.queryByRole("register");
+    expect(registerLink).toBeInTheDocument();
+    expect(registerLink.textContent).toBe("Register");
+  });
+});
+
 describe("NavBar component", () => {
   beforeEach(() => {
     const myNav = "";

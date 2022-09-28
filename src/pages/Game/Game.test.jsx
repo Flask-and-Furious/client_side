@@ -23,7 +23,7 @@ describe("Running Game component", () => {
   });
 });
 
-describe("Game Component Content", () => {
+describe("Game component contents", () => {
   beforeEach(() => {
     render(
       <BrowserRouter>
@@ -43,6 +43,40 @@ describe("Game Component Content", () => {
       expect(singleTitle).toBeTruthy();
     });
   });
+
+  test("Ensures submit button is present", () => {
+    const submitBtn = screen.getByRole("button", { name: /Submit/i });
+
+    expect(submitBtn).toBeInTheDocument();
+    expect(typeof submitBtn.textContent).toBe("string");
+    expect(typeof submitBtn.value).toBe("string");
+    expect(submitBtn).toBeTruthy();
+  });
+
+  test("Ensures language description paragraph is present", () => {
+    const para1 = screen.getByRole("para1");
+
+    expect(para1).toBeInTheDocument();
+    expect(typeof para1.textContent).toBe("string");
+    expect(para1).toBeTruthy();
+  });
+
+  test("Ensures 'Change Language' paragraph is present", () => {
+    const para2 = screen.getByRole("para2");
+
+    expect(para2).toBeInTheDocument();
+    expect(typeof para2.textContent).toBe("string");
+    expect(para2).toBeTruthy();
+  });
+
+  test("Ensures 'Change Language' button is present", () => {
+    const changeBtn = screen.getByRole("button", { name: /Change Language/i });
+
+    expect(changeBtn).toBeInTheDocument();
+    expect(typeof changeBtn.textContent).toBe("string");
+    expect(typeof changeBtn.value).toBe("string");
+    expect(changeBtn).toBeTruthy();
+  });
 });
 
 // describe("Submitting Game Component Content", () => {
@@ -59,7 +93,7 @@ describe("Game Component Content", () => {
 //   test("Ensures input is cleared after submission (hitting enter)", () => {
 //     const answerInput = screen.getByRole("codeMirror");
 
-//     userEvent.type(answerInput, "test answer{enter}");
+//     userEvent.type(answerInput, "testAnswer{enter}");
 //     expect(answerInput.value).toBe("");
 //   });
 

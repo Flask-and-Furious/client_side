@@ -7,7 +7,21 @@ import "@testing-library/jest-dom";
 import React from "react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
+
 import Footer from ".";
+import { ContextProvider } from "../../Context";
+
+describe("Running Footer component", () => {
+  test("Ensures it renders without crashing", () => {
+    render(
+      <BrowserRouter>
+        <ContextProvider>
+          <Footer />
+        </ContextProvider>
+      </BrowserRouter>
+    );
+  });
+});
 
 describe("Footer", () => {
   beforeEach(() => {
