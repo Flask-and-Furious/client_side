@@ -26,9 +26,9 @@ function NavBar() {
       {user ? (
         // there is a user present
         <nav role={"nav"}>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/dashboard">Dashboard</NavLink>
-          <NavLink onClick={handleLogout}>Log Out</NavLink>
+          <NavLink to="/" role={"home"}>Home</NavLink>
+          <NavLink to="/dashboard" role={"dashboard"}>Dashboard</NavLink>
+          <NavLink onClick={handleLogout} role={"logout"}>Log Out</NavLink>
           <Outlet />
         </nav>
       ) : (
@@ -36,7 +36,7 @@ function NavBar() {
         <div className="nav-container2">
           <nav role={"nav"}>
             <div className="left2">
-              <NavLink to="/">
+              <NavLink to="/" role={"home"}>
                 <div className="animation">
                   <Image image={virus} altVal="article 1 image goes here" cssClass={"navImg"} />
                 </div>
@@ -47,8 +47,8 @@ function NavBar() {
             </div>
             <div className="right2">
               <div className="right-inner-2">
-                  <NavLink to="/login">Login</NavLink>
-                  <NavLink to="/register">Register</NavLink>
+                  <NavLink to="/login" role={"login"}>Login</NavLink>
+                  <NavLink to="/register" role={"register"}>Register</NavLink>
                 <Outlet />
               </div>
             </div>
