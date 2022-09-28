@@ -6,6 +6,7 @@ import axios from "axios";
 import CodeMirror from "@uiw/react-codemirror";
 import { dracula } from "@uiw/codemirror-theme-dracula"; // code window theme
 import { langs } from "@uiw/codemirror-extensions-langs"; // font themes for different languages
+import _, { map } from 'underscore'; // for deep comparing objects, arrays ...
 
 import { pythonFetchedCodePackages } from "./pythonQuestions";
 import { javascriptFetchedCodePackages } from "./javascriptQuestions";
@@ -17,9 +18,13 @@ import {
   Subtitle,
   Title,
   FlashMessage,
+  Loader
 } from "../../components";
+import styles from './index.module.css'
 
-function Game(props) {
+
+
+function Game() {
 
   const navigates = useNavigate();
   const { codeLanguage, setCodeLanguage } = useContext(Context);
@@ -27,8 +32,6 @@ function Game(props) {
     navigates("/language");
   };
 
-  // const language = 'python' // language will be passed by props
-  // const language = 'javascript' // language will be passed by props
   // const pythonProcessingServer = 'https://python-debug.herokuapp.com/code'
   const pythonProcessingServer = "http://127.0.0.1:5000/code"
 
@@ -53,7 +56,9 @@ function Game(props) {
   const [isAnswered, setIsAnswered] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [solvingTime, setSolvingTime] = useState(new Date().getTime());
-  const [randomIndex, setRandomIndex] = useState(null); // This is only for random feedback messages, not important
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+
 
   useEffect(() => {
     // update and reset information when jumping to the next question
@@ -69,6 +74,7 @@ function Game(props) {
   }, [progress]);
 
   const submitCode = async () => {
+    setIsLoading(true)
     await axios
       .post(
         codeLanguage == 'python'
@@ -77,17 +83,18 @@ function Game(props) {
         { "code-package": currentCodePackage }
       ) // send codes to backend for processing
       .then((data) => {
+        setIsLoading(false)
         // data.data will contain the debugged function return values in an array
         console.log("data.data: ", data.data);
+        console.log(data.data[0], currentCodePackage["snippet"]["return-1"]);
+        console.log(data.data[1], currentCodePackage["snippet"]["return-2"]);
         if (
-          data.data[0] === currentCodePackage["snippet"]["return-1"] &&
-          data.data[1] === currentCodePackage["snippet"]["return-2"]
+          // to compare singe values or deep compare objects
+          (data.data[0] === currentCodePackage["snippet"]["return-1"] || _.isEqual(data.data[0],currentCodePackage["snippet"]["return-1"]))&&
+          (data.data[1] === currentCodePackage["snippet"]["return-2"] || _.isEqual(data.data[1],currentCodePackage["snippet"]["return-2"]))
         ) {
           // we compare the incoming values with the saved return values from the database
           setIsCorrect(true); // if both match
-          setRandomIndex(() =>
-            Math.floor(Math.random() * correctMessages.length)
-          );
           setIsButtonDisabled(true);
           const doneTime = new Date().getTime();
           const solvingSeconds =
@@ -95,6 +102,7 @@ function Game(props) {
           setSolvingTime(solvingSeconds);
           // Here some code to save this duration to user's profile. Maybe update if this is the quickest?
         } else {
+          setErrorMessage(data.data)
           setIsCorrect(false); // if it doesn't
           setRandomIndex(() =>
             Math.floor(Math.random() * incorrectMessages.length)
@@ -128,19 +136,19 @@ function Game(props) {
 
       <Title title="Debugging Challenge" />
       <Subtitle subtitle={currentCodePackage["snippet"]["description"]} />
-      <FlashMessage
-        style={{ display: isAnswered ? "flex" : "none" }}
-        text={
-          isCorrect
-            ? `✅${correctMessages[randomIndex]}`
-            : `❌${incorrectMessages[randomIndex]}`
-        }
-      />
-      <div style={{ textAlign: "start", margin: "20px", fontSize: "18px" }}>
+      <div id="flash-container" style={{height: '30px'}}>
+        {isLoading ? <Loader /> : isAnswered &&
         <FlashMessage
-          style={{ display: isCorrect ? "flex" : "none" }}
-          text={`${solvingTime} s`}
-        />
+          text={
+            isCorrect ?
+              '✅ Correct!' :
+              `❌${errorMessage.error ? errorMessage.error : 'Try again'}`
+          }
+        /> 
+        }
+        {isAnswered && isCorrect && <FlashMessage text={`Solved in: ${solvingTime} s`} />} 
+      </div>
+      <div style={{ textAlign: "start", margin: "20px", fontSize: "18px" }}>
         <CodeMirror
           value={currentCodePackage["snippet"]["body"]}
           theme={dracula}
@@ -150,13 +158,8 @@ function Game(props) {
               return {
                 id: currentCodePackage["id"], // this is basically changes the 'body' value only. It's the code from user's input. We need the other original values
                 snippet: {
-                  description: currentCodePackage["snippet"]["description"],
-                  import: currentCodePackage["snippet"]["import"],
+                  ...currentCodePackage["snippet"],
                   body: editor,
-                  "to-execute-1": currentCodePackage["snippet"]["to-execute-1"],
-                  "return-1": currentCodePackage["snippet"]["return-1"],
-                  "to-execute-2": currentCodePackage["snippet"]["to-execute-2"],
-                  "return-2": currentCodePackage["snippet"]["return-2"],
                 },
               };
             });
@@ -164,8 +167,6 @@ function Game(props) {
           extensions={codeLanguage == 'python' ? [langs.python()] : [langs.javascript()]}
         />
       </div>
-      {/* <Image image="" /> */}
-      {/* <Input name="" text="Which line number is wrong?" /> */}
       <div style={{display: codeLanguage == 'python' ? 'block' : 'none'}}>Please use 4 spaces for indentation<br></br>Avoid using TAB</div>
       <div onClick={submitCode}>
         <Button text="Submit" isDisabled={isButtonDisabled} />
