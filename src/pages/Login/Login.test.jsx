@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { screen, render } from "@testing-library/react";
+import { screen, render, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import React from "react";
 import userEvent from "@testing-library/user-event";
@@ -45,7 +45,7 @@ describe("Login component contents", () => {
     });
   });
 
-  test("Ensures login title is present for user to read", () => {
+  test("Ensures login title is present for users to read", () => {
     const title = screen.getByRole("heading");
 
     expect(title).toBeInTheDocument();
@@ -68,14 +68,25 @@ describe("Login component contents", () => {
     expect(typeof passwordInput.textContent).toBe("string");
     expect(passwordInput).toBeTruthy();
   });
+
+  test("Ensures login button is present", () => {
+    const loginBtn = screen.getByRole("input", { name: /Login/i });
+
+    expect(loginBtn).toBeInTheDocument();
+    expect(typeof loginBtn.textContent).toBe("string");
+    expect(typeof loginBtn.value).toBe("string");
+    expect(loginBtn).toBeTruthy();
+  });
 });
 
 describe("Login form functionality", () => {
+  const onSubmit = jest.fn();
+
   beforeEach(() => {
     render(
       <BrowserRouter>
         <ContextProvider>
-          <Login />
+          <Login onSubmitForTest={onSubmit} />
         </ContextProvider>
       </BrowserRouter>
     );
@@ -83,7 +94,7 @@ describe("Login form functionality", () => {
 
   test("clears user input after submitting username", () => {
     const usernameInput = screen.getByPlaceholderText("Username");
-    userEvent.type(usernameInput, "Beth{enter}");
+    userEvent.type(usernameInput, "testName{enter}");
     expect(usernameInput.value).toBe("");
     expect(usernameInput.value).not.toBeTruthy();
     expect(usernameInput.value).toHaveLength(0);
@@ -91,9 +102,25 @@ describe("Login form functionality", () => {
 
   test("clears user input after submitting password", () => {
     const passwordInput = screen.getByPlaceholderText("Password");
-    userEvent.type(passwordInput, "Beth{enter}");
+    userEvent.type(passwordInput, "test@test.com{enter}");
     expect(passwordInput.value).toBe("");
     expect(passwordInput.value).not.toBeTruthy();
     expect(passwordInput.value).toHaveLength(0);
+  });
+
+  test("Ensures login form can be submitted", () => {
+    const loginBtn = screen.getByRole("input", { name: /Login/i });
+
+    const usernameInput = screen.getByPlaceholderText("Username");
+    const passwordInput = screen.getByPlaceholderText("Password");
+
+    userEvent.type(usernameInput, "testName");
+    userEvent.type(passwordInput, "test@test.com");
+
+    userEvent.click(loginBtn);
+
+    waitFor(() => {
+      expect(onSubmit).toHaveBeenCalledTimes(1);
+    });
   });
 });
