@@ -7,7 +7,21 @@ import "@testing-library/jest-dom";
 import React from "react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
+
 import Image from ".";
+import { ContextProvider } from "../../Context";
+
+describe("Running Image component", () => {
+  test("Ensures it renders without crashing", () => {
+    render(
+      <BrowserRouter>
+        <ContextProvider>
+          <Image />
+        </ContextProvider>
+      </BrowserRouter>
+    );
+  });
+});
 
 describe("Image component", () => {
   beforeEach(() => {

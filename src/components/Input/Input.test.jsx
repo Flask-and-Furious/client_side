@@ -1,13 +1,23 @@
-/** @jest-environment jsdom */
+/**
+ * @jest-environment jsdom
+ */
+
+import { screen, render } from "@testing-library/react";
+import "@testing-library/jest-dom";
 import React from "react";
-import { render } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 
-import Image from ".";
+import Input from ".";
+import { ContextProvider } from "../../Context";
 
-describe("image component ", () => {
-  it("renders image ", () => {
-    const imgLabel = "";
-
-    render(<Image label={imgLabel} />);
+describe("Running Input component", () => {
+  test("Ensures it renders without crashing", () => {
+    render(
+      <BrowserRouter>
+        <ContextProvider>
+          <Input />
+        </ContextProvider>
+      </BrowserRouter>
+    );
   });
 });
