@@ -1,8 +1,8 @@
 body {
   margin: 0;
   height: 100%;
-  width: 100vw;
-  min-width: 100vh;
+  /* width: 100vw; */
+  /* min-width: 100vw; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -227,4 +227,38 @@ nav {
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
+}
+
+.game-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.js-icon, .python-icon {
+  color: #df9769;
+}
+
+.js-icon:hover, .python-icon:hover {
+  color: white;
+}
+
+.question-desc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.code-mirror-div {
+  margin: 15px;
+  display: flex;
+}
+
+.code-mirror {
+  width: 750px;
+}
+
+.options {
+  padding: 15px;
 }

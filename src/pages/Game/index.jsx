@@ -17,6 +17,7 @@ import {
   Subtitle,
   Title,
   FlashMessage,
+  HR
 } from "../../components";
 
 function Game(props) {
@@ -119,29 +120,19 @@ function Game(props) {
 
   return (
     <>
-      <div>
-        Updated language :<b>{codeLanguage}</b>
-        <button onClick={handlertwo}>choose language </button>
+      <div className="question-desc">
+        <div>
+          {codeLanguage == "javascript" ? <i class="fab fa-js-square fa-5x js-icon"></i> : codeLanguage == "python" ? <i class="fab fa-python fa-5x python-icon"></i> : null }
+          <p>This is the description of the question below. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
       </div>
+      {/* <button onClick={handlertwo}>choose language </button> */}
 
-      <div></div>
-
-      <Title title="Debugging Challenge" />
-      <Subtitle subtitle={currentCodePackage["snippet"]["description"]} />
-      <FlashMessage
-        style={{ display: isAnswered ? "flex" : "none" }}
-        text={
-          isCorrect
-            ? `✅${correctMessages[randomIndex]}`
-            : `❌${incorrectMessages[randomIndex]}`
-        }
-      />
-      <div style={{ textAlign: "start", margin: "20px", fontSize: "18px" }}>
-        <FlashMessage
-          style={{ display: isCorrect ? "flex" : "none" }}
-          text={`${solvingTime} s`}
-        />
-        <CodeMirror
+      <HR />
+      <Subtitle subtitle={"Challenge one"}/>
+      <div className="code-mirror-div">
+        <div className="code-mirror">
+      <CodeMirror
           value={currentCodePackage["snippet"]["body"]}
           theme={dracula}
           indentWithTab={true}
@@ -162,17 +153,43 @@ function Game(props) {
             });
           }}
           extensions={codeLanguage == 'python' ? [langs.python()] : [langs.javascript()]}
+        /></div>
+        <div className="options">
+        <div style={{display: codeLanguage == 'python' ? 'block' : 'none'}}>Please use 4 spaces for indentation<br></br>Avoid using TAB</div>
+        <div onClick={submitCode}>
+          <Button text="Submit" isDisabled={isButtonDisabled} cssClass={"play"}/>
+        </div>
+        <div onClick={nextCode} style={{ display: isCorrect ? "block" : "none" }}>
+          <Button text="Next" cssClass={"play"}/>
+          </div>
+          </div>
+      </div>
+      <FlashMessage
+        style={{ display: isAnswered ? "flex" : "none" }}
+        text={
+          isCorrect
+            ? `✅${correctMessages[randomIndex]}`
+            : `❌${incorrectMessages[randomIndex]}`
+        }
+      />
+      <div style={{ textAlign: "start", margin: "20px", fontSize: "18px", width: "750px" }}>
+        <FlashMessage
+          style={{ display: isCorrect ? "flex" : "none" }}
+          text={`${solvingTime} s`}
         />
+      </div>
+      <div>
+      <Button text="Hint" cssClass={"play"}/>
       </div>
       {/* <Image image="" /> */}
       {/* <Input name="" text="Which line number is wrong?" /> */}
-      <div style={{display: codeLanguage == 'python' ? 'block' : 'none'}}>Please use 4 spaces for indentation<br></br>Avoid using TAB</div>
+      {/* <div style={{display: codeLanguage == 'python' ? 'block' : 'none'}}>Please use 4 spaces for indentation<br></br>Avoid using TAB</div>
       <div onClick={submitCode}>
         <Button text="Submit" isDisabled={isButtonDisabled} />
       </div>
       <div onClick={nextCode} style={{ display: isCorrect ? "block" : "none" }}>
         <Button text="Next" />
-      </div>
+      </div> */}
     </>
   );
 }
