@@ -32,7 +32,7 @@ function Home() {
       <div className="home-title-container">
         <div className="left-title">
           <div data-aos="zoom-in">
-            <Title title="Bug Basher" />
+            <Title cssClass={"title-h1"} title="Bug Basher" />
             <Subtitle subtitle="Can you catch all the bugs?" />
             <Button text="Play" cssClass={"play"} handleClick={handleNavigation(user)}/>
           </div>

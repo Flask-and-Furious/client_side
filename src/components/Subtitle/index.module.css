@@ -13,3 +13,13 @@ h2 {
 .language-subtitle {
     font-size: 2rem;
 }
+
+@media screen and (max-width: 1100px) {
+    h2 {
+        font-size: 3rem;
+    }
+
+    .team-member {
+        font-size: 1.5rem;
+    }
+  }

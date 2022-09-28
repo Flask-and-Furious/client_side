@@ -79,3 +79,7 @@ a {
 .toggle .line3 {
   transform: rotate(45deg) translate(-4px, -5px);
 }
+
+.copy {
+  text-decoration: underline;
+}
