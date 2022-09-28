@@ -19,8 +19,9 @@ function Home() {
   const navigateTo = useNavigate()
   const { user } = useContext(Context);
 
-  function handleNavigation (username) {
-    if (username) {
+  function handleNavigation() {
+    if (user) {
+
       navigateTo('/dashboard')
     }
     else {
@@ -40,7 +41,7 @@ function Home() {
             
             <Subtitle subtitle="Develop your coding skills" />
             <Subtitle subtitle="via debugging!" />
-            <Button text="Start learning" cssClass={"play"} handleClickEvent={handleNavigation(user)}/>
+            <Button text="Start learning" cssClass={"play"} handleClickEvent={(user)=> {handleNavigation(user)}}/>
           </div>
         </div>
         <div className="right-title" data-aos="zoom-in-left">
