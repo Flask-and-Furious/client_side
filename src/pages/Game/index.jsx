@@ -134,7 +134,7 @@ function Game() {
     <>
       <div className="question-desc">
         <div>
-          {codeLanguage == "javascript" ? <i class="fab fa-js-square fa-5x js-icon"></i> : codeLanguage == "python" ? <i class="fab fa-python fa-5x python-icon"></i> : null }
+          {codeLanguage == "javascript" ? <i className="fab fa-js-square fa-5x js-icon"></i> : codeLanguage == "python" ? <i className="fab fa-python fa-5x python-icon"></i> : null }
           <p>{currentCodePackage["snippet"]["description"]}</p>
         </div>
       </div>
