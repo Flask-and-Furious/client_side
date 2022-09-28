@@ -16,6 +16,10 @@ function DashboardPage() {
     }
   }, [user]);
 
+  function handleClick() {
+    navigateTo('/language')
+  }
+
   return (
     <>
     <div className="dashboard-container">
@@ -25,7 +29,7 @@ function DashboardPage() {
         <h5> Your Current Score : ⭐ {score} ⭐</h5>
       </div>
       <div>
-        <Button text="Let's Get Started" nextPage="/language" />
+        <Button text="Let's Get Started" handleClickEvent={handleClick} />
       </div>
     </div>
 

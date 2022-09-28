@@ -18,6 +18,11 @@ function CompletedPage() {
     navigateTo("/");
   };
 
+  const handleDashboard = () => {
+  
+    navigateTo("/dashboard");
+  };
+
   useEffect(() => {
     if (!user) {
       navigateTo("/", { replace: true });
@@ -34,7 +39,7 @@ function CompletedPage() {
           <br></br>
         </div>
 
-        <Button text="Go to Dashboard" nextPage="/dashboard" />
+        <Button text="Go to Dashboard" handleClickEvent={handleDashboard} />
         <br></br>
       </div>
     </>

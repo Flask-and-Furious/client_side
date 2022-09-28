@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Button, Option, Subtitle, Title } from "../../components";
+import { Button, Option, Subtitle, Title, HR } from "../../components";
 
 import { Context } from "../../Context";
 
@@ -36,13 +36,13 @@ function LanguagePage() {
         <Subtitle subtitle="Choose a language to practice your debugging skills." cssClass={"language-subtitle"}/>
         <div className="language-buttons-div">
           <div>
-            <Button text="Python" cssClass={"play"} handleClick={clickHandler}/>
-            <Button text="Javascript" cssClass={"play"} handleClick={clickHandlerOne}/>
+            <Button text="Python" cssClass={"play"} handleClickEvent={clickHandler}/>
+            <Button text="Javascript" cssClass={"play"} handleClickEvent={clickHandlerOne}/>
           </div>
         </div>
         {codeLanguage ? (
         <div className="language-play-button-div">
-          <Button text="Let's play" cssClass={"play"} handleClick={HandlerOne}/>
+          <Button text="Let's play" cssClass={"play"} handleClickEvent={HandlerOne}/>
         </div>
         ) : null}
       </div>

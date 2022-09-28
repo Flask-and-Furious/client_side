@@ -33,11 +33,11 @@ function Game() {
     navigate("/language");
   };
 
-   const pythonProcessingServer = 'https://python-debug.herokuapp.com/code'
-  //const pythonProcessingServer = "http://127.0.0.1:5000/code"
+  //  const pythonProcessingServer = 'https://python-debug.herokuapp.com/code'
+  const pythonProcessingServer = "http://127.0.0.1:5000/code"
 
    const nodeProcessingServer = 'https://flask-and-furious-node-backend.herokuapp.com/code'
-  //const nodeProcessingServer = 'http://localhost:3000/code'
+  // const nodeProcessingServer = 'http://localhost:3000/code'
 
   const [progress, setProgress] = useState(0);
 
@@ -114,9 +114,6 @@ function Game() {
         } else {
           setErrorMessage(data.data);
           setIsCorrect(false); // if it doesn't
-          setRandomIndex(() =>
-            Math.floor(Math.random() * incorrectMessages.length)
-          );
         }
       })
       .catch(() => setIsCorrect(false));
@@ -141,7 +138,7 @@ function Game() {
       <div className="question-desc">
         <div>
           {codeLanguage == "javascript" ? <i class="fab fa-js-square fa-5x js-icon"></i> : codeLanguage == "python" ? <i class="fab fa-python fa-5x python-icon"></i> : null }
-          <p>This is the description of the question below. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p>{currentCodePackage["snippet"]["description"]}</p>
         </div>
       </div>
       {/* <button onClick={handlertwo}>choose language </button> */}
@@ -158,6 +155,24 @@ function Game() {
 
       <HR />
       <Subtitle subtitle={"Challenge one"}/>
+      <div id="flash-container" style={{ height: "30px" }}>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          isAnswered && (
+            <FlashMessage
+              text={
+                isCorrect
+                  ? "✅ Correct!"
+                  : `❌${errorMessage.error ? errorMessage.error : "Try again"}`
+              }
+            />
+          )
+        )}
+        {isAnswered && isCorrect && (
+          <FlashMessage text={`Solved in:${solvingTime} s`} />
+        )}
+      </div>
       <div className="code-mirror-div">
         <div className="code-mirror">
       <CodeMirror
@@ -194,15 +209,7 @@ function Game() {
           <Button text="Next" cssClass={"play"}/>
           </div>
           </div>
-      </div>
-      <FlashMessage
-        style={{ display: isAnswered ? "flex" : "none" }}
-        text={
-          isCorrect
-            ? `✅${correctMessages[randomIndex]}`
-            : `❌${incorrectMessages[randomIndex]}`
-        }
-      />
+      </div>            
       <div style={{ textAlign: "start", margin: "20px", fontSize: "18px", width: "750px" }}>
         <FlashMessage
           style={{ display: isCorrect ? "flex" : "none" }}
@@ -212,15 +219,6 @@ function Game() {
       <div>
       <Button text="Hint" cssClass={"play"}/>
       </div>
-      {/* <Image image="" /> */}
-      {/* <Input name="" text="Which line number is wrong?" /> */}
-      {/* <div style={{display: codeLanguage == 'python' ? 'block' : 'none'}}>Please use 4 spaces for indentation<br></br>Avoid using TAB</div>
-      <div onClick={submitCode}>
-        <Button text="Submit" isDisabled={isButtonDisabled} />
-      </div>
-      <div onClick={nextCode} style={{ display: isCorrect ? "block" : "none" }}>
-        <Button text="Next" />
-      </div> */}
     </>
   );
 }

@@ -4,15 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "./index.module.css"
 
-function Button({ text, isDisabled, nextPage, cssClass, handleClick }) {
-  // const goTo = useNavigate();
-
-  // function handleNavigation() {
-  //   goTo(nextPage);
-  // }
+function Button({ text, isDisabled, nextPage, cssClass, handleClickEvent }) {
 
   return (
-    <button disabled={isDisabled} onClick={handleClick} className={styles[`${cssClass}`]}>
+    <button disabled={isDisabled} onClick={handleClickEvent} className={styles[`${cssClass}`]}>
       {text}
     </button>
   );

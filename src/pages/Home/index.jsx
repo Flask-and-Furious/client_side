@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState, useContext, useEffect } from "react";
 
-import { Button, Image, Subtitle, Title } from "../../components";
-
 import { Context } from "../../Context";
 import AOS from 'aos'
 
