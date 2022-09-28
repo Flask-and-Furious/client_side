@@ -23,7 +23,7 @@ describe("Running Login component", () => {
   });
 });
 
-describe("Login Component Content", () => {
+describe("Login component contents", () => {
   beforeEach(() => {
     render(
       <BrowserRouter>
@@ -34,6 +34,17 @@ describe("Login Component Content", () => {
     );
   });
 
+  it("Renders all inputs for logging in", () => {
+    const inputs = screen.getAllByRole("input");
+    expect(inputs).toHaveLength(3);
+
+    inputs.map((singleInput) => {
+      expect(singleInput).toBeInTheDocument();
+      expect(typeof singleInput.textContent).toBe("string");
+      expect(singleInput).toBeTruthy();
+    });
+  });
+
   test("Ensures login title is present for user to read", () => {
     const title = screen.getByRole("heading");
 
@@ -42,13 +53,47 @@ describe("Login Component Content", () => {
     expect(title).toBeTruthy();
   });
 
-  it("Renders all inputs for logging in", () => {
-    const input = screen.getAllByRole("input");
+  test("Ensures username input is present", () => {
+    const usernameInput = screen.getByPlaceholderText("Username");
 
-    input.map((single) => {
-      expect(single).toBeInTheDocument();
-      expect(typeof single.textContent).toBe("string");
-      expect(single).toBeTruthy();
-    });
+    expect(usernameInput).toBeInTheDocument();
+    expect(typeof usernameInput.textContent).toBe("string");
+    expect(usernameInput).toBeTruthy();
+  });
+
+  test("Ensures password input is present", () => {
+    const passwordInput = screen.getByPlaceholderText("Password");
+
+    expect(passwordInput).toBeInTheDocument();
+    expect(typeof passwordInput.textContent).toBe("string");
+    expect(passwordInput).toBeTruthy();
+  });
+});
+
+describe("Login form functionality", () => {
+  beforeEach(() => {
+    render(
+      <BrowserRouter>
+        <ContextProvider>
+          <Login />
+        </ContextProvider>
+      </BrowserRouter>
+    );
+  });
+
+  test("clears user input after submitting username", () => {
+    const usernameInput = screen.getByPlaceholderText("Username");
+    userEvent.type(usernameInput, "Beth{enter}");
+    expect(usernameInput.value).toBe("");
+    expect(usernameInput.value).not.toBeTruthy();
+    expect(usernameInput.value).toHaveLength(0);
+  });
+
+  test("clears user input after submitting password", () => {
+    const passwordInput = screen.getByPlaceholderText("Password");
+    userEvent.type(passwordInput, "Beth{enter}");
+    expect(passwordInput.value).toBe("");
+    expect(passwordInput.value).not.toBeTruthy();
+    expect(passwordInput.value).toHaveLength(0);
   });
 });
