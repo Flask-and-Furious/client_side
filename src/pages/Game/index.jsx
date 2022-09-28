@@ -135,7 +135,7 @@ function Game() {
       <div className="question-desc">
         <div>
           {codeLanguage == "javascript" ? <i className="fab fa-js-square fa-5x js-icon"></i> : codeLanguage == "python" ? <i className="fab fa-python fa-5x python-icon"></i> : null }
-          <p>{currentCodePackage["snippet"]["description"]}</p>
+          <p role={"para1"}>{currentCodePackage["snippet"]["description"]}</p>
         </div>
       </div>
       {/* <button onClick={handlertwo}>choose language </button> */}
@@ -143,7 +143,7 @@ function Game() {
       <div>Score: ⭐ {score} ⭐</div>
 
       <div>
-        <p>
+        <p role={"para2"}>
           Current language:{" "}
           {codeLanguage.charAt(0).toUpperCase() + codeLanguage.slice(1)}
         </p>
@@ -173,6 +173,7 @@ function Game() {
       <div className="code-mirror-div">
         <div className="code-mirror">
       <CodeMirror
+          role={"codeMirror"}
           value={currentCodePackage["snippet"]["body"]}
           theme={dracula}
           indentWithTab={true}
