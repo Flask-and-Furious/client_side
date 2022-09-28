@@ -67,11 +67,11 @@ function Login() {
                 <div className="animation">
                     <Image image={login} altVal="article 1 image goes here" cssClass={"logoImg"} />
                 </div>
-                <Title title="Flask & Furious" />
+                <Title title="Login" />
                 <form onSubmit={handleSubmit}>
                     <Input onChange={(e) => {setUsername(e.target.value);}} name="username" type="text">Username</Input>
-                    <Input onChange={(e) => {setPassword(e.target.value);}} name="password" type="password">Password</Input>
-                    <Input type="submit" name="login">Login</Input>
+                    <Input onChange={(e) => {setPassword(e.target.value);}} name="password" type="password" min={8} max={20}>Password</Input>
+                    <Input type="submit" name="login">Submit</Input>
                 </form>
                 {isValidUser ? null : (
                     <FlashMessage text="Login failed. Please try again. " />

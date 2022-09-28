@@ -40,7 +40,7 @@ function Home() {
             
             <Subtitle subtitle="Develop your coding skills" />
             <Subtitle subtitle="via debugging!" />
-            <Button text="Start learning" cssClass={"play"} handleClick={handleNavigation(user)}/>
+            <Button text="Start learning" cssClass={"play"} handleClickEvent={handleNavigation(user)}/>
           </div>
         </div>
         <div className="right-title" data-aos="zoom-in-left">
