@@ -45,7 +45,7 @@ body {
 
 p {
   padding: 15px;
-  /* width: 500px; */
+  width: 500px;
 }
 
 .login-container, .register-container {
@@ -244,12 +244,29 @@ nav {
   
   p {
     font-size: 12px;
-    width: 350px;
+    width: 600px;
+    color: chartreuse;
   }
   
   .container {
     min-width: 0px;
   }
+
+  
+  
+}
+
+@media screen and (max-width: 1300px) {
+  
+  p {
+    font-size: 15px;
+    width: 800px;
+  }
+  
+  .container {
+    min-width: 0px;
+  }
+
   
 }
 
