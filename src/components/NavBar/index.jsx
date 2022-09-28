@@ -3,10 +3,21 @@ import { NavLink, Outlet } from "react-router-dom";
 
 import "./navbar.css";
 import { Context } from "../../Context";
+import { useNavigate } from "react-router-dom";
 
 function NavBar() {
   const { storedSessionUser, setStoredSessionUser } = useContext(Context);
-
+  const { user, setUser } = useContext(Context);
+  const {score, setScore } = useContext(Context);
+  const navigateTo = useNavigate();
+  const handleLogout = () => {
+    // remove the token and user from the session storage
+   localStorage.removeItem("token")
+   localStorage.clear()
+   setUser("")
+   
+    navigateTo('/login');
+  }
   return (
     <>
       {storedSessionUser ? (
@@ -63,7 +74,8 @@ function NavBar() {
             Completed
           </NavLink>
           <NavLink
-            to="/logout"
+            to="/login"
+            onClick={handleLogout}
             style={({ isActive }) =>
               isActive
                 ? { textDecoration: "underline" }

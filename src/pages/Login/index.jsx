@@ -3,23 +3,35 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+
 import { Title, Input, Button, Subtitle, FlashMessage } from "../../components";
 import { Context } from "../../Context";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  //const { login } = useUserContext();
   const { storedSessionUser, setStoredSessionUser } = useContext(Context);
   const { isValidUser, setIsValidUser } = useContext(Context);
+  const { user, setUser } = useContext(Context);
+
 
   const goTo = useNavigate();
 
   // moves to dashboard after logging in
   const handleNavigate = () => {
+    setUser(username)
     // setStoredSessionUser(username); // needs to come from SQL database
     goTo("/dashboard"); // needs conditionally rendering using SQL database content
   };
 
+
+  const logout=()=> {
+    localStorage.removeItem('token')
+    setUser(null);
+    goTo("/login");
+ }
+ 
   let errorMessage;
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,7 +58,8 @@ function Login() {
         const currentSessionUser = localStorage.getItem("token");
         setStoredSessionUser(currentSessionUser);
         setIsValidUser(true);
-        handleNavigate();
+       
+      handleNavigate();
       } else {
         setIsValidUser(false);
         console.log("PANIC!!!");

@@ -15,8 +15,8 @@ function Register() {
 
   // moves to dashboard after logging in
   const handleNavigate = () => {
-    setStoredFullUserDetails({}) // needs to come from SQL database
-    goTo("/dashboard"); // needs conditionally rendering using SQL database content
+   // setStoredFullUserDetails({}) // needs to come from SQL database
+    goTo("/login"); // needs conditionally rendering using SQL database content
   };
 
   const handleSubmit = async (e) => {
