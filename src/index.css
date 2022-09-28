@@ -45,7 +45,7 @@ body {
 
 p {
   padding: 15px;
-  /* width: 500px; */
+  width: 500px;
 }
 
 .login-container, .register-container {
