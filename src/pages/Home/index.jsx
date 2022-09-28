@@ -8,7 +8,6 @@ import { Button, Image, Subtitle, Title, HR, Team } from "../../components";
 import home from "../../assets/home.jpg";
 import article1 from "../../assets/article1.jpg"
 import snippet1 from "../../assets/snippet1.png"
-import snippet2 from "../../assets/snippet2.png"
 import coding_girl from "../../assets/coding_girl.jpg"
 
 
@@ -61,7 +60,7 @@ function Home() {
       </div>
       <div><HR /></div>
       <div className="article2-container">
-      <div className="mobile">
+    
         <div data-aos="fade-up" >
 
           <Subtitle subtitle="Write vs. read" />
@@ -70,18 +69,17 @@ function Home() {
         <div data-aos="zoom-in-left">
           <Image image={snippet1} altVal="article 2 image goes here" cssClass={"snippets"}/>
         </div>
-      </div>
+    
       </div>
       <div><HR /></div>
       <div className="article1-container">
-        <div className="mobile">
+        
         <div data-aos="zoom-in-right">
           <Image image={coding_girl} altVal="article 1 image goes here" cssClass={"snippets"} />
         </div>
         <div data-aos="fade-up" >
           <Subtitle subtitle="Different mindset" />
           <p>Writing code from scratch and debugging existing code requires different approach and mindset.<br/>Many developers are altering and debugging existing codes on daily basis. Bug Basher<sup>&copy;</sup> will help you to master this skill.</p>
-        </div>
         </div>
       </div>
       <div><HR /></div>
