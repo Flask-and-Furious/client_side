@@ -60,6 +60,7 @@ function Home() {
       <div><HR /></div>
       <div className="article2-container">
         <div data-aos="fade-up" >
+
           <Subtitle subtitle="Write vs. read" />
           <p>Do you know the basics of Python or Javascript?<br/>Are you comfortable solving basic or complicated problems by writing your codes from scratch? Take a look at this code snippet.<br/> How quickly could you find and fix the bugs in this code?</p>
         </div>
