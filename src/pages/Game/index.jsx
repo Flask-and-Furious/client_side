@@ -28,13 +28,15 @@ function Game() {
   const { codeLanguage, setCodeLanguage } = useContext(Context);
   const { user, setUser } = useContext(Context);
   const { score, setScore } = useContext(Context);
+  const { minTime, setMinTime } = useContext(Context); // save the time of the quickest debugging task
+  const { maxTime, setMaxTime } = useContext(Context); // save the time of the longest debugging task
 
   const handlertwo = () => {
     navigate("/language");
   };
 
-  //  const pythonProcessingServer = 'https://python-debug.herokuapp.com/code'
-  const pythonProcessingServer = "http://127.0.0.1:5000/code"
+   const pythonProcessingServer = 'https://python-debug.herokuapp.com/code'
+  // const pythonProcessingServer = "http://127.0.0.1:5000/code"
 
    const nodeProcessingServer = 'https://flask-and-furious-node-backend.herokuapp.com/code'
   // const nodeProcessingServer = 'http://localhost:3000/code'
@@ -88,11 +90,8 @@ function Game() {
       .then((data) => {
         setIsLoading(false);
         // data.data will contain the debugged function return values in an array
-        console.log("data.data: ", data.data);
-        console.log(data.data[0], currentCodePackage["snippet"]["return-1"]);
-        console.log(data.data[1], currentCodePackage["snippet"]["return-2"]);
         if (
-          // to compare singe values or deep compare objects
+          // to compare single values or deep compare objects
           (data.data[0] === currentCodePackage["snippet"]["return-1"] ||
             _.isEqual(
               data.data[0],
@@ -110,7 +109,10 @@ function Game() {
           const solvingSeconds =
             Math.round((doneTime - solvingTime) / 100) / 10;
           setSolvingTime(solvingSeconds);
-          // Here some code to save this duration to user's profile. Maybe update if this is the quickest?
+          if (solvingSeconds < minTime) {setMinTime(solvingSeconds)}
+          if (solvingSeconds > maxTime) {setMaxTime(solvingSeconds)}
+          console.log('mintime, maxtim: ', minTime, maxTime)
+          // Here some code to save this duration to user's profile. Maybe update if this is the quickest? Future feature
         } else {
           setErrorMessage(data.data);
           setIsCorrect(false); // if it doesn't
@@ -138,7 +140,7 @@ function Game() {
       <div className="question-desc">
         <div>
           {codeLanguage == "javascript" ? <i class="fab fa-js-square fa-5x js-icon"></i> : codeLanguage == "python" ? <i class="fab fa-python fa-5x python-icon"></i> : null }
-          <p>{currentCodePackage["snippet"]["description"]}</p>
+          <p style={{textAlign: 'start'}}>{currentCodePackage["snippet"]["description"]}</p>
         </div>
       </div>
       {/* <button onClick={handlertwo}>choose language </button> */}
@@ -148,14 +150,14 @@ function Game() {
       <div>
         <p>
           Current language:{" "}
-          {codeLanguage.charAt(0).toUpperCase() + codeLanguage.slice(1)}
+          {codeLanguage == 'python' ? 'Python' : 'JavaScript'}
         </p>
-        <button onClick={handlertwo}>Change language</button>
+        <div onClick={handlertwo}><Button text="Change language" cssClass={"play"}/></div> 
       </div>
 
       <HR />
-      <Subtitle subtitle={"Challenge one"}/>
-      <div id="flash-container" style={{ height: "30px" }}>
+      <Subtitle subtitle={`${progress + 1}.`}/>
+      <div id="flash-container" style={{ height: "15px" }}>
         {isLoading ? (
           <Loader />
         ) : (
@@ -164,13 +166,10 @@ function Game() {
               text={
                 isCorrect
                   ? "✅ Correct!"
-                  : `❌${errorMessage.error ? errorMessage.error : "Try again"}`
+                  : `❌${errorMessage ? errorMessage.error : "Try again"}`
               }
             />
           )
-        )}
-        {isAnswered && isCorrect && (
-          <FlashMessage text={`Solved in:${solvingTime} s`} />
         )}
       </div>
       <div className="code-mirror-div">
@@ -184,13 +183,8 @@ function Game() {
               return {
                 id: currentCodePackage["id"], // this is basically changes the 'body' value only. It's the code from user's input. We need the other original values
                 snippet: {
-                  description: currentCodePackage["snippet"]["description"],
-                  import: currentCodePackage["snippet"]["import"],
+                  ...currentCodePackage["snippet"],
                   body: editor,
-                  "to-execute-1": currentCodePackage["snippet"]["to-execute-1"],
-                  "return-1": currentCodePackage["snippet"]["return-1"],
-                  "to-execute-2": currentCodePackage["snippet"]["to-execute-2"],
-                  "return-2": currentCodePackage["snippet"]["return-2"],
                 },
               };
             });
@@ -211,13 +205,12 @@ function Game() {
           </div>
       </div>            
       <div style={{ textAlign: "start", margin: "20px", fontSize: "18px", width: "750px" }}>
-        <FlashMessage
-          style={{ display: isCorrect ? "flex" : "none" }}
-          text={`${solvingTime} s`}
-        />
+        {isAnswered && isCorrect && (
+          <FlashMessage text={`Solved in: ${solvingTime} s`} />
+        )}
       </div>
       <div>
-      <Button text="Hint" cssClass={"play"}/>
+      {/* <Button text="Hint" cssClass={"play"}/>  // Future feature */}
       </div>
     </>
   );

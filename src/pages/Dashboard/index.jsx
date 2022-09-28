@@ -7,6 +7,8 @@ import { Context } from "../../Context";
 function DashboardPage() {
   const { user, setUser } = useContext(Context);
   const { score, setScore } = useContext(Context); // testing
+  const { minTime, } = useContext(Context); // save the time of the quickest debugging task
+  const { maxTime, } = useContext(Context); // save the time of the longest debugging task
 
   const navigateTo = useNavigate();
 
@@ -24,9 +26,12 @@ function DashboardPage() {
     <>
     <div className="dashboard-container">
       <div>
-        <Title title="Flask & Furious" />
+        <Title title="Bug Basher" />
         <Subtitle subtitle={`${user}'s Dashboard`} />
-        <h5> Your Current Score : ⭐ {score} ⭐</h5>
+        <h5> Your Total Score : ⭐ {score} ⭐</h5>
+        {console.log('mintime maxtime on dashboard: ', minTime, maxTime)}
+        <h5 style={{display: minTime === Infinity ? 'none' : 'block'}}> 🐇 Quickest debugging completed in: {minTime} s</h5>
+        <h5 style={{display: maxTime === -Infinity ? 'none' : 'block'}}> 🐢 Slowest debugging completed in: {maxTime} s</h5>
       </div>
       <div>
         <Button text="Let's Get Started" handleClickEvent={handleClick} />
