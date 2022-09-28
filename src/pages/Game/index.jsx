@@ -27,7 +27,8 @@ function Game() {
   const navigates = useNavigate();
   const { codeLanguage, setCodeLanguage } = useContext(Context);
   const { user, setUser } = useContext(Context);
-  const { score, setScore } = useContext(Context);
+  const { jsScore, setJsScore } = useContext(Context);
+  const { pythonScore, setPythonScore } = useContext(Context);
 
   const handlertwo = () => {
     navigate("/language");
@@ -103,8 +104,14 @@ function Game() {
         ) {
           // we compare the incoming values with the saved return values from the database
           setIsCorrect(true); // if both match
-          let myscore = score + 2;
-          setScore(myscore);
+          // check what language was played, add + 1 to the context score for that specific language
+          if (codeLanguage == "javascript") {
+            let javaScriptScore = jsScore + 1;
+            setJsScore(javaScriptScore);
+          } else if (codeLanguage == "python") {
+            let pyScore = pythonScore + 1;
+            setPythonScore(pyScore);
+          }
           setIsButtonDisabled(true);
           const doneTime = new Date().getTime();
           const solvingSeconds =
@@ -138,7 +145,7 @@ function Game() {
       <div className="question-desc">
         <div>
           {codeLanguage == "javascript" ? <i class="fab fa-js-square fa-5x js-icon"></i> : codeLanguage == "python" ? <i class="fab fa-python fa-5x python-icon"></i> : null }
-          <Subtitle subtitle={"Challenge 1"}/>
+          <Subtitle subtitle={"Challenge"}/>
           <p>{currentCodePackage["snippet"]["description"]}</p>
         </div>
       </div>
@@ -198,7 +205,8 @@ function Game() {
           <Button text="Next" cssClass={"play"}/>
         </div>
         <div className="score-div">
-        <div>Score: ⭐ {score} ⭐</div>
+        <div>Score : ⭐ {pythonScore} ⭐</div>
+        <div>Score : ⭐ {jsScore} ⭐</div>
       </div>
       </div>
       </div>            
