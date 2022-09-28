@@ -39,13 +39,12 @@ function Login() {
         },
         body: JSON.stringify(Object.fromEntries(new FormData(e.target))),
       };
-      console.log("body here ==> ", options.body);
+
       const res = await fetch(
         "https://python-debug.herokuapp.com/login",
         options
       );
       const data = await res.json();
-      console.log("Res:", data);
 
       // getting current user
       if (data[1] == "200") {
@@ -58,12 +57,9 @@ function Login() {
         handleNavigate();
       } else {
         setIsValidUser(false);
-        console.log("PANIC!!!");
       }
       return data;
-    } catch (err) {
-      console.log("Error :", err);
-    }
+    } catch (err) {}
   };
 
   return (

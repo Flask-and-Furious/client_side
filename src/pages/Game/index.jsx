@@ -88,9 +88,6 @@ function Game() {
       .then((data) => {
         setIsLoading(false);
         // data.data will contain the debugged function return values in an array
-        console.log("data.data: ", data.data);
-        console.log(data.data[0], currentCodePackage["snippet"]["return-1"]);
-        console.log(data.data[1], currentCodePackage["snippet"]["return-2"]);
         if (
           // to compare singe values or deep compare objects
           (data.data[0] === currentCodePackage["snippet"]["return-1"] ||
