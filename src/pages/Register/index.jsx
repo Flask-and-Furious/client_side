@@ -92,44 +92,6 @@ function Register() {
               Login here
             </Link>
           </p>
-
-          <Title title="Sign up to Bug Basher" cssClass="login-title"></Title>
-          <form onSubmit={handleSubmit}>
-            <Input
-              type="text"
-              name="username"
-              onChange={(e) => {
-                setUsername(e.target.value);
-              }}
-            >
-              Username
-            </Input>
-            <Input
-              type="text"
-              name="email"
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-            >
-              Email
-            </Input>
-            {/* <Input type="password" name="confirm-password">Confirm Password</Input> */}
-            <Input
-              type="password"
-              name="password"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            >
-              Password
-            </Input>
-            <Input type="submit" name="register">
-              Register
-            </Input>
-          </form>
-          <p>
-            Have an account? <Link to="/login">Login here</Link>
-          </p>
         </div>
       </div>
     </>
