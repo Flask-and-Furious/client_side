@@ -1,6 +1,8 @@
-# Debugging App 
+# Bug Busher - Debugging App 
 
 Debugging App made with React, Flask and Sqlite.
+
+Demo: [https://bug-basher.netlify.app/](https://bug-basher.netlify.app/)
 
 ## Available Scripts
 
