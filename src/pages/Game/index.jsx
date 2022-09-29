@@ -158,47 +158,43 @@ function Game() {
           <Subtitle subtitle={"Challenge"} />
           <p role={"para1"}>{currentCodePackage["snippet"]["description"]}</p>
         </div>
-
-        <HR />
-        <div className="code-mirror-div">
-          <div className="code-mirror">
-            <CodeMirror
-              value={currentCodePackage["snippet"]["body"]}
-              theme={dracula}
-              indentWithTab={true}
-              onChange={(editor, change) => {
-                setCurrentCodePackage(() => {
-                  return {
-                    id: currentCodePackage["id"], // this is basically changes the 'body' value only. It's the code from user's input. We need the other original values
-                    snippet: {
-                      ...currentCodePackage["snippet"],
-                      body: editor,
-                    },
-                  };
-                });
-              }}
-              extensions={
+      </div>
+      <HR />
+      <div className="code-mirror-div">
+        <div className="code-mirror">
+          <CodeMirror
+            value={currentCodePackage["snippet"]["body"]}
+            theme={dracula}
+            indentWithTab={true}
+            onChange={(editor, change) => {
+              setCurrentCodePackage(() => {
+                return {
+                  id: currentCodePackage["id"], // this is basically changes the 'body' value only. It's the code from user's input. We need the other original values
+                  snippet: {
+                    ...currentCodePackage["snippet"],
+                    body: editor,
+                  },
+                };
+              });
+            }}
+          extensions={
                 codeLanguage == "python"
                   ? [langs.python()]
                   : [langs.javascript()]
               }
-            />
-            <div id="flash-container" style={{ height: "30px" }}>
-              {isLoading ? (
-                <Loader />
-              ) : (
-                isAnswered && (
-                  <FlashMessage
-                    text={
-                      isCorrect
-                        ? "✅ Correct!"
-                        : `❌${
-                            errorMessage.error
-                              ? errorMessage.error
-                              : "Try again"
-                          }`
+          />
+          <div id="flash-container" style={{ height: "30px" }}>
+            {isLoading ? (
+              <Loader />
+            ) : (
+              isAnswered && (
+                <FlashMessage
+                  text={
+                    isCorrect
+                      ? "✅ Correct!"
+                      : `❌${errorMessage.error ? errorMessage.error : "Try again"}`
                     }
-                  />
+                />
                 )
               )}
               {isAnswered && isCorrect && (
@@ -207,50 +203,27 @@ function Game() {
             </div>
           </div>
           <div className="options">
-            <div
-              style={{ display: codeLanguage == "python" ? "block" : "none" }}
-            >
-              Please use 4 spaces for indentation<br></br>Avoid using TAB
-            </div>
+            <div style={{ display: codeLanguage == "python" ? "block" : "none" }}>Please use 4 spaces for indentation<br></br>Avoid using TAB</div>
             <div>
-              <Button
-                text="Change language"
-                cssClass={"play"}
-                handleClickEvent={changeLng}
-              />
+              <Button text="Change language" cssClass={"play"} handleClickEvent={changeLng}/>
             </div>
             <div onClick={submitCode}>
-              <Button
-                text="Submit"
-                isDisabled={isButtonDisabled}
-                cssClass={"play"}
-              />
+              <Button text="Submit" isDisabled={isButtonDisabled} cssClass={"play"}/>
             </div>
-            <div
-              onClick={nextCode}
-              style={{ display: isCorrect ? "block" : "none" }}
-            >
+            <div onClick={nextCode} style={{ display: isCorrect ? "block" : "none" }}>
               <Button text="Next" cssClass={"play"} />
             </div>
-          </div>
-        </div>
-        <div
-          style={{
-            textAlign: "start",
-            margin: "20px",
-            fontSize: "18px",
-            width: "750px",
-          }}
-        >
-          {isAnswered && isCorrect && (
-            <FlashMessage text={`Solved in: ${solvingTime} s`} />
-          )}
-        </div>
+            <div className="score-div">
+              <div>Python Score : ⭐ {pythonScore} ⭐</div>
+              <div>JavaScript Score : ⭐ {jsScore} ⭐</div>
+            </div>
+      </div>
       </div>
       <div>
         <HR />
         <div className="hint-div">
           <Button text="Hint" cssClass={"play"} />
+          {/* some code to show hints on current question (future feature) */}
         </div>
       </div>
     </>
