@@ -29,9 +29,9 @@ function ProgressCircle(progress, language) {
   return (
     <>
     <div className="svg-pi-wrapper">
-      <svg class="svg-pi">
-        <circle class="svg-pi-track" />
-        <circle class="svg-pi-indicator" strokeDasharray={dashArray} strokeDashoffset={dashOffset}/>
+      <svg className="svg-pi">
+        <circle className="svg-pi-track" />
+        <circle className="svg-pi-indicator" strokeDasharray={dashArray} strokeDashoffset={dashOffset}/>
       </svg>
       <div className="svg-pi-label">
         <span className="svg-pi-language">{progress.language}</span>

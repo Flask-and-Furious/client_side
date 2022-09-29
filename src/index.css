@@ -334,6 +334,31 @@ svg {
   text-decoration: underline;
 }
 
+.completed-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.compl-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.compl-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 60px;
+}
+
+h5 {
+  font-size: 15px;
+}
+
 @media screen and (max-width: 1100px) {
   
   p {
@@ -433,8 +458,27 @@ svg {
     margin-left: 36%;
   }
   
+  .compl-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px;
+  }
+
+  .compl-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
   nav {
+  margin: 0;
+  padding: 2% 12% 1% 1%;
+  }
+
+
+  .navImg {
     display: none;
   }
   

@@ -204,10 +204,10 @@ function Game() {
         <div onClick={nextCode} style={{ display: isCorrect ? "block" : "none" }}>
           <Button text="Next" cssClass={"play"}/>
         </div>
-        <div className="score-div">
-        <div>Score : ⭐ {pythonScore} ⭐</div>
-        <div>Score : ⭐ {jsScore} ⭐</div>
-      </div>
+        {/* <div className="score-div">
+        <div>Python Score  : ⭐ {pythonScore} ⭐</div>
+        <div>JavaScript Score : ⭐ {jsScore} ⭐</div>
+      </div> */}
       </div>
       </div>            
       <div>
