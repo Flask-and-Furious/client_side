@@ -19,7 +19,7 @@ import {
   Title,
   FlashMessage,
   HR,
-  Loader
+  Loader,
 } from "../../components";
 import styles from "./index.module.css";
 
@@ -29,15 +29,18 @@ function Game() {
   const { user, setUser } = useContext(Context);
   const { jsScore, setJsScore } = useContext(Context);
   const { pythonScore, setPythonScore } = useContext(Context);
+  const { minTime, setMinTime } = useContext(Context); // save the time of the quickest debugging task
+  const { maxTime, setMaxTime } = useContext(Context); // save the time of the longest debugging task
 
-  const changeLng= () => {
+  const changeLng = () => {
     navigate("/language");
   };
 
-  //  const pythonProcessingServer = 'https://python-debug.herokuapp.com/code'
-  const pythonProcessingServer = "http://127.0.0.1:5000/code"
+  const pythonProcessingServer = "https://python-debug.herokuapp.com/code";
+  // const pythonProcessingServer = "http://127.0.0.1:5000/code"
 
-   const nodeProcessingServer = 'https://flask-and-furious-node-backend.herokuapp.com/code'
+  const nodeProcessingServer =
+    "https://flask-and-furious-node-backend.herokuapp.com/code";
   // const nodeProcessingServer = 'http://localhost:3000/code'
 
   const [progress, setProgress] = useState(0);
@@ -89,11 +92,8 @@ function Game() {
       .then((data) => {
         setIsLoading(false);
         // data.data will contain the debugged function return values in an array
-        console.log("data.data: ", data.data);
-        console.log(data.data[0], currentCodePackage["snippet"]["return-1"]);
-        console.log(data.data[1], currentCodePackage["snippet"]["return-2"]);
         if (
-          // to compare singe values or deep compare objects
+          // to compare single values or deep compare objects
           (data.data[0] === currentCodePackage["snippet"]["return-1"] ||
             _.isEqual(
               data.data[0],
@@ -117,7 +117,14 @@ function Game() {
           const solvingSeconds =
             Math.round((doneTime - solvingTime) / 100) / 10;
           setSolvingTime(solvingSeconds);
-          // Here some code to save this duration to user's profile. Maybe update if this is the quickest?
+          if (solvingSeconds < minTime) {
+            setMinTime(solvingSeconds);
+          }
+          if (solvingSeconds > maxTime) {
+            setMaxTime(solvingSeconds);
+          }
+          console.log("mintime, maxtim: ", minTime, maxTime);
+          // Here some code to save this duration to user's profile. Maybe update if this is the quickest? Future feature
         } else {
           setErrorMessage(data.data);
           setIsCorrect(false); // if it doesn't
@@ -139,85 +146,116 @@ function Game() {
     // Here some code to save user's new progress in the database
   };
 
-  
   return (
     <>
       <div className="question-desc">
         <div>
-          {codeLanguage == "javascript" ? <i class="fab fa-js-square fa-5x js-icon"></i> : codeLanguage == "python" ? <i class="fab fa-python fa-5x python-icon"></i> : null }
-          <Subtitle subtitle={"Challenge"}/>
+          {codeLanguage == "javascript" ? (
+            <i class="fab fa-js-square fa-5x js-icon"></i>
+          ) : codeLanguage == "python" ? (
+            <i class="fab fa-python fa-5x python-icon"></i>
+          ) : null}
+          <Subtitle subtitle={"Challenge"} />
           <p>{currentCodePackage["snippet"]["description"]}</p>
         </div>
-      </div>
-      <HR />
-      <div className="code-mirror-div">
-        <div className="code-mirror">
-          <CodeMirror
-            value={currentCodePackage["snippet"]["body"]}
-            theme={dracula}
-            indentWithTab={true}
-            onChange={(editor, change) => {
-              setCurrentCodePackage(() => {
-                return {
-                  id: currentCodePackage["id"], // this is basically changes the 'body' value only. It's the code from user's input. We need the other original values
-                  snippet: {
-                    description: currentCodePackage["snippet"]["description"],
-                    import: currentCodePackage["snippet"]["import"],
-                    body: editor,
-                    "to-execute-1": currentCodePackage["snippet"]["to-execute-1"],
-                    "return-1": currentCodePackage["snippet"]["return-1"],
-                    "to-execute-2": currentCodePackage["snippet"]["to-execute-2"],
-                    "return-2": currentCodePackage["snippet"]["return-2"],
-                  },
-                };
-              });
-            }}
-          extensions={codeLanguage == 'python' ? [langs.python()] : [langs.javascript()]}
-          />
-          <div id="flash-container" style={{ height: "30px" }}>
-            {isLoading ? (
-              <Loader />
-                ) : (
+
+        <HR />
+        <div className="code-mirror-div">
+          <div className="code-mirror">
+            <CodeMirror
+              value={currentCodePackage["snippet"]["body"]}
+              theme={dracula}
+              indentWithTab={true}
+              onChange={(editor, change) => {
+                setCurrentCodePackage(() => {
+                  return {
+                    id: currentCodePackage["id"], // this is basically changes the 'body' value only. It's the code from user's input. We need the other original values
+                    snippet: {
+                      ...currentCodePackage["snippet"],
+                      body: editor,
+                    },
+                  };
+                });
+              }}
+              extensions={
+                codeLanguage == "python"
+                  ? [langs.python()]
+                  : [langs.javascript()]
+              }
+            />
+            <div id="flash-container" style={{ height: "30px" }}>
+              {isLoading ? (
+                <Loader />
+              ) : (
                 isAnswered && (
-              <FlashMessage
-                text={
-                  isCorrect
-                    ? "✅ Correct!"
-                    : `❌${errorMessage.error ? errorMessage.error : "Try again"}`
-                  }
+                  <FlashMessage
+                    text={
+                      isCorrect
+                        ? "✅ Correct!"
+                        : `❌${
+                            errorMessage.error
+                              ? errorMessage.error
+                              : "Try again"
+                          }`
+                    }
+                  />
+                )
+              )}
+              {isAnswered && isCorrect && (
+                <FlashMessage text={`Solved in:${solvingTime} s`} />
+              )}
+            </div>
+          </div>
+          <div className="options">
+            <div
+              style={{ display: codeLanguage == "python" ? "block" : "none" }}
+            >
+              Please use 4 spaces for indentation<br></br>Avoid using TAB
+            </div>
+            <div>
+              <Button
+                text="Change language"
+                cssClass={"play"}
+                handleClickEvent={changeLng}
               />
-            )
-          )}
+            </div>
+            <div onClick={submitCode}>
+              <Button
+                text="Submit"
+                isDisabled={isButtonDisabled}
+                cssClass={"play"}
+              />
+            </div>
+            <div
+              onClick={nextCode}
+              style={{ display: isCorrect ? "block" : "none" }}
+            >
+              <Button text="Next" cssClass={"play"} />
+            </div>
+          </div>
+        </div>
+        <div
+          style={{
+            textAlign: "start",
+            margin: "20px",
+            fontSize: "18px",
+            width: "750px",
+          }}
+        >
           {isAnswered && isCorrect && (
-            <FlashMessage text={`Solved in:${solvingTime} s`} />
+            <FlashMessage text={`Solved in: ${solvingTime} s`} />
           )}
         </div>
       </div>
-      <div className="options">
-        <div style={{display: codeLanguage == 'python' ? 'block' : 'none'}}>Please use 4 spaces for indentation<br></br>Avoid using TAB</div>
-        <div>
-          <Button text="Change language" cssClass={"play"} handleClickEvent={changeLng}/>
-        </div>
-        <div onClick={submitCode}>
-          <Button text="Submit" isDisabled={isButtonDisabled} cssClass={"play"}/>
-        </div>
-        <div onClick={nextCode} style={{ display: isCorrect ? "block" : "none" }}>
-          <Button text="Next" cssClass={"play"}/>
-        </div>
-        {/* <div className="score-div">
-        <div>Python Score  : ⭐ {pythonScore} ⭐</div>
-        <div>JavaScript Score : ⭐ {jsScore} ⭐</div>
-      </div> */}
-      </div>
-      </div>            
       <div>
-      <HR />
-      <div className="hint-div">
-      <Button text="Hint" cssClass={"play"}/>
-      </div>
+        <HR />
+        <div className="hint-div">
+          <Button text="Hint" cssClass={"play"} />
+        </div>
       </div>
     </>
   );
 }
 
 export default Game;
+

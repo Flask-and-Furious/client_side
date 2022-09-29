@@ -10,8 +10,9 @@ export const ContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [jsScore, setJsScore] = useState(0);
   const [pythonScore, setPythonScore] = useState(0);
-  const [minTime, setMintime] = useState(0);
-  const [maxTime, setMaxtime] = useState(0);
+  const [minTime, setMinTime] = useState(Infinity);
+  const [maxTime, setMaxTime] = useState(-Infinity);
+
   return (
     <Context.Provider
       value={{
@@ -22,8 +23,9 @@ export const ContextProvider = ({ children }) => {
         isValidUser,
         setIsValidUser,
         user,setUser,jsScore,setJsScore,pythonScore,setPythonScore,
-        minTime, setMintime,
-        maxTime, setMaxtime
+        minTime, setMinTime,
+        maxTime, setMaxTime
+
       }}
     >
       {children}
