@@ -156,7 +156,7 @@ function Game() {
             <i class="fab fa-python fa-5x python-icon"></i>
           ) : null}
           <Subtitle subtitle={"Challenge"} />
-          <p>{currentCodePackage["snippet"]["description"]}</p>
+          <p role={"para1"}>{currentCodePackage["snippet"]["description"]}</p>
         </div>
 
         <HR />
@@ -258,4 +258,3 @@ function Game() {
 }
 
 export default Game;
-

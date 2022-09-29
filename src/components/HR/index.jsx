@@ -4,7 +4,7 @@ import styles from "./index.module.css"
 
 function HR () {
     return (
-        <hr></hr>
+        <hr role={"hr"}></hr>
     )
 }
 

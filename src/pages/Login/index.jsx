@@ -2,10 +2,16 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import { Title, Input, Button, Subtitle, FlashMessage, Image } from "../../components";
+import {
+  Title,
+  Input,
+  Button,
+  Subtitle,
+  FlashMessage,
+  Image,
+} from "../../components";
 import { Context } from "../../Context";
-import login from "../../assets/virus.png"
-
+import login from "../../assets/virus.png";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -38,7 +44,6 @@ function Login() {
         options
       );
       const data = await res.json();
-      console.log("Res:", data);
 
       // getting current user
       if (data[1] == "200") {
@@ -54,13 +59,12 @@ function Login() {
         console.log("Something went wrong!");
       }
       return data;
-    } catch (err) {
-      console.log("Error :", err);
-    }
+    } catch (err) {}
   };
 
   return (
     <>
+
         <div className="login-container">
             <div className="login-div">
                 <div className="animation">
@@ -68,9 +72,9 @@ function Login() {
                 </div>
                 <Title title="Login" />
                 <form onSubmit={handleSubmit}>
-                    <Input onChange={(e) => {setUsername(e.target.value);}} name="username" type="text">Username</Input>
-                    <Input onChange={(e) => {setPassword(e.target.value);}} name="password" type="password" min={8} max={20}>Password</Input>
-                    <Input type="submit" name="login">Submit</Input>
+                    <Input onChange={(e) => {setUsername(e.target.value);}} name="username" type="text" testRole="username">Username</Input>
+                    <Input onChange={(e) => {setPassword(e.target.value);}} name="password" type="password" min={8} max={20} testRole="password">Password</Input>
+                    <Input type="submit" name="login" testRole="login">Submit</Input>
                 </form>
                 {isValidUser ? null : (
                     <FlashMessage text="Login failed. Please try again. " />
@@ -78,6 +82,8 @@ function Login() {
                 <p>Don't have an account? <Link className="link-here" to="/register">Register here</Link></p>
             </div>
         </div>
+  
+
     </>
   );
 }

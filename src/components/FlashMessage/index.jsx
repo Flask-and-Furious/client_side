@@ -2,7 +2,7 @@ import React from 'react'
 
 function FlashMessage({ style, text }) {
   return (
-    <div style={style}>{text}</div>
+    <div style={style} role="flashMessage">{text}</div>
   )
 }
 
