@@ -39,7 +39,6 @@ function Login() {
         },
         body: JSON.stringify(Object.fromEntries(new FormData(e.target))),
       };
-
       const res = await fetch(
         "https://python-debug.herokuapp.com/login",
         options
@@ -57,6 +56,7 @@ function Login() {
         handleNavigate();
       } else {
         setIsValidUser(false);
+        console.log("Something went wrong!");
       }
       return data;
     } catch (err) {}
@@ -64,49 +64,26 @@ function Login() {
 
   return (
     <>
-      <div className="login-container">
-        <div className="login-div">
-          <div className="animation">
-            <Image
-              image={login}
-              altVal="article 1 image goes here"
-              cssClass={"logoImg"}
-            />
-          </div>
-          <Title title="Flask & Furious" />
-          <form onSubmit={handleSubmit}>
-            <Input
-              onChange={(e) => {
-                setUsername(e.target.value);
-              }}
-              name="username"
-              type="text"
-              testRole="username"
-            >
-              Username
-            </Input>
-            <Input
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-              name="password"
-              type="password"
-              testRole="password"
-            >
-              Password
-            </Input>
-            <Input type="submit" name="login" testRole="login">
-              Login
-            </Input>
-          </form>
-          {isValidUser ? null : (
-            <FlashMessage text="Login failed. Please try again. " />
-          )}
-          <p>
-            Don't have an account? <Link to="/register">Register here</Link>
-          </p>
+
+        <div className="login-container">
+            <div className="login-div">
+                <div className="animation">
+                    <Image image={login} altVal="article 1 image goes here" cssClass={"logoImg"} />
+                </div>
+                <Title title="Login" />
+                <form onSubmit={handleSubmit}>
+                    <Input onChange={(e) => {setUsername(e.target.value);}} name="username" type="text" testRole="username">Username</Input>
+                    <Input onChange={(e) => {setPassword(e.target.value);}} name="password" type="password" min={8} max={20} testRole="password">Password</Input>
+                    <Input type="submit" name="login" testRole="login">Submit</Input>
+                </form>
+                {isValidUser ? null : (
+                    <FlashMessage text="Login failed. Please try again. " />
+                )}
+                <p>Don't have an account? <Link className="link-here" to="/register">Register here</Link></p>
+            </div>
         </div>
-      </div>
+  
+
     </>
   );
 }

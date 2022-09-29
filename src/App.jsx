@@ -11,9 +11,9 @@ function App() {
     <>
       <div className="container">
         <Routes>
-          <Route path="/" element={<><NavBar /><Pages.Home /></>}></Route>
-          <Route path="/login" element={<><NavBar /><Pages.LoginPage /></>}></Route>
-          <Route path="/register" element={<><NavBar /><Pages.RegisterPage /></>}></Route>
+          <Route path="/" element={<><NavBar /><Pages.Home /></>}></Route>  
+          <Route path="/login" element={<><NavBar /><Pages.LoginPage /></>}></Route>     
+          <Route path="/register" element={<><NavBar /><Pages.RegisterPage /></>}></Route>       
           <Route path="/language" element={<><NavBar /><Pages.LanguagePage /></>}></Route>
           <Route path="/difficulty" element={<><NavBar /><Pages.DifficultyPage /></>}></Route>
           <Route path="/game" element={<><NavBar /><Pages.GamePage /></>}></Route>
@@ -21,8 +21,8 @@ function App() {
           <Route path="/dashboard" element={<><NavBar /><Pages.DashboardPage /></>}></Route>
           <Route path="*" element={<><NavBar /><Pages.PageNotFound /></>}></Route>
         </Routes>
-        <Footer />
       </div>
+      <Footer />
     </>
  )
 }

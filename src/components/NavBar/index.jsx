@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 import "./navbar.css";
 import { Context } from "../../Context";
-import Image from "../Image"
-import Title from "../Title"
+import Image from "../Image";
+import Title from "../Title";
 
-import virus from "../../assets/virus.png"
+import virus from "../../assets/virus.png";
 
 function NavBar() {
   const { user, setUser } = useContext(Context);
@@ -25,20 +25,16 @@ function NavBar() {
     <>
       {user ? (
         // there is a user present
-        <nav role={"nav"}>
-          <NavLink to="/" role={"home"}>Home</NavLink>
-          <NavLink to="/dashboard" role={"dashboard"}>Dashboard</NavLink>
-          <NavLink onClick={handleLogout} role={"logout"}>Log Out</NavLink>
-          <Outlet />
-        </nav>
-      ) : (
-        // there is no user present
         <div className="nav-container2">
           <nav role={"nav"}>
             <div className="left2">
               <NavLink to="/" role={"home"}>
                 <div className="animation">
-                  <Image image={virus} altVal="article 1 image goes here" cssClass={"navImg"} />
+                  <Image
+                    image={virus}
+                    altVal="article 1 image goes here"
+                    cssClass={"navImg"}
+                  />
                 </div>
                 <div className="nav-title-div">
                   <Title title="Bug Basher" cssClass={"nav-title"} />
@@ -47,8 +43,43 @@ function NavBar() {
             </div>
             <div className="right2">
               <div className="right-inner-2">
-                  <NavLink to="/login" role={"login"}>Login</NavLink>
-                  <NavLink to="/register" role={"register"}>Register</NavLink>
+                <NavLink to="/dashboard" role={"dashboard"}>
+                  Dashboard
+                </NavLink>
+                <NavLink onClick={handleLogout} role={"logout"}>
+                  Log out
+                </NavLink>
+                <Outlet />
+              </div>
+            </div>
+          </nav>
+        </div>
+      ) : (
+        // there is no user present
+        <div className="nav-container2">
+          <nav role={"nav"}>
+            <div className="left2">
+              <NavLink to="/" role={"home"}>
+                <div className="animation">
+                  <Image
+                    image={virus}
+                    altVal="article 1 image goes here"
+                    cssClass={"navImg"}
+                  />
+                </div>
+                <div className="nav-title-div">
+                  <Title title="Bug Basher" cssClass={"nav-title"} />
+                </div>
+              </NavLink>
+            </div>
+            <div className="right2">
+              <div className="right-inner-2">
+                <NavLink to="/login" role={"login"}>
+                  Login
+                </NavLink>
+                <NavLink to="/register" role={"register"}>
+                  Register
+                </NavLink>
                 <Outlet />
               </div>
             </div>

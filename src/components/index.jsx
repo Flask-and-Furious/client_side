@@ -10,3 +10,4 @@ export { default as HR} from "./HR";
 export { default as Footer } from "./Footer";
 export { default as Team } from "./Team";
 export { default as Loader } from "./Loader";
+export { default as Progress } from "./ProgressCircle";

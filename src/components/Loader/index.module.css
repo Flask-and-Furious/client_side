@@ -1,9 +1,9 @@
 .loader {
-  border: 5px solid #f3f3f3;
+  border: 2px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 5px solid purple;
-  width: 30px;
-  height: 30px;
+  border-top: 2px solid #08044e;
+  width: 20px;
+  height: 20px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
 }

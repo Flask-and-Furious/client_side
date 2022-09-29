@@ -1,9 +1,21 @@
 .play {
     margin: 15px;
-    padding: 5px;
+    padding: 10px;
     width: 150px;
     font-size: 2rem;
     background-color: #bb54c5;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Oxanium', cursive;
+    cursor: pointer;
+}
+
+.play-2 {
+    margin: 15px;
+    padding: 10px;
+    width: 150px;
+    font-size: 2rem;
+    background-color: #df9769;
     border: none;
     border-radius: 8px;
     font-family: 'Oxanium', cursive;
@@ -16,3 +28,11 @@
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     transition: 0.3s;
 }
+
+.play-2:hover {
+    background-color: #bb54c5;
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    transition: 0.3s;
+}
+

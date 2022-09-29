@@ -8,7 +8,11 @@ export const ContextProvider = ({ children }) => {
   const [storedSessionUser, setStoredSessionUser] = useState("");
   const [isValidUser, setIsValidUser] = useState(true);
   const [user, setUser] = useState(null);
-  const [score, setScore] = useState(0);
+  const [jsScore, setJsScore] = useState(0);
+  const [pythonScore, setPythonScore] = useState(0);
+  const [minTime, setMinTime] = useState(Infinity);
+  const [maxTime, setMaxTime] = useState(-Infinity);
+
   return (
     <Context.Provider
       value={{
@@ -18,7 +22,10 @@ export const ContextProvider = ({ children }) => {
         setStoredSessionUser,
         isValidUser,
         setIsValidUser,
-        user,setUser,score,setScore
+        user,setUser,jsScore,setJsScore,pythonScore,setPythonScore,
+        minTime, setMinTime,
+        maxTime, setMaxTime
+
       }}
     >
       {children}
