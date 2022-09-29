@@ -221,10 +221,10 @@ function Game() {
       </div>
       <div>
         <HR />
-        <div className="hint-div">
+        {/* <div className="hint-div">
           <Button text="Hint" cssClass={"play"} />
-          {/* some code to show hints on current question (future feature) */}
-        </div>
+          some code to show hints on current question (future feature)
+        </div> */}
       </div>
     </>
   );
