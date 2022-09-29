@@ -32,5 +32,29 @@
         'to-execute-2': 'series_sum(0)',
         'return-2' : '0.00'
       }
+    },
+    {'id': 3,
+     'snippet': {
+        'description': 'Take a look at the series in the comments. Debug this function which returns a string of the sum rounded to two decimals of the series upto nth term.',
+        'import': 'show',
+        'body' : "def series_sum(n):\n    if n == 0:\n        return '0.00'\n    sum = 0\n    for i in range(1, n):\n        sum += 1 / i\n    sum = str(round(sum, 2))\n    return sum\n\n# 1 => '1.00' (1)\
+                  \n# 2 => '1.5' (1 + 1/2)\n# 5 => '2.28' (1 + 1/2 + 1/3 + 1/4 + 1/5)\n# If the given value is 0,\n# it should return '0.00'",
+        'to-execute-1': 'series_sum(5)',
+        'return-1' : '2.28',
+        'to-execute-2': 'series_sum(0)',
+        'return-2' : '0.00'
+      }
+    },
+    {'id': 4,
+     'snippet': {
+        'description': 'Take a look at the series in the comments. Debug this function which returns a string of the sum rounded to two decimals of the series upto nth term.',
+        'import': 'show',
+        'body' : "def series_sum(n):\n    if n == 0:\n        return '0.00'\n    sum = 0\n    for i in range(1, n):\n        sum += 1 / i\n    sum = str(round(sum, 2))\n    return sum\n\n# 1 => '1.00' (1)\
+                  \n# 2 => '1.5' (1 + 1/2)\n# 5 => '2.28' (1 + 1/2 + 1/3 + 1/4 + 1/5)\n# If the given value is 0,\n# it should return '0.00'",
+        'to-execute-1': 'series_sum(5)',
+        'return-1' : '2.28',
+        'to-execute-2': 'series_sum(0)',
+        'return-2' : '0.00'
+      }
     }
   ]

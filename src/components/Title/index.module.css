@@ -25,6 +25,10 @@ h1 {
     transition: 0.3s;
 }
 
+.compl-title {
+  font-size: 5rem;
+}
+
 @media screen and (max-width: 1100px) {
     .title-h1 {
       font-size: 4rem;
@@ -38,20 +42,8 @@ h1 {
     }
   }
 
+
   @media screen and (max-width: 850px) {
-    .title-h1 {
-      font-size: 3rem;
-      line-height: 0.5rem;
-    }
-
-    .team-title {
-        font-size: 2rem;
-        margin-top: 20px;
-        text-align: center;
-    }
-  }
-
-  @media screen and (max-width: 600px) {
 
     h1 {
       font-size: 3rem;
@@ -62,5 +54,13 @@ h1 {
       text-align: center;
     }
 
+    .team-title {
+      font-size: 2rem;
+      margin-top: 20px;
+      text-align: center;
+  }
+    .compl-title {
+      font-size: 4rem;
+    }
     
   }

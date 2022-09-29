@@ -55,6 +55,7 @@ function LanguagePage() {
         </>
         : codeLanguage == "javascript" ? <><p>Javascript Example</p>
         <p><Image image={js_example} altVal="code snippet" cssClass={"snippet"} /></p></>
+
         : <><p>Example</p><p>Choose a language to see an example question</p></>  
         }
       </div>
