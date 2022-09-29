@@ -32,12 +32,10 @@ function DashboardPage() {
       <div className="dashboard-title">
         <Subtitle subtitle={`${user.charAt(0).toUpperCase() + user.slice(1)}'s progress`} />
       </div>
-      
       <Progress progress={jsScore} language={"Javascript"}/>
       <Progress progress={pythonScore} language={"Python"}/>
       <h5 style={{display: minTime === Infinity ? 'none' : 'block'}}> 🐇 Quickest debugging completed in: {minTime} s</h5>
       <h5 style={{display: maxTime === -Infinity ? 'none' : 'block'}}> 🐢 Slowest debugging completed in: {maxTime} s</h5>    
-
       <div className="dashboard-container">
         <div>
           <Button text="Let's Get Started" handleClickEvent={handleClick} cssClass={"play"}/>
