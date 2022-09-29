@@ -156,7 +156,7 @@ function Game() {
             <i class="fab fa-python fa-5x python-icon"></i>
           ) : null}
           <Subtitle subtitle={"Challenge"} />
-          <p role={"para1"}>{currentCodePackage["snippet"]["description"]}</p>
+            <p role={"para1"} style={{textAlign: "start"}}>{currentCodePackage["snippet"]["description"]}</p>
         </div>
       </div>
       <HR />
@@ -204,9 +204,9 @@ function Game() {
           </div>
           <div className="options">
             <div style={{ display: codeLanguage == "python" ? "block" : "none" }}>Please use 4 spaces for indentation<br></br>Avoid using TAB</div>
-            <div>
+            {/* <div>
               <Button text="Change language" cssClass={"play"} handleClickEvent={changeLng}/>
-            </div>
+            </div> */}
             <div onClick={submitCode}>
               <Button text="Submit" isDisabled={isButtonDisabled} cssClass={"play"}/>
             </div>
