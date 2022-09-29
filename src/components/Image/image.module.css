@@ -1,0 +1,102 @@
+ .rightImg {
+    width: 500px;
+    border-radius: 50%;
+ }
+
+ .loginImg {
+   width: 500px;
+ }
+
+ .logoImg {
+   width: 100px;
+   margin: 20px;
+ }
+
+ .navImg {
+  width: 50px;
+ }
+
+.snippets {
+  width: 500px;
+  border-radius: 10px;
+}
+
+.teamImg {
+  width: 170px;
+  border-radius: 50%;
+}
+
+.img-compl {
+  width: 80px;
+  margin: 20px;
+}
+
+
+@media screen and (max-width: 1100px) {
+  .rightImg {
+    width: 400px;
+    padding: 20px;
+ }
+
+ .snippets {
+  width: 400px;
+  padding: 20px;
+}
+
+.teamImg {
+  width: 150px;
+}
+}
+
+@media screen and (max-width: 850px) {
+  .rightImg {
+    width: 300px;
+    padding: 20px;
+ }
+
+ .snippets {
+  width: 300px;
+  padding: 20px;
+}
+
+.teamImg {
+  width: 150px;
+}
+}
+
+
+.mobileImg {
+  display: none;
+}
+
+@media screen and (max-width: 850px) {
+  .rightImg {
+    display: none;
+ }
+
+ .snippets {
+  width: 350px;
+  padding: 20px;
+}
+
+.teamImg {
+  width: 150px;
+}
+
+.mobileImg {
+  display: block;
+  width: 80px;
+  margin-bottom: 20px;
+}
+
+.img-compl {
+  width: 60px;
+  margin: 10px;
+}
+
+.navImg {
+  display: none;
+}
+
+
+}
