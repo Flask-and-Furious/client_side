@@ -391,7 +391,7 @@ svg {
 }
 
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 850px) {
   
   p {
     font-size: 12px;
@@ -488,7 +488,19 @@ svg {
     align-items: center;
 
   }
+
+  .code-mirror {
+    width: 500px;
+    padding: 15px;
+  }
 }
 
+@media screen and (max-width: 600px) {
+
+  .code-mirror {
+    width: 400px;
+    padding: 15px;
+  }
+}
 
 
