@@ -51,10 +51,10 @@ function LanguagePage() {
       </div>
       <div className="language-example">
         {codeLanguage =="python" ? <><p>Python example</p>
-          <p><Image image={py_example} altVal="code snippet" cssClass={"snippet"} /></p>
+          <Image image={py_example} altVal="code snippet" cssClass={"snippets"} />
         </>
         : codeLanguage == "javascript" ? <><p>Javascript Example</p>
-        <p><Image image={js_example} altVal="code snippet" cssClass={"snippet"} /></p></>
+        <Image image={js_example} altVal="code snippet" cssClass={"snippets"} /></>
 
         : <><p>Example</p><p>Choose a language to see an example question</p></>  
         }
