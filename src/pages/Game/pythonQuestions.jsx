@@ -10,6 +10,17 @@
         'return-2' : 5555
       }
     },
+    {'id': 1,                       //  sample buggy functions
+     'snippet': {
+        'description': 'Make the input text upper case',
+        'import': 'upper_case',
+        'body' : 'def make_text_upper_case(string):\n    upper_case = string.upper()\n\nreturn upper_case\n\n# Expectation:\n# make_text_upper_case("hire us!")\n# => HIRE US!',
+        'to-execute-1': 'upper_case("qwerty")',
+        'return-1' : "QWERTY",
+        'to-execute-2': 'upper_case("Game over!")',
+        'return-2' : "GAME OVER!"
+      }
+    },
     {'id': 1,
      'snippet': {
         'description': 'Remove spaces from the input string',
