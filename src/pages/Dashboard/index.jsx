@@ -21,10 +21,6 @@ function DashboardPage() {
 
   function handleClick() {
     navigateTo('/language')
-    // console.log(jsScore)
-    // console.log(pythonScore)
-    // console.log(pythonGoal)
-    // console.log(jsGoal)
   }
 
   return (
