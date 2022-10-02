@@ -72,7 +72,7 @@ function Home() {
         <div data-aos="fade-up" >
 
           <Subtitle subtitle="Write vs. read" />
-          <p>Do you know the basics of Python or Javascript?<br/>Are you comfortable solving basic or complicated problems by writing your codes from scratch? Take a look at this code snippet.<br/> How quickly could you find and fix the bugs in this code?</p>
+          <p>Do you know the basics of Python or JavaScript?<br/>Are you comfortable with solving basic or complicated problems by writing your codes from scratch? Take a look at this code snippet.<br/> How quickly could you find and fix the bugs in this code?</p>
         </div>
         <div data-aos="zoom-in-left">
           <Image image={snippet1} altVal="article 2 image goes here" cssClass={"snippets"}/>
@@ -87,7 +87,7 @@ function Home() {
         </div>
         <div data-aos="fade-up" >
           <Subtitle subtitle="Different mindset" />
-          <p>Writing code from scratch and debugging existing code requires different approach and mindset.<br/>Many developers are altering and debugging existing codes on daily basis. Bug Basher<sup>&copy;</sup> will help you to master this skill.</p>
+          <p>Writing code from scratch and debugging existing code requires different approach and mindset.<br/>Many developers are amending and debugging existing codes on daily basis. Bug Basher<sup>&copy;</sup> will help you to master this skill.</p>
         </div>
       </div>
       <div><HR /></div>
